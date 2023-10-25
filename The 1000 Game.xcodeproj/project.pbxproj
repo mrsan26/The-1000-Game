@@ -68,7 +68,7 @@
 		194D8D312AE9506B00A42DFC /* The 1000 Game */ = {
 			isa = PBXGroup;
 			children = (
-				194D8D552AE9746200A42DFC /* Rools */,
+				194D8D552AE9746200A42DFC /* Foundation */,
 				194D8D482AE95A8900A42DFC /* Components */,
 				194D8D462AE95A5600A42DFC /* Controllers */,
 				194D8D472AE95A5E00A42DFC /* Basic */,
@@ -107,13 +107,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		194D8D552AE9746200A42DFC /* Rools */ = {
+		194D8D552AE9746200A42DFC /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
 				194D8D562AE9747800A42DFC /* BasicRools.swift */,
 				194D8D582AE9823200A42DFC /* BasicMechanics.swift */,
 			);
-			path = Rools;
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
