@@ -1,0 +1,6 @@
+framework module Pods_The_1000_Game {
+  umbrella header "Pods-The 1000 Game-umbrella.h"
+
+  export *
+  module * { export * }
+}

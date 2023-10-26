@@ -13,12 +13,20 @@
 		194D8D3C2AE9506C00A42DFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 194D8D3B2AE9506C00A42DFC /* Assets.xcassets */; };
 		194D8D3F2AE9506C00A42DFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 194D8D3D2AE9506C00A42DFC /* LaunchScreen.storyboard */; };
 		194D8D4A2AE95AB900A42DFC /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D492AE95AB900A42DFC /* BasicViewController.swift */; };
-		194D8D4D2AE95ACA00A42DFC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 194D8D4C2AE95ACA00A42DFC /* SnapKit */; };
 		194D8D4F2AE95D7700A42DFC /* CombinableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D4E2AE95D7700A42DFC /* CombinableModel.swift */; };
 		194D8D512AE95E3600A42DFC /* MainGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D502AE95E3600A42DFC /* MainGameController.swift */; };
 		194D8D542AE95E9800A42DFC /* MainGameControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D532AE95E9800A42DFC /* MainGameControllerModel.swift */; };
 		194D8D572AE9747800A42DFC /* BasicRools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D562AE9747800A42DFC /* BasicRools.swift */; };
 		194D8D592AE9823200A42DFC /* BasicMechanics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D582AE9823200A42DFC /* BasicMechanics.swift */; };
+		194D8D5D2AEA628E00A42DFC /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D5C2AEA628E00A42DFC /* BasicButton.swift */; };
+		194D8D5F2AEA62E300A42DFC /* BasicButton+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D5E2AEA62E300A42DFC /* BasicButton+ViewModel.swift */; };
+		194D8D612AEA630900A42DFC /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D602AEA630900A42DFC /* Typealias.swift */; };
+		194D8D642AEA635D00A42DFC /* TextValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D632AEA635D00A42DFC /* TextValue.swift */; };
+		194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D662AEA6CA500A42DFC /* BasicLabel.swift */; };
+		194D8D692AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D682AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift */; };
+		194D8D6C2AEA75B600A42DFC /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D6B2AEA75B600A42DFC /* MainMenuController.swift */; };
+		194D8D6E2AEA75CA00A42DFC /* MainMenuControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D6D2AEA75CA00A42DFC /* MainMenuControllerModel.swift */; };
+		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +43,17 @@
 		194D8D532AE95E9800A42DFC /* MainGameControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameControllerModel.swift; sourceTree = "<group>"; };
 		194D8D562AE9747800A42DFC /* BasicRools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRools.swift; sourceTree = "<group>"; };
 		194D8D582AE9823200A42DFC /* BasicMechanics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMechanics.swift; sourceTree = "<group>"; };
+		194D8D5C2AEA628E00A42DFC /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		194D8D5E2AEA62E300A42DFC /* BasicButton+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicButton+ViewModel.swift"; sourceTree = "<group>"; };
+		194D8D602AEA630900A42DFC /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
+		194D8D632AEA635D00A42DFC /* TextValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextValue.swift; sourceTree = "<group>"; };
+		194D8D662AEA6CA500A42DFC /* BasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLabel.swift; sourceTree = "<group>"; };
+		194D8D682AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicLabel+ViewModel.swift"; sourceTree = "<group>"; };
+		194D8D6B2AEA75B600A42DFC /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
+		194D8D6D2AEA75CA00A42DFC /* MainMenuControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuControllerModel.swift; sourceTree = "<group>"; };
+		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
+		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				194D8D4D2AE95ACA00A42DFC /* SnapKit in Frameworks */,
+				D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +73,8 @@
 			children = (
 				194D8D312AE9506B00A42DFC /* The 1000 Game */,
 				194D8D302AE9506B00A42DFC /* Products */,
+				57D1D8F40D3C289E0F81C23E /* Pods */,
+				69674BAEB8EC7E2AAF6E6CEE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				194D8D552AE9746200A42DFC /* Foundation */,
+				194D8D622AEA634900A42DFC /* Common */,
 				194D8D482AE95A8900A42DFC /* Components */,
 				194D8D462AE95A5600A42DFC /* Controllers */,
 				194D8D472AE95A5E00A42DFC /* Basic */,
@@ -85,8 +107,8 @@
 		194D8D462AE95A5600A42DFC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				194D8D502AE95E3600A42DFC /* MainGameController.swift */,
-				194D8D532AE95E9800A42DFC /* MainGameControllerModel.swift */,
+				194D8D6A2AEA758D00A42DFC /* MainMenu */,
+				194D8D652AEA6C7D00A42DFC /* MainGame */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -103,6 +125,8 @@
 		194D8D482AE95A8900A42DFC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				194D8D5B2AEA615F00A42DFC /* BasicLabel */,
+				194D8D5A2AEA614E00A42DFC /* BasicButton */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -116,6 +140,68 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
+		194D8D5A2AEA614E00A42DFC /* BasicButton */ = {
+			isa = PBXGroup;
+			children = (
+				194D8D5C2AEA628E00A42DFC /* BasicButton.swift */,
+				194D8D5E2AEA62E300A42DFC /* BasicButton+ViewModel.swift */,
+			);
+			path = BasicButton;
+			sourceTree = "<group>";
+		};
+		194D8D5B2AEA615F00A42DFC /* BasicLabel */ = {
+			isa = PBXGroup;
+			children = (
+				194D8D662AEA6CA500A42DFC /* BasicLabel.swift */,
+				194D8D682AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift */,
+			);
+			path = BasicLabel;
+			sourceTree = "<group>";
+		};
+		194D8D622AEA634900A42DFC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				194D8D632AEA635D00A42DFC /* TextValue.swift */,
+				194D8D602AEA630900A42DFC /* Typealias.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		194D8D652AEA6C7D00A42DFC /* MainGame */ = {
+			isa = PBXGroup;
+			children = (
+				194D8D502AE95E3600A42DFC /* MainGameController.swift */,
+				194D8D532AE95E9800A42DFC /* MainGameControllerModel.swift */,
+			);
+			path = MainGame;
+			sourceTree = "<group>";
+		};
+		194D8D6A2AEA758D00A42DFC /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				194D8D6B2AEA75B600A42DFC /* MainMenuController.swift */,
+				194D8D6D2AEA75CA00A42DFC /* MainMenuControllerModel.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		57D1D8F40D3C289E0F81C23E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */,
+				BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		69674BAEB8EC7E2AAF6E6CEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -123,18 +209,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 194D8D432AE9506C00A42DFC /* Build configuration list for PBXNativeTarget "The 1000 Game" */;
 			buildPhases = (
+				373200414686716AD7B3F392 /* [CP] Check Pods Manifest.lock */,
 				194D8D2B2AE9506B00A42DFC /* Sources */,
 				194D8D2C2AE9506B00A42DFC /* Frameworks */,
 				194D8D2D2AE9506B00A42DFC /* Resources */,
+				014939BA7305B16B75A698A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "The 1000 Game";
-			packageProductDependencies = (
-				194D8D4C2AE95ACA00A42DFC /* SnapKit */,
-			);
 			productName = "The 1000 Game";
 			productReference = 194D8D2F2AE9506B00A42DFC /* The 1000 Game.app */;
 			productType = "com.apple.product-type.application";
@@ -163,9 +248,6 @@
 				Base,
 			);
 			mainGroup = 194D8D262AE9506B00A42DFC;
-			packageReferences = (
-				194D8D4B2AE95ACA00A42DFC /* XCRemoteSwiftPackageReference "SnapKit" */,
-			);
 			productRefGroup = 194D8D302AE9506B00A42DFC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -188,19 +270,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		014939BA7305B16B75A698A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		373200414686716AD7B3F392 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-The 1000 Game-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		194D8D2B2AE9506B00A42DFC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				194D8D642AEA635D00A42DFC /* TextValue.swift in Sources */,
 				194D8D332AE9506B00A42DFC /* AppDelegate.swift in Sources */,
+				194D8D612AEA630900A42DFC /* Typealias.swift in Sources */,
 				194D8D4F2AE95D7700A42DFC /* CombinableModel.swift in Sources */,
 				194D8D512AE95E3600A42DFC /* MainGameController.swift in Sources */,
+				194D8D5D2AEA628E00A42DFC /* BasicButton.swift in Sources */,
 				194D8D4A2AE95AB900A42DFC /* BasicViewController.swift in Sources */,
+				194D8D6E2AEA75CA00A42DFC /* MainMenuControllerModel.swift in Sources */,
 				194D8D592AE9823200A42DFC /* BasicMechanics.swift in Sources */,
 				194D8D542AE95E9800A42DFC /* MainGameControllerModel.swift in Sources */,
+				194D8D5F2AEA62E300A42DFC /* BasicButton+ViewModel.swift in Sources */,
+				194D8D692AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift in Sources */,
+				194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */,
 				194D8D572AE9747800A42DFC /* BasicRools.swift in Sources */,
 				194D8D352AE9506B00A42DFC /* SceneDelegate.swift in Sources */,
+				194D8D6C2AEA75B600A42DFC /* MainMenuController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +474,7 @@
 		};
 		194D8D442AE9506C00A42DFC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -370,6 +503,7 @@
 		};
 		194D8D452AE9506C00A42DFC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -418,25 +552,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		194D8D4B2AE95ACA00A42DFC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		194D8D4C2AE95ACA00A42DFC /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 194D8D4B2AE95ACA00A42DFC /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 194D8D272AE9506B00A42DFC /* Project object */;
 }

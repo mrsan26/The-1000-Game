@@ -1,0 +1,20 @@
+PODS:
+  - SnapKit (5.6.0)
+  - SwiftyButton (0.8.2)
+
+DEPENDENCIES:
+  - SnapKit
+  - SwiftyButton
+
+SPEC REPOS:
+  trunk:
+    - SnapKit
+    - SwiftyButton
+
+SPEC CHECKSUMS:
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftyButton: 5b0ef314e9cf61cf8a83e456ddd1ea1f53f30598
+
+PODFILE CHECKSUM: 6689b5c4568ffc9d0030bed42b0efb59395bbbc8
+
+COCOAPODS: 1.13.0
