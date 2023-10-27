@@ -48,8 +48,15 @@ class MainMenuController: BasicViewController {
     override func makeConstraints() {
         buttonsStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(self.view.frame.size.width / 5)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-self.view.frame.size.width / 5)
+        }
+        
+        let buttons = [newGameButton, roolsButton, settingsButton]
+        buttons.forEach { button in
+            button.snp.makeConstraints { make in
+                make.height.equalTo(70)
+            }
         }
     }
     
@@ -57,8 +64,8 @@ class MainMenuController: BasicViewController {
     override func binding() {
         self.newGameButton.setViewModel(viewModel.newGameButtonVM)
         self.viewModel.newGameButtonVM.action = { [weak self] in
-            let mainGameVC = MainGameController(viewModel: .init())
-            self?.navigationController?.pushViewController(mainGameVC, animated: true)
+            let playersVC = PlayersController(viewModel: .init())
+            self?.navigationController?.pushViewController(playersVC, animated: true)
         }
         
         self.roolsButton.setViewModel(viewModel.roolsButtonVM)

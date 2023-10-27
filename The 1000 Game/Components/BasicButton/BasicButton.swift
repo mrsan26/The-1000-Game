@@ -11,7 +11,7 @@ import SwiftyButton
 import SnapKit
 
 class BasicButton: PressableButton {
-    private var cancallables: Set<AnyCancellable> = []
+    private var cancellables: Set<AnyCancellable> = []
     
     weak var vm: ViewModel?
     
@@ -42,7 +42,7 @@ class BasicButton: PressableButton {
             self?.isEnabled = value
             self?.alpha = value ? 1 : 0.5
         }
-        .store(in: &cancallables)
+        .store(in: &cancellables)
         
         vm.$title.sink { [weak self] title in
             switch title {
@@ -53,7 +53,7 @@ class BasicButton: PressableButton {
                 self?.titleLabel?.attributedText = attributed
             }
         }
-        .store(in: &cancallables)
+        .store(in: &cancellables)
     }
     
     @objc private func tapAction() {
@@ -75,10 +75,7 @@ class BasicButton: PressableButton {
             self.setTitleColor(.white, for: .normal)
         }
         
-        self.snp.makeConstraints { make in
-            make.height.equalTo(60)
-        }
-        self.cornerRadius = 12
+        self.cornerRadius = 16
         self.shadowHeight = 8
     }
 }

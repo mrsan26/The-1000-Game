@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class BasicLabel: UILabel {
-    private var cancallables: Set<AnyCancellable> = []
+    private var cancellables: Set<AnyCancellable> = []
 
     init(aligment: NSTextAlignment = .left) {
         super.init(frame: .zero)
@@ -21,7 +21,7 @@ class BasicLabel: UILabel {
     }
     
     func setViewModel(_ vm: ViewModel) {
-        cancallables.removeAll()
+        cancellables.removeAll()
 
         vm.$textValue.sink { [weak self] value in
             guard let value else { return }
@@ -35,7 +35,7 @@ class BasicLabel: UILabel {
                 self?.attributedText = attributed
             }
         }
-        .store(in: &cancallables)
+        .store(in: &cancellables)
         
     }
     

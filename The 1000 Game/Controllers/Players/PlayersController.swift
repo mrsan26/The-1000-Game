@@ -7,12 +7,18 @@
 
 import UIKit
 import Combine
+import SnapKit
 
 class PlayersController: BasicViewController {
     
     var cancellables: Set<AnyCancellable> = []
-    
     let viewModel: PlayersControllerModel
+    
+    private lazy var playersTableView: UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    private lazy var playerNameTextField = BasicTextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +35,19 @@ class PlayersController: BasicViewController {
     }
     
     override func makeLayout() {
-        
+        self.view.addSubview(playerNameTextField)
     }
     
     override func makeConstraints() {
-        
+        playerNameTextField.snp.makeConstraints { make in
+            make.leading.top.equalTo(self.view.safeAreaLayoutGuide).offset(16)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide).offset(-16)
+        }
     }
     
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
-        
+        playerNameTextField.setViewModel(viewModel.playerNameInputVM)
     }
 
 }
