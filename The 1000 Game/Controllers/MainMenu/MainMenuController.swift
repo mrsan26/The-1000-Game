@@ -27,7 +27,6 @@ class MainMenuController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
     }
     
     init(viewModel: MainMenuControllerModel) {

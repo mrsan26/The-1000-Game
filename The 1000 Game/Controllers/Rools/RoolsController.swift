@@ -1,25 +1,25 @@
 //
-//  MainGameController.swift
+//  RoolsController.swift
 //  The 1000 Game
 //
-//  Created by Sanchez on 25.10.2023.
+//  Created by Sanchez on 27.10.2023.
 //
 
+import Foundation
 import UIKit
 import Combine
 
-class MainGameController: BasicViewController {
+class RoolsController: BasicViewController {
     
     var cancellables: Set<AnyCancellable> = []
     
-    let viewModel: MainGameControllerModel
+    let viewModel: RoolsControllerModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
-    init(viewModel: MainGameControllerModel) {
+    init(viewModel: RoolsControllerModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -40,5 +40,4 @@ class MainGameController: BasicViewController {
     override func binding() {
         
     }
-
 }

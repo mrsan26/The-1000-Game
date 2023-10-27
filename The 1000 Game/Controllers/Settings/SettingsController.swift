@@ -1,25 +1,25 @@
 //
-//  MainGameController.swift
+//  SettingsController.swift
 //  The 1000 Game
 //
-//  Created by Sanchez on 25.10.2023.
+//  Created by Sanchez on 27.10.2023.
 //
 
+import Foundation
 import UIKit
 import Combine
 
-class MainGameController: BasicViewController {
+class SettingsController: BasicViewController {
     
     var cancellables: Set<AnyCancellable> = []
     
-    let viewModel: MainGameControllerModel
+    let viewModel: SettingsControllerModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
-    init(viewModel: MainGameControllerModel) {
+    init(viewModel: SettingsControllerModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -40,5 +40,5 @@ class MainGameController: BasicViewController {
     override func binding() {
         
     }
-
+    
 }
