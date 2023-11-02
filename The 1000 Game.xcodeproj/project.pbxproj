@@ -35,6 +35,7 @@
 		194D8D832AEC150800A42DFC /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D822AEC150800A42DFC /* PlayerModel.swift */; };
 		194D8D862AEC173500A42DFC /* BasicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D852AEC173500A42DFC /* BasicTextField.swift */; };
 		194D8D882AEC174100A42DFC /* BasicTextField+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D872AEC174100A42DFC /* BasicTextField+ViewModel.swift */; };
+		194D8D8A2AF123A800A42DFC /* RoolsCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D892AF123A800A42DFC /* RoolsCheck.swift */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		194D8D822AEC150800A42DFC /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		194D8D852AEC173500A42DFC /* BasicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTextField.swift; sourceTree = "<group>"; };
 		194D8D872AEC174100A42DFC /* BasicTextField+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTextField+ViewModel.swift"; sourceTree = "<group>"; };
+		194D8D892AF123A800A42DFC /* RoolsCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolsCheck.swift; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
 		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				194D8D562AE9747800A42DFC /* BasicRools.swift */,
 				194D8D582AE9823200A42DFC /* BasicMechanics.swift */,
+				194D8D892AF123A800A42DFC /* RoolsCheck.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				194D8D692AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift in Sources */,
 				194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */,
 				194D8D792AEC088F00A42DFC /* SettingsController.swift in Sources */,
+				194D8D8A2AF123A800A42DFC /* RoolsCheck.swift in Sources */,
 				194D8D572AE9747800A42DFC /* BasicRools.swift in Sources */,
 				194D8D352AE9506B00A42DFC /* SceneDelegate.swift in Sources */,
 				194D8D6C2AEA75B600A42DFC /* MainMenuController.swift in Sources */,

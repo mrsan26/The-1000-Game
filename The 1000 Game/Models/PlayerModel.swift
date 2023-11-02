@@ -21,14 +21,14 @@ class Player {
     var lastAmountOfCubes: Int = 5
     var bolts = 0
     var turnsInYamaCounter = 0
-    var gameOpenID = 0
+    var gameOpenCounter = 0
     
     var pointsHistory: [Int] = [0]
     var changesHistory: [Int] = [0]
     
     var nowIsDisplaying = false
     var winStatus = false
-    var allCubesArePlus = false
+//    var allCubesArePlus = false
     var turnIsFinish = false
     var isItInYama = false
     var gameOpen = false
@@ -40,5 +40,40 @@ class Player {
         self.name = name
         self.numberID = numberID
         self.emoji = emoji
+    }
+    
+    func addPointsInHistory() {
+        pointsHistory.append(points)
+    }
+    
+    func addChangesInHistory() {
+        if pointsHistory.count > 1 {
+            changesHistory.append(pointsHistory.last! - pointsHistory[pointsHistory.count - 2])
+        } else {
+            changesHistory.append(points)
+        }
+        
+    }
+    
+    func resetStats() {
+        points = 0
+        currentPoints = 0
+        curentRoll.removeAll()
+        amountOfCubes = 5
+        lastAmountOfCubes = 5
+        bolts = 0
+        turnsInYamaCounter = 0
+        gameOpenCounter = 0
+        nowIsDisplaying = false
+        winStatus = false
+//        allCubesArePlus = false
+        turnIsFinish = false
+        isItInYama = false
+        gameOpen = false
+        wasOvertaken = false
+        isBoltsCrash = false
+        isSamosvalCrash = false
+        pointsHistory = [0]
+        changesHistory = [0]
     }
 }

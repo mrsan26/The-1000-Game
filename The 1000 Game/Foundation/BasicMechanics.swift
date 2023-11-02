@@ -77,6 +77,13 @@ struct BasicMechanics {
         return (plusCubesArray, notPlusCubeCount, notRepeatingNumsArray, points)
     }
     
+    func diceRoll(cubesAmount: Int) -> [Int] {
+        var dicesArray: [Int] = []
+        for _ in 1...cubesAmount {
+            dicesArray.append(Int.random(in: 1...6))
+        }
+        return dicesArray
+    }
     
     
 }
