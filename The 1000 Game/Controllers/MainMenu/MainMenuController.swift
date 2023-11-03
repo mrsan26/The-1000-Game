@@ -18,12 +18,25 @@ class MainMenuController: BasicViewController {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillEqually
-        stack.spacing = 26
+        stack.spacing = 13
         return stack
     }()
-    private lazy var newGameButton = BasicButton(style: .blue)
-    private lazy var roolsButton = BasicButton(style: .blue)
-    private lazy var settingsButton = BasicButton(style: .blue)
+    private lazy var mainNameLabel: BasicLabel = {
+        let label = BasicLabel(aligment: .center, font: .AlfaSlabOne, fontSize: 60)
+        label.layer.masksToBounds = false
+        label.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        label.layer.shadowOpacity = 1
+        label.layer.shadowRadius = 4
+        label.layer.shadowOffset = CGSize(width: 0, height: 4)
+        return label
+    }()
+    private lazy var playersGestureView = BasicView()
+    private lazy var dicesChoiseGestureView = BasicView()
+    private lazy var bochkiToogleView = BasicView()
+    private lazy var botsToogleView = BasicView()
+    private lazy var startGameButton = BasicButton(style: .red)
+//    private lazy var roolsButton = BasicButton(style: .blue)
+//    private lazy var settingsButton = BasicButton(style: .blue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,36 +53,44 @@ class MainMenuController: BasicViewController {
     
     override func makeLayout() {
         self.view.addSubview(buttonsStackView)
-        buttonsStackView.addArrangedSubview(newGameButton)
-        buttonsStackView.addArrangedSubview(roolsButton)
-        buttonsStackView.addArrangedSubview(settingsButton)
+        self.view.addSubview(mainNameLabel)
+        buttonsStackView.addArrangedSubview(playersGestureView)
+        buttonsStackView.addArrangedSubview(dicesChoiseGestureView)
+        buttonsStackView.addArrangedSubview(bochkiToogleView)
+        buttonsStackView.addArrangedSubview(botsToogleView)
+        self.view.addSubview(startGameButton)
     }
     
     override func makeConstraints() {
         buttonsStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(self.view.frame.size.width / 5)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-self.view.frame.size.width / 5)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(12)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-12)
         }
         
-        let buttons = [newGameButton, roolsButton, settingsButton]
-        buttons.forEach { button in
-            button.snp.makeConstraints { make in
-                make.height.equalTo(70)
-            }
+        mainNameLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-12)
+            make.bottom.equalTo(buttonsStackView.snp.top).offset(-56)
+        }
+        
+        startGameButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-64)
         }
     }
     
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
-        self.newGameButton.setViewModel(viewModel.newGameButtonVM)
-        self.viewModel.newGameButtonVM.action = { [weak self] in
-            let playersVC = PlayersController(viewModel: .init())
-            self?.navigationController?.pushViewController(playersVC, animated: true)
-        }
+        self.startGameButton.setViewModel(viewModel.startGameButton)
+//        self.viewModel.newGameButtonVM.action = { [weak self] in
+//            let playersVC = PlayersController(viewModel: .init())
+//            self?.navigationController?.pushViewController(playersVC, animated: true)
+//        }
+//
+        self.mainNameLabel.setViewModel(viewModel.mainNameLabelVM)
         
-        self.roolsButton.setViewModel(viewModel.roolsButtonVM)
-        self.settingsButton.setViewModel(viewModel.settingsButtonVM)
     }
 
 }

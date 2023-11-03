@@ -9,9 +9,12 @@ import Foundation
 
 final class MainMenuControllerModel: Combinable {
     
-    let newGameButtonVM = BasicButton.ViewModel(title: .text("Новая игра"))
-    let roolsButtonVM = BasicButton.ViewModel(title: .text("Правила"))
-    let settingsButtonVM = BasicButton.ViewModel(title: .text("Настройки"))
+    let mainNameLabelVM = BasicLabel.ViewModel(textValue: .text("1000"))
+    let startGameButton = BasicButton.ViewModel(title: "Начать")
+//    let roolsButtonVM = BasicButton.ViewModel(title: .text("Правила"))
+//    let settingsButtonVM = BasicButton.ViewModel(title: .text("Настройки"))
+    
+    
     
     override init() {
         super.init()

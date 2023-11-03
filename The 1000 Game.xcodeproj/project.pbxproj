@@ -36,6 +36,10 @@
 		194D8D862AEC173500A42DFC /* BasicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D852AEC173500A42DFC /* BasicTextField.swift */; };
 		194D8D882AEC174100A42DFC /* BasicTextField+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D872AEC174100A42DFC /* BasicTextField+ViewModel.swift */; };
 		194D8D8A2AF123A800A42DFC /* RoolsCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D892AF123A800A42DFC /* RoolsCheck.swift */; };
+		194D8D8C2AF3A20000A42DFC /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D8B2AF3A20000A42DFC /* BasicView.swift */; };
+		194D8D912AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 194D8D902AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf */; };
+		194D8D952AF462D800A42DFC /* FontValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D942AF462D800A42DFC /* FontValue.swift */; };
+		194D8D992AF473C000A42DFC /* robotrondotmatrix.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194D8D982AF473C000A42DFC /* robotrondotmatrix.otf */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +75,10 @@
 		194D8D852AEC173500A42DFC /* BasicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTextField.swift; sourceTree = "<group>"; };
 		194D8D872AEC174100A42DFC /* BasicTextField+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTextField+ViewModel.swift"; sourceTree = "<group>"; };
 		194D8D892AF123A800A42DFC /* RoolsCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolsCheck.swift; sourceTree = "<group>"; };
+		194D8D8B2AF3A20000A42DFC /* BasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
+		194D8D902AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AlfaSlabOne-Regular.ttf"; path = "../../../../../../../Downloads/Alfa Slab One/AlfaSlabOne-Regular.ttf"; sourceTree = "<group>"; };
+		194D8D942AF462D800A42DFC /* FontValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontValue.swift; sourceTree = "<group>"; };
+		194D8D982AF473C000A42DFC /* robotrondotmatrix.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = robotrondotmatrix.otf; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
 		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +127,7 @@
 				194D8D342AE9506B00A42DFC /* SceneDelegate.swift */,
 				194D8D382AE9506B00A42DFC /* Main.storyboard */,
 				194D8D3B2AE9506C00A42DFC /* Assets.xcassets */,
+				194D8D8D2AF3B00B00A42DFC /* Fonts */,
 				194D8D3D2AE9506C00A42DFC /* LaunchScreen.storyboard */,
 				194D8D402AE9506C00A42DFC /* Info.plist */,
 			);
@@ -149,6 +158,7 @@
 		194D8D482AE95A8900A42DFC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				194D8D8B2AF3A20000A42DFC /* BasicView.swift */,
 				194D8D842AEC171300A42DFC /* BasicTextField */,
 				194D8D5B2AEA615F00A42DFC /* BasicLabel */,
 				194D8D5A2AEA614E00A42DFC /* BasicButton */,
@@ -187,6 +197,7 @@
 		194D8D622AEA634900A42DFC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				194D8D942AF462D800A42DFC /* FontValue.swift */,
 				194D8D632AEA635D00A42DFC /* TextValue.swift */,
 				194D8D602AEA630900A42DFC /* Typealias.swift */,
 			);
@@ -253,6 +264,15 @@
 				194D8D872AEC174100A42DFC /* BasicTextField+ViewModel.swift */,
 			);
 			path = BasicTextField;
+			sourceTree = "<group>";
+		};
+		194D8D8D2AF3B00B00A42DFC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				194D8D902AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf */,
+				194D8D982AF473C000A42DFC /* robotrondotmatrix.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		57D1D8F40D3C289E0F81C23E /* Pods */ = {
@@ -334,7 +354,9 @@
 			files = (
 				194D8D3F2AE9506C00A42DFC /* LaunchScreen.storyboard in Resources */,
 				194D8D3C2AE9506C00A42DFC /* Assets.xcassets in Resources */,
+				194D8D912AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf in Resources */,
 				194D8D3A2AE9506B00A42DFC /* Main.storyboard in Resources */,
+				194D8D992AF473C000A42DFC /* robotrondotmatrix.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,8 +419,10 @@
 				194D8D4F2AE95D7700A42DFC /* CombinableModel.swift in Sources */,
 				194D8D512AE95E3600A42DFC /* MainGameController.swift in Sources */,
 				194D8D5D2AEA628E00A42DFC /* BasicButton.swift in Sources */,
+				194D8D952AF462D800A42DFC /* FontValue.swift in Sources */,
 				194D8D882AEC174100A42DFC /* BasicTextField+ViewModel.swift in Sources */,
 				194D8D862AEC173500A42DFC /* BasicTextField.swift in Sources */,
+				194D8D8C2AF3A20000A42DFC /* BasicView.swift in Sources */,
 				194D8D4A2AE95AB900A42DFC /* BasicViewController.swift in Sources */,
 				194D8D832AEC150800A42DFC /* PlayerModel.swift in Sources */,
 				194D8D6E2AEA75CA00A42DFC /* MainMenuControllerModel.swift in Sources */,
@@ -563,6 +587,7 @@
 				DEVELOPMENT_TEAM = 5647E85F7M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "The 1000 Game/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.dice-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -592,6 +617,7 @@
 				DEVELOPMENT_TEAM = 5647E85F7M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "The 1000 Game/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.dice-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
