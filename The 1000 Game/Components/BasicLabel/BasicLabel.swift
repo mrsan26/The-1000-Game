@@ -39,7 +39,6 @@ class BasicLabel: UILabel {
             guard let value else { return }
             
             switch value {
-
             case .text(let text):
                 self?.text = text
 

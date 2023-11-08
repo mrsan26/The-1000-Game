@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19463A722AFB60C0003B1908 /* BasicSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A712AFB60C0003B1908 /* BasicSwitcher.swift */; };
+		19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */; };
+		19463A762AFB699B003B1908 /* ChevronImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A752AFB699B003B1908 /* ChevronImg.swift */; };
 		194D8D332AE9506B00A42DFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D322AE9506B00A42DFC /* AppDelegate.swift */; };
 		194D8D352AE9506B00A42DFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D342AE9506B00A42DFC /* SceneDelegate.swift */; };
 		194D8D3A2AE9506B00A42DFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 194D8D382AE9506B00A42DFC /* Main.storyboard */; };
@@ -44,6 +47,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19463A712AFB60C0003B1908 /* BasicSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSwitcher.swift; sourceTree = "<group>"; };
+		19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicSwitcher+ViewModel.swift"; sourceTree = "<group>"; };
+		19463A752AFB699B003B1908 /* ChevronImg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronImg.swift; sourceTree = "<group>"; };
 		194D8D2F2AE9506B00A42DFC /* The 1000 Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The 1000 Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		194D8D322AE9506B00A42DFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		194D8D342AE9506B00A42DFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19463A702AFB6098003B1908 /* BasicToogle */ = {
+			isa = PBXGroup;
+			children = (
+				19463A712AFB60C0003B1908 /* BasicSwitcher.swift */,
+				19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */,
+			);
+			path = BasicToogle;
+			sourceTree = "<group>";
+		};
 		194D8D262AE9506B00A42DFC = {
 			isa = PBXGroup;
 			children = (
@@ -159,9 +174,11 @@
 			isa = PBXGroup;
 			children = (
 				194D8D8B2AF3A20000A42DFC /* BasicView.swift */,
+				19463A702AFB6098003B1908 /* BasicToogle */,
 				194D8D842AEC171300A42DFC /* BasicTextField */,
 				194D8D5B2AEA615F00A42DFC /* BasicLabel */,
 				194D8D5A2AEA614E00A42DFC /* BasicButton */,
+				19463A752AFB699B003B1908 /* ChevronImg.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -415,11 +432,13 @@
 				194D8D642AEA635D00A42DFC /* TextValue.swift in Sources */,
 				194D8D802AEC0B4800A42DFC /* PlayersControllerModel.swift in Sources */,
 				194D8D332AE9506B00A42DFC /* AppDelegate.swift in Sources */,
+				19463A762AFB699B003B1908 /* ChevronImg.swift in Sources */,
 				194D8D612AEA630900A42DFC /* Typealias.swift in Sources */,
 				194D8D4F2AE95D7700A42DFC /* CombinableModel.swift in Sources */,
 				194D8D512AE95E3600A42DFC /* MainGameController.swift in Sources */,
 				194D8D5D2AEA628E00A42DFC /* BasicButton.swift in Sources */,
 				194D8D952AF462D800A42DFC /* FontValue.swift in Sources */,
+				19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */,
 				194D8D882AEC174100A42DFC /* BasicTextField+ViewModel.swift in Sources */,
 				194D8D862AEC173500A42DFC /* BasicTextField.swift in Sources */,
 				194D8D8C2AF3A20000A42DFC /* BasicView.swift in Sources */,
@@ -429,6 +448,7 @@
 				194D8D592AE9823200A42DFC /* BasicMechanics.swift in Sources */,
 				194D8D542AE95E9800A42DFC /* MainGameControllerModel.swift in Sources */,
 				194D8D7E2AEC0B1E00A42DFC /* PlayersController.swift in Sources */,
+				19463A722AFB60C0003B1908 /* BasicSwitcher.swift in Sources */,
 				194D8D5F2AEA62E300A42DFC /* BasicButton+ViewModel.swift in Sources */,
 				194D8D692AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift in Sources */,
 				194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */,

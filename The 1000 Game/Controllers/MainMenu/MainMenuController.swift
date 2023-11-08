@@ -21,6 +21,7 @@ class MainMenuController: BasicViewController {
         stack.spacing = 13
         return stack
     }()
+    private lazy var mainNameLabelView = UIView()
     private lazy var mainNameLabel: BasicLabel = {
         let label = BasicLabel(aligment: .center, font: .AlfaSlabOne, fontSize: 60)
         label.layer.masksToBounds = false
@@ -30,16 +31,33 @@ class MainMenuController: BasicViewController {
         label.layer.shadowOffset = CGSize(width: 0, height: 4)
         return label
     }()
-    private lazy var playersGestureView = BasicView()
-    private lazy var dicesChoiseGestureView = BasicView()
+    private lazy var playersGestureView: BasicView = {
+        let view = BasicView()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playersGestureAction)))
+        return view
+    }()
+    private lazy var playersLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var playersChevronImg = ChevronImg()
+    private lazy var playersCountLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 16)
+    private lazy var dicesChoiseGestureView: BasicView = {
+        let view = BasicView()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dicesChoiseGestureAction)))
+        return view
+    }()
+    private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var dicesChoiseChevronImg = ChevronImg()
     private lazy var bochkiToogleView = BasicView()
+    private lazy var bochkiLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var bochkiSwitcher = BasicSwitcher()
     private lazy var botsToogleView = BasicView()
+    private lazy var botsLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var botsSwitcher = BasicSwitcher()
+    private lazy var startGameButtonView = UIView()
     private lazy var startGameButton = BasicButton(style: .red)
-//    private lazy var roolsButton = BasicButton(style: .blue)
-//    private lazy var settingsButton = BasicButton(style: .blue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
     }
     
     init(viewModel: MainMenuControllerModel) {
@@ -50,34 +68,127 @@ class MainMenuController: BasicViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    private func setupNavBar() {
+        let roolsImgView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "rools_img")
+            imageView.tintColor = .white
+            imageView.snp.makeConstraints { make in
+                make.height.width.equalTo(38)
+            }
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(roolsAction)))
+            return imageView
+        }()
+        let roolButton = UIBarButtonItem(customView: roolsImgView)
+        navigationItem.rightBarButtonItem = roolButton
+        
+        let langImgView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "lang_img")
+            imageView.tintColor = .white
+            imageView.snp.makeConstraints { make in
+                make.height.width.equalTo(38)
+            }
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(langAction)))
+            return imageView
+        }()
+        let langButton = UIBarButtonItem(customView: langImgView)
+        navigationItem.leftBarButtonItem = langButton
+    }
+    
+    @objc private func roolsAction() {
+    }
+    
+    @objc private func langAction() {
+    }
+    
+    @objc private func playersGestureAction() {
+    }
+    
+    @objc private func dicesChoiseGestureAction() {
+    }
     
     override func makeLayout() {
         self.view.addSubview(buttonsStackView)
-        self.view.addSubview(mainNameLabel)
+        self.view.addSubview(mainNameLabelView)
+        mainNameLabelView.addSubview(mainNameLabel)
+        
         buttonsStackView.addArrangedSubview(playersGestureView)
+        playersGestureView.addSubview(playersLabel)
+        playersGestureView.addSubview(playersChevronImg)
+        playersGestureView.addSubview(playersCountLabel)
+        
         buttonsStackView.addArrangedSubview(dicesChoiseGestureView)
+        dicesChoiseGestureView.addSubview(dicesChoiseLabel)
+        dicesChoiseGestureView.addSubview(dicesChoiseChevronImg)
+        
         buttonsStackView.addArrangedSubview(bochkiToogleView)
+        bochkiToogleView.addSubview(bochkiLabel)
+        bochkiToogleView.addSubview(bochkiSwitcher)
+        
         buttonsStackView.addArrangedSubview(botsToogleView)
-        self.view.addSubview(startGameButton)
+        botsToogleView.addSubview(botsLabel)
+        botsToogleView.addSubview(botsSwitcher)
+        
+        self.view.addSubview(startGameButtonView)
+        startGameButtonView.addSubview(startGameButton)
     }
     
     override func makeConstraints() {
+        mainNameLabelView.snp.makeConstraints { make in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(buttonsStackView.snp.top)
+        }
+        
+        mainNameLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(mainNameLabelView)
+        }
+        
         buttonsStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(12)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-12)
         }
         
-        mainNameLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
-            make.bottom.equalTo(buttonsStackView.snp.top).offset(-56)
+        playersCountLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(playersChevronImg.snp.leading).offset(-7)
+        }
+        
+        let namelabels = [playersLabel, dicesChoiseLabel, bochkiLabel, botsLabel]
+        for label in namelabels {
+            label.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(26)
+                make.centerY.equalToSuperview()
+            }
+        }
+        
+        let switchers = [bochkiSwitcher, botsSwitcher]
+        for switcher in switchers {
+            switcher.snp.makeConstraints { make in
+                make.trailing.equalToSuperview().offset(-26)
+                make.centerY.equalToSuperview()
+            }
+        }
+        
+        let chevrons = [playersChevronImg, dicesChoiseChevronImg]
+        for chevron in chevrons {
+            chevron.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.trailing.equalToSuperview().offset(-26)
+            }
+        }
+        
+        startGameButtonView.snp.makeConstraints { make in
+            make.top.equalTo(buttonsStackView.snp.bottom)
+            make.leading.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         startGameButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-64)
+            make.centerX.centerY.equalTo(startGameButtonView)
         }
     }
     
@@ -90,7 +201,11 @@ class MainMenuController: BasicViewController {
 //        }
 //
         self.mainNameLabel.setViewModel(viewModel.mainNameLabelVM)
-        
+        self.playersLabel.setViewModel(viewModel.playersLabelVM)
+        self.playersCountLabel.setViewModel(viewModel.playersCountLabelVM)
+        self.dicesChoiseLabel.setViewModel(viewModel.dicesChoiseLabelVM)
+        self.bochkiLabel.setViewModel(viewModel.bochkiLabelVM)
+        self.botsLabel.setViewModel(viewModel.botsLabelVM)
     }
 
 }
