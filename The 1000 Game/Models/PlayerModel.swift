@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Player {
-    var name: String
-    var numberID: Int
-    var emoji: String
+class Player: Object {
+    @Persisted var name: String
+    @Persisted var numberID: Int
+    @Persisted var emoji: String
     var points: Int = 0
     
     var selected: Bool = false
@@ -36,7 +37,8 @@ class Player {
     var isBoltsCrash = false
     var isSamosvalCrash = false
     
-    init(name: String, numberID: Int, emoji: String) {
+    convenience init(name: String, numberID: Int, emoji: String) {
+        self.init()
         self.name = name
         self.numberID = numberID
         self.emoji = emoji

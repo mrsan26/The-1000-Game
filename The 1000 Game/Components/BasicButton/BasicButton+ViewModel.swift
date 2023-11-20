@@ -10,11 +10,11 @@ import Foundation
 extension BasicButton {
     final class ViewModel: Combinable {
         @Published var isEnabled: Bool = true
-        @Published var title: TextValue
+        @Published var title: String
         
         var action: Completion?
         
-        init(title: TextValue) {
+        init(title: String) {
             self.title = title
         }
     }

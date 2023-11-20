@@ -9,6 +9,7 @@ import Foundation
 
 struct BasicRools {
     struct Constants {
+        static let playersAmountDefault = 2
         static let cubesAmount = 5
         
         enum PlusCubes {

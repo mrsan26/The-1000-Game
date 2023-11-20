@@ -11,9 +11,22 @@ import Combine
 class BasicLabel: UILabel {
     private var cancellables: Set<AnyCancellable> = []
 
-    init(aligment: NSTextAlignment = .left) {
+    init(
+        color: UIColor = .white,
+        aligment: NSTextAlignment = .left,
+        font: FontValue,
+        fontSize: CGFloat
+    ) {
         super.init(frame: .zero)
+        self.textColor = color
         self.textAlignment = aligment
+        switch font {
+        case .RobotronDot:
+            self.font = UIFont(name: "robotrondotmatrix", size: fontSize)
+        case .AlfaSlabOne:
+            self.font = UIFont(name: "AlfaSlabOne-Regular", size: fontSize)
+        }
+        self.minimumScaleFactor = 0.5
     }
     
     required init?(coder: NSCoder) {
@@ -27,7 +40,6 @@ class BasicLabel: UILabel {
             guard let value else { return }
             
             switch value {
-
             case .text(let text):
                 self?.text = text
 

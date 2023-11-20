@@ -8,6 +8,7 @@ target 'The 1000 Game' do
   # Pods for The 1000 Game
 
 	pod 'SnapKit'
-	pod 'SwiftyButton'	
+	pod 'SwiftyButton'
+	pod 'RealmSwift'	
 
 end

@@ -14,8 +14,10 @@ class BasicButton: PressableButton {
     private var cancellables: Set<AnyCancellable> = []
     
     weak var vm: ViewModel?
+    private var titleFontSize: CGFloat
     
-    init(style: Style = .blue) {
+    init(style: Style, titleFontSize: CGFloat = 30) {
+        self.titleFontSize = titleFontSize
         super.init(frame: .zero)
         
         setStyle(style)
@@ -45,13 +47,10 @@ class BasicButton: PressableButton {
         .store(in: &cancellables)
         
         vm.$title.sink { [weak self] title in
-            switch title {
-                
-            case .text(let text):
-                self?.setTitle(text, for: .normal)
-            case .attributed(let attributed):
-                self?.titleLabel?.attributedText = attributed
-            }
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont(name: "robotrondotmatrix", size: self?.titleFontSize ?? 30) ?? .systemFont(ofSize: 30),
+                ]
+            self?.setAttributedTitle(.init(string: title, attributes: attributes), for: .normal)
         }
         .store(in: &cancellables)
     }
@@ -63,28 +62,23 @@ class BasicButton: PressableButton {
     private func setStyle(_ style: Style) {
         switch style {
         case .red:
-            self.colors = .init(button: .red, shadow: .systemGray4)
-            self.setTitleColor(.white, for: .normal)
-            
-        case .blue:
-            self.colors = .init(button: .systemBlue, shadow: .systemGray4)
-            self.setTitleColor(.white, for: .normal)
-            
-        case .green:
-            self.colors = .init(button: .green, shadow: .systemGray4)
+            self.colors = .init(button: UIColor(red: 0.922, green: 0.294, blue: 0.384, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
             self.setTitleColor(.white, for: .normal)
         }
         
-        self.cornerRadius = 16
-        self.shadowHeight = 8
+        self.cornerRadius = 20
+        self.shadowHeight = 4
+        
+        self.snp.makeConstraints { make in
+            make.height.equalTo(70)
+            make.width.equalTo(200)
+        }
     }
 }
 
 extension BasicButton {
     enum Style {
         case red
-        case blue
-        case green
     }
 }
 
