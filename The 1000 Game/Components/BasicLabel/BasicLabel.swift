@@ -26,6 +26,7 @@ class BasicLabel: UILabel {
         case .AlfaSlabOne:
             self.font = UIFont(name: "AlfaSlabOne-Regular", size: fontSize)
         }
+        self.minimumScaleFactor = 0.5
     }
     
     required init?(coder: NSCoder) {

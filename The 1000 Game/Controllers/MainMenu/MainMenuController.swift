@@ -37,7 +37,7 @@ class MainMenuController: BasicViewController {
         return view
     }()
     private lazy var playersLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
-    private lazy var playersChevronImg = ChevronImg()
+    private lazy var playersChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     private lazy var playersCountLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 16)
     private lazy var dicesChoiseGestureView: BasicView = {
         let view = BasicView()
@@ -45,7 +45,7 @@ class MainMenuController: BasicViewController {
         return view
     }()
     private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
-    private lazy var dicesChoiseChevronImg = ChevronImg()
+    private lazy var dicesChoiseChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     private lazy var bochkiToogleView = BasicView()
     private lazy var bochkiLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var bochkiSwitcher = BasicSwitcher()
@@ -60,6 +60,12 @@ class MainMenuController: BasicViewController {
         setupNavBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.updateLabelsInfo()
+        setupNavBar()
+    }
+    
     init(viewModel: MainMenuControllerModel) {
         self.viewModel = viewModel
         super.init()
@@ -70,31 +76,20 @@ class MainMenuController: BasicViewController {
     }
 
     private func setupNavBar() {
-        let roolsImgView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: "rools_img")
-            imageView.tintColor = .white
-            imageView.snp.makeConstraints { make in
-                make.height.width.equalTo(38)
-            }
-            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(roolsAction)))
-            return imageView
-        }()
+        let roolsImgView = BasicImgView(name: .named("rools_img"), height: 38, width: 38)
+        roolsImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(roolsAction)))
         let roolButton = UIBarButtonItem(customView: roolsImgView)
         navigationItem.rightBarButtonItem = roolButton
         
-        let langImgView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: "lang_img")
-            imageView.tintColor = .white
-            imageView.snp.makeConstraints { make in
-                make.height.width.equalTo(38)
-            }
-            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(langAction)))
-            return imageView
-        }()
+        let langImgView = BasicImgView(name: .named("lang_img"), height: 38, width: 38)
+        langImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(langAction)))
         let langButton = UIBarButtonItem(customView: langImgView)
         navigationItem.leftBarButtonItem = langButton
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont(name: "robotrondotmatrix", size: 0)!
+        ]
+        title = "1000"
     }
     
     @objc private func roolsAction() {
@@ -104,6 +99,8 @@ class MainMenuController: BasicViewController {
     }
     
     @objc private func playersGestureAction() {
+        let playersVC = PlayersAmountController(viewModel: .init())
+        self.navigationController?.pushViewController(playersVC, animated: true)
     }
     
     @objc private func dicesChoiseGestureAction() {
@@ -195,11 +192,6 @@ class MainMenuController: BasicViewController {
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         self.startGameButton.setViewModel(viewModel.startGameButton)
-//        self.viewModel.newGameButtonVM.action = { [weak self] in
-//            let playersVC = PlayersController(viewModel: .init())
-//            self?.navigationController?.pushViewController(playersVC, animated: true)
-//        }
-//
         self.mainNameLabel.setViewModel(viewModel.mainNameLabelVM)
         self.playersLabel.setViewModel(viewModel.playersLabelVM)
         self.playersCountLabel.setViewModel(viewModel.playersCountLabelVM)

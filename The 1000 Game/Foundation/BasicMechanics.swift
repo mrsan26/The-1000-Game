@@ -85,5 +85,36 @@ struct BasicMechanics {
         return dicesArray
     }
     
+    func getUniqPlayerID(players: [Player]) -> Int {
+        guard !players.isEmpty else { return 1 }
+        var playersIDs: [Int] = []
+        var uniqID = 1
+        for player in players {
+            playersIDs.append(player.numberID)
+        }
+        repeat {
+            uniqID += 1
+        } while playersIDs.contains(uniqID)
+        
+        return uniqID
+    }
     
+    func getUniqEmoji(players: [Player]) -> String {
+        currentEmojies.removeAll()
+        players.forEach { player in
+            currentEmojies.append(player.emoji)
+        }
+        
+        var emojies = emojiArray
+        for index in stride(from: emojies.count - 1, through: 0, by: -1) {
+            let value = emojies[index]
+            guard emojies.count > 0 else {
+                return emojiArray.randomElement()!
+            }
+            if currentEmojies.contains(value) {
+                emojies.remove(at: index)
+            }
+        }
+        return emojies.randomElement() ?? emojiArray.randomElement()!
+    }
 }
