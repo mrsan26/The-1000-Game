@@ -9,16 +9,24 @@ import UIKit
 import SnapKit
 
 class PlayerCellView: BasicView {
-    private lazy var trashImg = BasicImgView(name: .named("trash_img"), height: 23, width: 23)
+    private lazy var trashImg: BasicImgView = {
+        let img = BasicImgView(name: .named("trash_img"), height: 23, width: 23)
+        img.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deletePlayer)))
+        img.isUserInteractionEnabled = true
+        return img
+    }()
     private lazy var nameLabel = BasicLabel(font: .RobotronDot, fontSize: 20)
-    private lazy var renameLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 16)
-    private lazy var renameLabel2: UILabel = {
-        let label = UILabel()
-        label.text = ""
+    private lazy var renameLabel: BasicLabel = {
+        let label = BasicLabel(font: .AlfaSlabOne, fontSize: 16)
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(renamePlayer)))
+        label.isUserInteractionEnabled = true
         return label
     }()
 
     let viewModel = ViewModel()
+    
+    var deletePlayerClosure: ((Int) -> Void)?
+    var renamePlayerClosure: ((Int) -> Void)?
     
     init() {
         super.init(frame: .zero)
@@ -57,6 +65,16 @@ class PlayerCellView: BasicView {
             make.leading.equalTo(trashImg.snp.trailing).offset(10).priority(1000)
             make.trailing.equalTo(renameLabel.snp.leading).offset(-10).priority(1000)
         }
+    }
+    
+    @objc func renamePlayer() {
+        guard let playerID = viewModel.playerID else { return }
+        renamePlayerClosure?(playerID)
+    }
+    
+    @objc func deletePlayer() {
+        guard let playerID = viewModel.playerID else { return }
+        deletePlayerClosure?(playerID)
     }
     
     func setViewModel(_ viewModel: ViewModel) {

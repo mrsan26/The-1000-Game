@@ -35,6 +35,14 @@ class PlayerNamesController: BasicViewController {
         title = "Имена"
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if viewModel.players.count < BasicRools.Constants.playersAmountDefault {
+            viewModel.setDefaultPlayers()
+        }
+        UserManager.write(value: viewModel.players.count, for: .amountOfPlayers)
+    }
+    
     init(viewModel: PlayerNamesControllerModel) {
         self.viewModel = viewModel
         super.init()
@@ -91,10 +99,25 @@ extension PlayerNamesController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BasicTableCell<PlayerCellView>.self), for: indexPath)
         
-        guard let newsCell = cell as? BasicTableCell<PlayerCellView> else { return UITableViewCell() }
-        newsCell.mainView.viewModel.nameLabelVM.textValue = .text(viewModel.players[indexPath.row].name)
+        guard let playerCell = cell as? BasicTableCell<PlayerCellView> else { return UITableViewCell() }
+        playerCell.mainView.viewModel.nameLabelVM.textValue = .text(viewModel.players[indexPath.row].name)
+        playerCell.mainView.viewModel.playerID = viewModel.players[indexPath.row].numberID
         
-        return newsCell
+        playerCell.mainView.renamePlayerClosure = { [weak self] playerID in
+            self?.viewModel.renamePlayer(playerID: playerID)
+        }
+        
+        playerCell.mainView.deletePlayerClosure = { [weak self] playerID in
+            guard let self else { return }
+            for (index, player) in self.viewModel.players.enumerated() where player.numberID == playerID {
+                self.viewModel.deletePlayer(playerID: playerID)
+                tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+            }
+            
+            
+        }
+        
+        return playerCell
     }
     
 }

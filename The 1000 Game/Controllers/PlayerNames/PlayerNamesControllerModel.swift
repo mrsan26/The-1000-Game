@@ -23,8 +23,11 @@ final class PlayerNamesControllerModel: Combinable {
         players = RealmManager<Player>().read()
     }
     
-    private func setDefaultPlayers() {
-        let amountOfPlayers = (UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault)
+    func setDefaultPlayers() {
+        var amountOfPlayers = BasicRools.Constants.playersAmountDefault
+        if UserManager.read(key: .amountOfPlayers) ?? 0 > BasicRools.Constants.playersAmountDefault {
+            amountOfPlayers = UserManager.read(key: .amountOfPlayers)!
+        }
         if players.count < amountOfPlayers {
             for _ in 1...amountOfPlayers - players.count {
                 let uniqID = BasicMechanics().getUniqPlayerID(players: players)
@@ -44,6 +47,28 @@ final class PlayerNamesControllerModel: Combinable {
             }
             RealmManager().deleteAll(objects: playersForDeleting)
         }
+        updatePlayers()
+    }
+    
+    func renamePlayer(playerID: Int) {
+        let renamingPlayer = players.filter({$0.numberID == playerID})
+        guard
+            renamingPlayer.count == 1,
+            let player = renamingPlayer.first
+        else { return }
+        
+        // ДАЛЬНЕЙШАЯ ДОРАБОТКА
+        print(player.name)
+    }
+    
+    func deletePlayer(playerID: Int) {
+        let deletingPlayer = players.filter({$0.numberID == playerID})
+        guard
+            deletingPlayer.count == 1,
+            let deletingPlayer = deletingPlayer.first
+        else { return }
+        
+        RealmManager<Player>().delete(object: deletingPlayer)
         updatePlayers()
     }
 }
