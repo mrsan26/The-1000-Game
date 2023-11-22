@@ -18,20 +18,32 @@ final class PlayerNamesControllerModel: Combinable {
     override init() {
         super.init()
         
-        updatePlayers()
+        updatePlayersArray()
         setDefaultPlayers()
-        setupActions()
+        
+        checkSwitherOnInit()
     }
     
-    private func setupActions() {
-        randomOrderSwitcherVM.actionSwitch = { [weak self] in
-            guard let self else { return }
-            UserManager.write(value: self.randomOrderSwitcherVM.state, for: .randomOrderPlayers)
+    private func checkSwitherOnInit() {
+        if randomOrderSwitcherVM.state == true {
+            players.shuffle()
         }
+        updatePlayersPositionsForRealm()
     }
     
-    private func updatePlayers() {
+    private func updatePlayersArray() {
         players = RealmManager<Player>().read()
+        players.sort( by: {$0.positionNumber < $1.positionNumber} )
+    }
+    
+    private func updatePlayersPositionsForRealm() {
+        for (index, player) in players.enumerated() {
+            RealmManager().update { realm in
+                try? realm.write({
+                    player.positionNumber = index
+                })
+            }
+        }
     }
     
     func setDefaultPlayers() {
@@ -45,10 +57,11 @@ final class PlayerNamesControllerModel: Combinable {
                 let player: Player = .init(
                     name: "Игрок \(uniqID)",
                     numberID: uniqID,
+                    positionNumber: players.count - 1,
                     emoji: BasicMechanics().getUniqEmoji(players: players)
                     )
                 RealmManager().write(player)
-                updatePlayers()
+                updatePlayersArray()
             }
         } else if players.count > amountOfPlayers {
             var playersForDeleting: [Player] = []
@@ -58,7 +71,7 @@ final class PlayerNamesControllerModel: Combinable {
             }
             RealmManager().deleteAll(objects: playersForDeleting)
         }
-        updatePlayers()
+        updatePlayersArray()
     }
     
     func addPlayer() {
@@ -66,10 +79,11 @@ final class PlayerNamesControllerModel: Combinable {
         let player: Player = .init(
             name: "Игрок \(uniqID)",
             numberID: uniqID,
+            positionNumber: players.count - 1,
             emoji: BasicMechanics().getUniqEmoji(players: players)
             )
         RealmManager().write(player)
-        updatePlayers()
+        updatePlayersArray()
     }
     
     func renamePlayer(player: Player) {
@@ -91,11 +105,33 @@ final class PlayerNamesControllerModel: Combinable {
         else { return }
         
         RealmManager<Player>().delete(object: deletingPlayer)
-        updatePlayers()
+        
+        updatePlayersArray()
+        updatePlayersPositionsForRealm()
     }
     
     func deleteAllPlayers() {
         RealmManager().deleteAll(objects: players)
-        updatePlayers()
+        updatePlayersArray()
+    }
+    
+    func switchPlayers(firstPlayerIndex: Int, secondPlayerIndex: Int) {
+        let playerToMove = players[firstPlayerIndex]
+        players.remove(at: firstPlayerIndex)
+        players.insert(playerToMove, at: secondPlayerIndex)
+        
+        updatePlayersPositionsForRealm()
+    }
+    
+    func randomOrderSwitcherAction() {
+        UserManager.write(value: randomOrderSwitcherVM.state, for: .randomOrderPlayers)
+        
+        switch randomOrderSwitcherVM.state {
+        case true:
+            players.shuffle()
+        case false:
+            players.sort( by: {$0.numberID < $1.numberID})
+        }
+        updatePlayersPositionsForRealm()
     }
 }

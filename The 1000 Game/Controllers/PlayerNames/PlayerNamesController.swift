@@ -20,6 +20,7 @@ class PlayerNamesController: BasicViewController {
     private lazy var playersTableView: UITableView = {
         let table = UITableView()
         table.dataSource = self
+        table.delegate = self
         table.register(
             BasicTableCell<PlayerCellView>.self,
             forCellReuseIdentifier: String(describing: BasicTableCell<PlayerCellView>.self)
@@ -27,6 +28,7 @@ class PlayerNamesController: BasicViewController {
         table.allowsSelection = false
         table.backgroundColor = .clear
         table.separatorColor = .clear
+        table.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOnTableView)))
         return table
     }()
     
@@ -110,8 +112,7 @@ class PlayerNamesController: BasicViewController {
         
         playersTableView.snp.makeConstraints { make in
             make.top.equalTo(randomOrderToogleView.snp.bottom).offset(10)
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.equalToSuperview().offset(-12)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(buttonView.snp.top)
         }
         
@@ -129,12 +130,23 @@ class PlayerNamesController: BasicViewController {
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         self.randomOrderLabel.setViewModel(viewModel.randomOrderLabelVM)
+        
         self.deleteAllButton.setViewModel(viewModel.deleteAllButtonVM)
         self.viewModel.deleteAllButtonVM.action = { [weak self] in
             self?.viewModel.deleteAllPlayers()
             self?.playersTableView.reloadDataWithAnimation()
         }
+        
         self.randomOrderSwitcher.setViewModel(viewModel.randomOrderSwitcherVM)
+        self.viewModel.randomOrderSwitcherVM.actionSwitch = { [weak self] in
+            self?.viewModel.randomOrderSwitcherAction()
+            self?.playersTableView.reloadDataWithAnimation()
+        }
+    }
+    
+    @objc private func tapOnTableView() {
+        guard playersTableView.isEditing else { return }
+        playersTableView.isEditing = false
     }
 }
 
@@ -162,7 +174,38 @@ extension PlayerNamesController: UITableViewDataSource {
                 break
             }
         }
+        
+        playerCell.mainView.longPressViewClosure = {
+            // gesture of starting editing
+            tableView.isEditing = true
+        }
+        
+        playerCell.mainView.tapViewClosure = {
+            // gesture of ending editing
+            guard tableView.isEditing else { return }
+            tableView.isEditing = false
+        }
         return playerCell
+    }
+    
+}
+
+extension PlayerNamesController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Указываем, какие ячейки можно перемещать
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        viewModel.switchPlayers(firstPlayerIndex: sourceIndexPath.row, secondPlayerIndex: destinationIndexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
 }

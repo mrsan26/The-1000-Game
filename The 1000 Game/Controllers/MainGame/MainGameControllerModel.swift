@@ -10,11 +10,7 @@ import Foundation
 final class MainGameControllerModel: Combinable {
     
     
-    let players: [Player] = [
-        .init(name: "San", numberID: 0, emoji: "👹"),
-        .init(name: "Kek", numberID: 1, emoji: "🤗"),
-        .init(name: "Lol", numberID: 2, emoji: "🤌🏻")
-    ]
+    var players: [Player] = []
     var whoIsTurnIndex = 1
     
     override init() {

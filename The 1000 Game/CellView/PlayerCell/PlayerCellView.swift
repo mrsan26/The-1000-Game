@@ -27,16 +27,24 @@ class PlayerCellView: BasicView {
     
     var deletePlayerClosure: ((Player) -> Void)?
     var renamePlayerClosure: ((Player) -> Void)?
+    var longPressViewClosure: Completion?
+    var tapViewClosure: Completion?
     
     init() {
         super.init(frame: .zero)
         makeLayout()
         makeConstraints()
+        setViewGestures()
         setViewModel(viewModel)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setViewGestures() {
+        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressView)))
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapView)))
     }
     
     private func makeLayout() {
@@ -67,14 +75,26 @@ class PlayerCellView: BasicView {
         }
     }
     
-    @objc func renamePlayer() {
+    func renameLabelIsHidden(_ isHidden: Bool) {
+        renameLabel.isHidden = isHidden
+    }
+    
+    @objc private func renamePlayer() {
         guard let player = viewModel.player else { return }
         renamePlayerClosure?(player)
     }
     
-    @objc func deletePlayer() {
+    @objc private func deletePlayer() {
         guard let player = viewModel.player else { return }
         deletePlayerClosure?(player)
+    }
+    
+    @objc private func longPressView() {
+        longPressViewClosure?()
+    }
+    
+    @objc private func tapView() {
+        tapViewClosure?()
     }
     
     func setViewModel(_ viewModel: ViewModel) {

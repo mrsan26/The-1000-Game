@@ -29,7 +29,7 @@ class BasicView: UIView {
         self.clipsToBounds = true
 
         // Применение тени
-        self.layer.masksToBounds = false
+//        self.layer.masksToBounds = false
 //        self.layer.shadowColor = UIColor.black.cgColor
 //        self.layer.shadowOpacity = 0.8
 //        self.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -61,42 +61,4 @@ class BasicView: UIView {
     }
     
     
-}
-
-extension UIView {
-    func makeClearViewWithShadow(
-        cornderRadius: CGFloat,
-        shadowColor: CGColor,
-        shadowOpacity: Float,
-        shadowRadius: CGFloat) {
-
-        self.frame = self.frame.insetBy(dx: -shadowRadius * 2,
-                                        dy: -shadowRadius * 2)
-        self.backgroundColor = .clear
-        let shadowView = UIView(frame: CGRect(
-            x: shadowRadius * 2,
-            y: shadowRadius * 2,
-            width: self.frame.width - shadowRadius * 4,
-            height: self.frame.height - shadowRadius * 4))
-        shadowView.backgroundColor = .black
-        shadowView.layer.cornerRadius = cornderRadius
-        shadowView.layer.borderWidth = 1.0
-        shadowView.layer.borderColor = UIColor.clear.cgColor
-
-        shadowView.layer.shadowColor = shadowColor
-        shadowView.layer.shadowOpacity = shadowOpacity
-        shadowView.layer.shadowRadius = shadowRadius
-        shadowView.layer.masksToBounds = false
-        self.addSubview(shadowView)
-
-        let p: CGMutablePath = CGMutablePath()
-        p.addRect(self.bounds)
-        p.addPath(UIBezierPath(roundedRect: shadowView.frame, cornerRadius: shadowView.layer.cornerRadius).cgPath)
-
-        let s = CAShapeLayer()
-        s.path = p
-        s.fillRule = CAShapeLayerFillRule.evenOdd
-
-       self.layer.mask = s
-    }
 }
