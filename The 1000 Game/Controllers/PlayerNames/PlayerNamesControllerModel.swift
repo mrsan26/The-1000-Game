@@ -10,13 +10,24 @@ import Foundation
 final class PlayerNamesControllerModel: Combinable {
     
     let randomOrderLabelVM = BasicLabel.ViewModel(textValue: .text("Случайный порядок игроков"))
+    let deleteAllButtonVM = BasicButton.ViewModel(title: "Очистить")
+    let randomOrderSwitcherVM = BasicSwitcher.ViewModel(state: UserManager.read(key: .randomOrderPlayers))
     
     var players: [Player] = []
     
     override init() {
         super.init()
+        
         updatePlayers()
         setDefaultPlayers()
+        setupActions()
+    }
+    
+    private func setupActions() {
+        randomOrderSwitcherVM.actionSwitch = { [weak self] in
+            guard let self else { return }
+            UserManager.write(value: self.randomOrderSwitcherVM.state, for: .randomOrderPlayers)
+        }
     }
     
     private func updatePlayers() {
@@ -50,8 +61,19 @@ final class PlayerNamesControllerModel: Combinable {
         updatePlayers()
     }
     
-    func renamePlayer(playerID: Int) {
-        let renamingPlayer = players.filter({$0.numberID == playerID})
+    func addPlayer() {
+        let uniqID = BasicMechanics().getUniqPlayerID(players: players)
+        let player: Player = .init(
+            name: "Игрок \(uniqID)",
+            numberID: uniqID,
+            emoji: BasicMechanics().getUniqEmoji(players: players)
+            )
+        RealmManager().write(player)
+        updatePlayers()
+    }
+    
+    func renamePlayer(player: Player) {
+        let renamingPlayer = players.filter({$0.numberID == player.numberID})
         guard
             renamingPlayer.count == 1,
             let player = renamingPlayer.first
@@ -61,14 +83,19 @@ final class PlayerNamesControllerModel: Combinable {
         print(player.name)
     }
     
-    func deletePlayer(playerID: Int) {
-        let deletingPlayer = players.filter({$0.numberID == playerID})
+    func deletePlayer(player: Player) {
+        let deletingPlayer = players.filter({$0.numberID == player.numberID})
         guard
             deletingPlayer.count == 1,
             let deletingPlayer = deletingPlayer.first
         else { return }
         
         RealmManager<Player>().delete(object: deletingPlayer)
+        updatePlayers()
+    }
+    
+    func deleteAllPlayers() {
+        RealmManager().deleteAll(objects: players)
         updatePlayers()
     }
 }

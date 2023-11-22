@@ -52,6 +52,8 @@
 		19CDC73F2B0BF77900A1B6D9 /* BasicTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73E2B0BF77900A1B6D9 /* BasicTableCell.swift */; };
 		19CDC7432B0BFB4F00A1B6D9 /* PlayerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7422B0BFB4F00A1B6D9 /* PlayerCellView.swift */; };
 		19CDC7472B0BFCE700A1B6D9 /* PlayerCellView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7462B0BFCE700A1B6D9 /* PlayerCellView+ViewModel.swift */; };
+		19CDC7492B0D11C700A1B6D9 /* Ext Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7482B0D11C700A1B6D9 /* Ext Table.swift */; };
+		19CDC74B2B0D24A600A1B6D9 /* inter-black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 19CDC74A2B0D24A600A1B6D9 /* inter-black.otf */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +105,8 @@
 		19CDC73E2B0BF77900A1B6D9 /* BasicTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTableCell.swift; sourceTree = "<group>"; };
 		19CDC7422B0BFB4F00A1B6D9 /* PlayerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellView.swift; sourceTree = "<group>"; };
 		19CDC7462B0BFCE700A1B6D9 /* PlayerCellView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerCellView+ViewModel.swift"; sourceTree = "<group>"; };
+		19CDC7482B0D11C700A1B6D9 /* Ext Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext Table.swift"; sourceTree = "<group>"; };
+		19CDC74A2B0D24A600A1B6D9 /* inter-black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "inter-black.otf"; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
 		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 			children = (
 				194D8D902AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf */,
 				194D8D982AF473C000A42DFC /* robotrondotmatrix.otf */,
+				19CDC74A2B0D24A600A1B6D9 /* inter-black.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				19578E792B0BA6AD00566B08 /* Ext Int.swift */,
+				19CDC7482B0D11C700A1B6D9 /* Ext Table.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -440,6 +446,7 @@
 				194D8D3C2AE9506C00A42DFC /* Assets.xcassets in Resources */,
 				194D8D912AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf in Resources */,
 				194D8D3A2AE9506B00A42DFC /* Main.storyboard in Resources */,
+				19CDC74B2B0D24A600A1B6D9 /* inter-black.otf in Resources */,
 				194D8D992AF473C000A42DFC /* robotrondotmatrix.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +505,7 @@
 				19CDC73F2B0BF77900A1B6D9 /* BasicTableCell.swift in Sources */,
 				194D8D752AEC065500A42DFC /* RoolsControllerModel.swift in Sources */,
 				194D8D7B2AEC08CE00A42DFC /* SettingsControllerModel.swift in Sources */,
+				19CDC7492B0D11C700A1B6D9 /* Ext Table.swift in Sources */,
 				194D8D642AEA635D00A42DFC /* TextValue.swift in Sources */,
 				19578E7A2B0BA6AD00566B08 /* Ext Int.swift in Sources */,
 				194D8D802AEC0B4800A42DFC /* PlayersAmountControllerModel.swift in Sources */,

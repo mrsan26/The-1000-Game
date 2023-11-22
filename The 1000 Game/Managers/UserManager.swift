@@ -12,6 +12,7 @@ final class UserManager {
     
     enum Keys: String, CaseIterable {
         case amountOfPlayers
+        case randomOrderPlayers
     }
     
     static func read(key: Keys) -> Bool {

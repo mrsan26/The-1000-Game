@@ -10,4 +10,5 @@ import Foundation
 enum FontValue {
     case RobotronDot
     case AlfaSlabOne
+    case InterBlack
 }

@@ -13,7 +13,7 @@ extension PlayerCellView {
         let nameLabelVM = BasicLabel.ViewModel()
         let renameLabelVM = BasicLabel.ViewModel(textValue: .text("Редактировать"))
         
-        var playerID: Int?
+        var player: Player?
         
         init() {
         }

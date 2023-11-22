@@ -18,6 +18,7 @@ class PlayersAmountController: BasicViewController {
     private lazy var pickerView = UIView()
     private lazy var playersAmountPicker: UIPickerView = {
         let picker = UIPickerView()
+        
         return picker
     }()
     private lazy var pickerSelectorView = BasicView()
@@ -98,7 +99,7 @@ class PlayersAmountController: BasicViewController {
     private func setupPicker() {
         guard let
                 playersAmount = UserManager.read(key: .amountOfPlayers),
-                playersAmount > 1
+              playersAmount >= BasicRools.Constants.playersAmountDefault
         else {
             playersAmountPicker.selectRow(0, inComponent: 0, animated: true)
             return

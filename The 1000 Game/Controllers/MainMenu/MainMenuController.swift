@@ -21,6 +21,7 @@ class MainMenuController: BasicViewController {
         stack.spacing = 13
         return stack
     }()
+    
     private lazy var mainNameLabelView = UIView()
     private lazy var mainNameLabel: BasicLabel = {
         let label = BasicLabel(aligment: .center, font: .AlfaSlabOne, fontSize: 60)
@@ -31,6 +32,7 @@ class MainMenuController: BasicViewController {
         label.layer.shadowOffset = CGSize(width: 0, height: 4)
         return label
     }()
+    
     private lazy var playersGestureView: BasicView = {
         let view = BasicView()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playersGestureAction)))
@@ -39,6 +41,7 @@ class MainMenuController: BasicViewController {
     private lazy var playersLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var playersChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     private lazy var playersCountLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 16)
+    
     private lazy var dicesChoiseGestureView: BasicView = {
         let view = BasicView()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dicesChoiseGestureAction)))
@@ -46,12 +49,15 @@ class MainMenuController: BasicViewController {
     }()
     private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var dicesChoiseChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
+    
     private lazy var bochkiToogleView = BasicView()
     private lazy var bochkiLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var bochkiSwitcher = BasicSwitcher()
+    
     private lazy var botsToogleView = BasicView()
     private lazy var botsLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var botsSwitcher = BasicSwitcher()
+    
     private lazy var startGameButtonView = UIView()
     private lazy var startGameButton = BasicButton(style: .red)
     
@@ -64,6 +70,10 @@ class MainMenuController: BasicViewController {
         super.viewWillAppear(animated)
         viewModel.updateLabelsInfo()
         setupNavBar()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     
     init(viewModel: MainMenuControllerModel) {

@@ -9,15 +9,12 @@ import Foundation
 
 extension BasicSwitcher {
     final class ViewModel: Combinable {
-        @Published var state: SwitherState
+        @Published var state: Bool
         
-        init(state: SwitherState) {
+        var actionSwitch: Completion?
+        
+        init(state: Bool) {
             self.state = state
         }
     }
-}
-
-enum SwitherState {
-    case on
-    case off
 }

@@ -17,7 +17,7 @@ class PlayerCellView: BasicView {
     }()
     private lazy var nameLabel = BasicLabel(font: .RobotronDot, fontSize: 20)
     private lazy var renameLabel: BasicLabel = {
-        let label = BasicLabel(font: .AlfaSlabOne, fontSize: 16)
+        let label = BasicLabel(font: .InterBlack, fontSize: 16)
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(renamePlayer)))
         label.isUserInteractionEnabled = true
         return label
@@ -25,8 +25,8 @@ class PlayerCellView: BasicView {
 
     let viewModel = ViewModel()
     
-    var deletePlayerClosure: ((Int) -> Void)?
-    var renamePlayerClosure: ((Int) -> Void)?
+    var deletePlayerClosure: ((Player) -> Void)?
+    var renamePlayerClosure: ((Player) -> Void)?
     
     init() {
         super.init(frame: .zero)
@@ -68,13 +68,13 @@ class PlayerCellView: BasicView {
     }
     
     @objc func renamePlayer() {
-        guard let playerID = viewModel.playerID else { return }
-        renamePlayerClosure?(playerID)
+        guard let player = viewModel.player else { return }
+        renamePlayerClosure?(player)
     }
     
     @objc func deletePlayer() {
-        guard let playerID = viewModel.playerID else { return }
-        deletePlayerClosure?(playerID)
+        guard let player = viewModel.player else { return }
+        deletePlayerClosure?(player)
     }
     
     func setViewModel(_ viewModel: ViewModel) {
