@@ -7,4 +7,4 @@
 
 import Foundation
 
-typealias Completion = () -> Void
+typealias VoidBlock = () -> Void

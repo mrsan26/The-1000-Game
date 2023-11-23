@@ -11,7 +11,7 @@ extension BasicSwitcher {
     final class ViewModel: Combinable {
         @Published var state: Bool
         
-        var actionSwitch: Completion?
+        var actionSwitch: VoidBlock?
         
         init(state: Bool) {
             self.state = state

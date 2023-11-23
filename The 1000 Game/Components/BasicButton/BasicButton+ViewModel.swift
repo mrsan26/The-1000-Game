@@ -12,7 +12,7 @@ extension BasicButton {
         @Published var isEnabled: Bool = true
         @Published var title: String
         
-        var action: Completion?
+        var action: VoidBlock?
         
         init(title: String) {
             self.title = title

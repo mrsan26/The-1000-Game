@@ -162,8 +162,14 @@ extension PlayerNamesController: UITableViewDataSource {
         playerCell.mainView.viewModel.nameLabelVM.textValue = .text(viewModel.players[indexPath.row].name)
         playerCell.mainView.viewModel.player = viewModel.players[indexPath.row]
         
-        playerCell.mainView.renamePlayerClosure = { [weak self] player in
-            self?.viewModel.renamePlayer(player: player)
+        playerCell.mainView.renamePlayerClosure = { [weak self] renamingPlayer in
+            guard let self else { return }
+            for (index, player) in self.viewModel.players.enumerated() where player.numberID == renamingPlayer.numberID {
+                self.viewModel.renamePlayer(player: renamingPlayer) {
+                    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                }
+                break
+            }
         }
         
         playerCell.mainView.deletePlayerClosure = { [weak self] deletedPlayer in

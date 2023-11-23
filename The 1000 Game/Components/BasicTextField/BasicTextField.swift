@@ -27,18 +27,29 @@ class BasicTextField: UITextField {
         self.rightViewMode = .always
         self.rightView = UIView(frame: .init(x: self.frame.size.width - 10, y: 0, width: 10, height: 0))
         
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.systemGray4.cgColor
-        self.layer.cornerRadius = 16
+        self.layer.borderWidth = 0
+        self.layer.cornerRadius = 20
+        
+        self.backgroundColor = .white.withAlphaComponent(0.3)
+        
+        self.font = UIFont(name: "robotrondotmatrix", size: 20)
+        self.textColor = .white
         
         self.snp.makeConstraints { make in
-            make.height.equalTo(36)
+            make.height.equalTo(70)
         }
     }
     
     func setViewModel(_ vm: ViewModel) {
         cancellables.removeAll()
 
+        vm.$text.sink { [weak self] value in
+            guard let value else { return }
+            self?.text = value
+        }
+        .store(in: &cancellables)
+        
+        
         vm.$placeholder.sink { [weak self] value in
             guard let value else { return }
             self?.placeholder = value

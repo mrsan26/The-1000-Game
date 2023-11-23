@@ -27,8 +27,8 @@ class PlayerCellView: BasicView {
     
     var deletePlayerClosure: ((Player) -> Void)?
     var renamePlayerClosure: ((Player) -> Void)?
-    var longPressViewClosure: Completion?
-    var tapViewClosure: Completion?
+    var longPressViewClosure: VoidBlock?
+    var tapViewClosure: VoidBlock?
     
     init() {
         super.init(frame: .zero)

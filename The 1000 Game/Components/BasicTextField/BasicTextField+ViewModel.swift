@@ -10,9 +10,11 @@ import Foundation
 extension BasicTextField {
     final class ViewModel: Combinable {
         @Published var placeholder: String?
+        @Published var text: String?
         
-        init(placeholder: String? = nil) {
+        init(text: String? = nil, placeholder: String? = nil) {
             self.placeholder = placeholder
+            self.text = text
         }
     }
 }

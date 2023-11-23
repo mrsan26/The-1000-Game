@@ -86,25 +86,15 @@ final class PlayerNamesControllerModel: Combinable {
         updatePlayersArray()
     }
     
-    func renamePlayer(player: Player) {
-        let renamingPlayer = players.filter({$0.numberID == player.numberID})
-        guard
-            renamingPlayer.count == 1,
-            let player = renamingPlayer.first
-        else { return }
-        
-        // ДАЛЬНЕЙШАЯ ДОРАБОТКА
-        print(player.name)
+    func renamePlayer(player: Player, endRenamingClosure: VoidBlock?) {
+        RenamePopupController.show(playerForEditing: player) {
+            self.updatePlayersArray()
+            endRenamingClosure?()
+        }
     }
     
     func deletePlayer(player: Player) {
-        let deletingPlayer = players.filter({$0.numberID == player.numberID})
-        guard
-            deletingPlayer.count == 1,
-            let deletingPlayer = deletingPlayer.first
-        else { return }
-        
-        RealmManager<Player>().delete(object: deletingPlayer)
+        RealmManager<Player>().delete(object: player)
         
         updatePlayersArray()
         updatePlayersPositionsForRealm()
