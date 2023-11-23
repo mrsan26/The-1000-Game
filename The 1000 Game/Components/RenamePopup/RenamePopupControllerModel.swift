@@ -10,7 +10,7 @@ import Foundation
 final class RenamePopupControllerModel: Combinable {
     
     let titleLabelVM = BasicLabel.ViewModel(textValue: .text("Переименование Игрока"))
-    let textFieldVM = BasicTextField.ViewModel(placeholder: "Введите имя")
+    let textFieldVM = BasicTextField.ViewModel(errorText: "Введите имя от 2 до 10 символов", placeholder: "Введите имя")
     let confirmButtonVM = BasicButton.ViewModel(title: "Ок")
     let cancelButtonVM = BasicButton.ViewModel(title: "Отмена")
         

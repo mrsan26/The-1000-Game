@@ -36,7 +36,7 @@ class RenamePopupController: UIViewController {
     
     private lazy var titleLabel = BasicLabel(color: .white, aligment: .center, font: .InterBlack, fontSize: 16)
     
-    private lazy var textField = BasicTextField()
+    private lazy var textField = BasicTextField(becomeFirstResponderMode: true)
     
     private lazy var buttonStack: UIStackView = {
         let stack = UIStackView()
@@ -103,10 +103,13 @@ class RenamePopupController: UIViewController {
         
         self.confirmButton.setViewModel(viewModel.confirmButtonVM)
         self.viewModel.confirmButtonVM.action = { [weak self] in
-            guard let self else { return }
+            guard let self,
+                  self.textField.checkInput(validationRule: .length(min: 2, max: 10)),
+                  let name = self.textField.text else { return }
+            
             RealmManager().update { realm in
                 try? realm.write({
-                    self.playerForEditing?.name = self.textField.text ?? "Kek"
+                    self.playerForEditing?.name = name
                 })
             }
             self.acceptAction?()
@@ -123,7 +126,6 @@ class RenamePopupController: UIViewController {
         self.dismiss(animated: true)
     }
 }
-
 
 extension RenamePopupController {
     static func show(playerForEditing: Player, acceptAction: VoidBlock?) {
