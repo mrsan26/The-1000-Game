@@ -15,7 +15,7 @@ class BasicTextField: UIView {
     private lazy var contentStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 6
+        stack.spacing = 15
         return stack
     }()
     

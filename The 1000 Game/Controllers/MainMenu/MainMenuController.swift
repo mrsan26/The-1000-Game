@@ -48,6 +48,13 @@ class MainMenuController: BasicViewController {
         return view
     }()
     private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var diceChoosenImg = BasicImgView(
+        name: nil,
+        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].skin.sixDieSkin,
+        height: 30,
+        width: 30,
+        tintColor: .systemPink
+    )
     private lazy var dicesChoiseChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     
     private lazy var bochkiToogleView = BasicView()
@@ -68,7 +75,7 @@ class MainMenuController: BasicViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.updateLabelsInfo()
+        updateUI()
         setupNavBar()
     }
     
@@ -84,6 +91,11 @@ class MainMenuController: BasicViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func updateUI() {
+        viewModel.playersCountLabelVM.textValue = .text((UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault).toString())
+        diceChoosenImg.image = diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].skin.sixDieSkin
+    }
 
     private func setupNavBar() {
         let roolsImgView = BasicImgView(name: .named("rools_img"), height: 38, width: 38)
@@ -91,9 +103,20 @@ class MainMenuController: BasicViewController {
         let roolButton = UIBarButtonItem(customView: roolsImgView)
         navigationItem.rightBarButtonItem = roolButton
         
-        let langImgView = BasicImgView(name: .named("lang_img"), height: 38, width: 38)
-        langImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(langAction)))
-        let langButton = UIBarButtonItem(customView: langImgView)
+        let mainLangView = UIView()
+        let langLabel: UILabel = {
+            let label = UILabel()
+            label.textColor = .white
+            label.text = "Ru"
+            label.font = UIFont(name: "inter-black", size: 26)
+            return label
+        }()
+        mainLangView.addSubview(langLabel)
+        langLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        mainLangView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(langAction)))
+        let langButton = UIBarButtonItem(customView: mainLangView)
         navigationItem.leftBarButtonItem = langButton
         
         self.navigationController?.navigationBar.titleTextAttributes = [
@@ -114,6 +137,8 @@ class MainMenuController: BasicViewController {
     }
     
     @objc private func dicesChoiseGestureAction() {
+        let diceVC = DiceController(viewModel: .init())
+        self.navigationController?.pushViewController(diceVC, animated: true)
     }
     
     override func makeLayout() {
@@ -128,6 +153,7 @@ class MainMenuController: BasicViewController {
         
         buttonsStackView.addArrangedSubview(dicesChoiseGestureView)
         dicesChoiseGestureView.addSubview(dicesChoiseLabel)
+        dicesChoiseGestureView.addSubview(diceChoosenImg)
         dicesChoiseGestureView.addSubview(dicesChoiseChevronImg)
         
         buttonsStackView.addArrangedSubview(bochkiToogleView)
@@ -162,6 +188,11 @@ class MainMenuController: BasicViewController {
         playersCountLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(playersChevronImg.snp.leading).offset(-7)
+        }
+        
+        diceChoosenImg.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(dicesChoiseChevronImg.snp.leading).offset(-4)
         }
         
         let namelabels = [playersLabel, dicesChoiseLabel, bochkiLabel, botsLabel]

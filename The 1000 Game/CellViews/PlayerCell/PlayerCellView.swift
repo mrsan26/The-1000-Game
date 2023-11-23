@@ -75,10 +75,6 @@ class PlayerCellView: BasicView {
         }
     }
     
-    func renameLabelIsHidden(_ isHidden: Bool) {
-        renameLabel.isHidden = isHidden
-    }
-    
     @objc private func renamePlayer() {
         guard let player = viewModel.player else { return }
         renamePlayerClosure?(player)

@@ -9,17 +9,28 @@ import UIKit
 
 class BasicImgView: UIImageView {
     
-    init(name: ImageName, height: Int, width: Int, tintColor: UIColor = .white) {
+    init(name: ImageName?,
+         image: UIImage? = nil,
+         height: Int,
+         width: Int,
+         tintColor: UIColor = .white
+    ) {
         super.init(frame: .zero)
         
-        switch name {
-        case .named(let name):
-            self.image = UIImage(named: name)
-        case .systemNamed(let name):
-            self.image = UIImage(systemName: name)
+        if let name {
+            switch name {
+            case .named(let name):
+                self.image = UIImage(named: name)
+            case .systemNamed(let name):
+                self.image = UIImage(systemName: name)
+            }
         }
         
-        self.tintColor = .tintColor
+        if let image {
+            self.image = image
+        }
+        
+        self.tintColor = tintColor
         self.snp.makeConstraints { make in
             make.height.equalTo(height)
             make.width.equalTo(width)

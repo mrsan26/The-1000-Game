@@ -58,6 +58,13 @@
 		19CDC7502B0ECC7200A1B6D9 /* RenamePopupControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC74F2B0ECC7200A1B6D9 /* RenamePopupControllerModel.swift */; };
 		19CDC7522B0EE80C00A1B6D9 /* ValidationRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7512B0EE80C00A1B6D9 /* ValidationRules.swift */; };
 		19CDC7542B0EE8B300A1B6D9 /* Ext String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7532B0EE8B300A1B6D9 /* Ext String.swift */; };
+		19CDC7572B0FA01300A1B6D9 /* DiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7562B0FA01300A1B6D9 /* DiceController.swift */; };
+		19CDC7592B0FA02A00A1B6D9 /* DiceControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7582B0FA02A00A1B6D9 /* DiceControllerModel.swift */; };
+		19CDC75B2B0FA12F00A1B6D9 /* DiceSkins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC75A2B0FA12F00A1B6D9 /* DiceSkins.swift */; };
+		19CDC75E2B0FA50300A1B6D9 /* DieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC75D2B0FA50300A1B6D9 /* DieCellView.swift */; };
+		19CDC7602B0FA52800A1B6D9 /* DieCellView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC75F2B0FA52800A1B6D9 /* DieCellView+ViewModel.swift */; };
+		19CDC7622B0FA8AF00A1B6D9 /* DieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7612B0FA8AF00A1B6D9 /* DieModel.swift */; };
+		19CDC7642B0FC6E700A1B6D9 /* Ext UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7632B0FC6E700A1B6D9 /* Ext UIView.swift */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +122,13 @@
 		19CDC74F2B0ECC7200A1B6D9 /* RenamePopupControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamePopupControllerModel.swift; sourceTree = "<group>"; };
 		19CDC7512B0EE80C00A1B6D9 /* ValidationRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationRules.swift; sourceTree = "<group>"; };
 		19CDC7532B0EE8B300A1B6D9 /* Ext String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext String.swift"; sourceTree = "<group>"; };
+		19CDC7562B0FA01300A1B6D9 /* DiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceController.swift; sourceTree = "<group>"; };
+		19CDC7582B0FA02A00A1B6D9 /* DiceControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceControllerModel.swift; sourceTree = "<group>"; };
+		19CDC75A2B0FA12F00A1B6D9 /* DiceSkins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceSkins.swift; sourceTree = "<group>"; };
+		19CDC75D2B0FA50300A1B6D9 /* DieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieCellView.swift; sourceTree = "<group>"; };
+		19CDC75F2B0FA52800A1B6D9 /* DieCellView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DieCellView+ViewModel.swift"; sourceTree = "<group>"; };
+		19CDC7612B0FA8AF00A1B6D9 /* DieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieModel.swift; sourceTree = "<group>"; };
+		19CDC7632B0FC6E700A1B6D9 /* Ext UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext UIView.swift"; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
 		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,7 +181,7 @@
 				194D8D812AEC14DE00A42DFC /* Models */,
 				194D8D622AEA634900A42DFC /* Common */,
 				194D8D482AE95A8900A42DFC /* Components */,
-				19CDC7442B0BFC5E00A1B6D9 /* CellView */,
+				19CDC7442B0BFC5E00A1B6D9 /* CellViews */,
 				194D8D462AE95A5600A42DFC /* Controllers */,
 				194D8D472AE95A5E00A42DFC /* Basic */,
 				19578E782B0BA68500566B08 /* Extensions */,
@@ -188,6 +202,7 @@
 				194D8D6A2AEA758D00A42DFC /* MainMenu */,
 				194D8D7C2AEC092F00A42DFC /* PlayersAmount */,
 				19578E7B2B0BC67C00566B08 /* PlayerNames */,
+				19CDC7552B0F9FE000A1B6D9 /* DiceController */,
 				194D8D652AEA6C7D00A42DFC /* MainGame */,
 				194D8D6F2AEC03F500A42DFC /* Rools */,
 				194D8D762AEC080F00A42DFC /* Settings */,
@@ -226,6 +241,7 @@
 				194D8D582AE9823200A42DFC /* BasicMechanics.swift */,
 				194D8D892AF123A800A42DFC /* RoolsCheck.swift */,
 				19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */,
+				19CDC75A2B0FA12F00A1B6D9 /* DiceSkins.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -308,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				194D8D822AEC150800A42DFC /* PlayerModel.swift */,
+				19CDC7612B0FA8AF00A1B6D9 /* DieModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,6 +354,7 @@
 				19578E792B0BA6AD00566B08 /* Ext Int.swift */,
 				19CDC7482B0D11C700A1B6D9 /* Ext Table.swift */,
 				19CDC7532B0EE8B300A1B6D9 /* Ext String.swift */,
+				19CDC7632B0FC6E700A1B6D9 /* Ext UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -359,12 +377,13 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		19CDC7442B0BFC5E00A1B6D9 /* CellView */ = {
+		19CDC7442B0BFC5E00A1B6D9 /* CellViews */ = {
 			isa = PBXGroup;
 			children = (
+				19CDC75C2B0FA49A00A1B6D9 /* DieCell */,
 				19CDC7452B0BFCB400A1B6D9 /* PlayerCell */,
 			);
-			path = CellView;
+			path = CellViews;
 			sourceTree = "<group>";
 		};
 		19CDC7452B0BFCB400A1B6D9 /* PlayerCell */ = {
@@ -383,6 +402,24 @@
 				19CDC74F2B0ECC7200A1B6D9 /* RenamePopupControllerModel.swift */,
 			);
 			path = RenamePopup;
+			sourceTree = "<group>";
+		};
+		19CDC7552B0F9FE000A1B6D9 /* DiceController */ = {
+			isa = PBXGroup;
+			children = (
+				19CDC7562B0FA01300A1B6D9 /* DiceController.swift */,
+				19CDC7582B0FA02A00A1B6D9 /* DiceControllerModel.swift */,
+			);
+			path = DiceController;
+			sourceTree = "<group>";
+		};
+		19CDC75C2B0FA49A00A1B6D9 /* DieCell */ = {
+			isa = PBXGroup;
+			children = (
+				19CDC75D2B0FA50300A1B6D9 /* DieCellView.swift */,
+				19CDC75F2B0FA52800A1B6D9 /* DieCellView+ViewModel.swift */,
+			);
+			path = DieCell;
 			sourceTree = "<group>";
 		};
 		57D1D8F40D3C289E0F81C23E /* Pods */ = {
@@ -522,6 +559,7 @@
 			files = (
 				194D8D732AEC064200A42DFC /* RoolsController.swift in Sources */,
 				19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */,
+				19CDC7602B0FA52800A1B6D9 /* DieCellView+ViewModel.swift in Sources */,
 				19CDC73F2B0BF77900A1B6D9 /* BasicTableCell.swift in Sources */,
 				194D8D752AEC065500A42DFC /* RoolsControllerModel.swift in Sources */,
 				194D8D7B2AEC08CE00A42DFC /* SettingsControllerModel.swift in Sources */,
@@ -532,11 +570,13 @@
 				194D8D332AE9506B00A42DFC /* AppDelegate.swift in Sources */,
 				19463A762AFB699B003B1908 /* BasicImgView.swift in Sources */,
 				194D8D612AEA630900A42DFC /* Typealias.swift in Sources */,
+				19CDC7572B0FA01300A1B6D9 /* DiceController.swift in Sources */,
 				194D8D4F2AE95D7700A42DFC /* CombinableModel.swift in Sources */,
 				194D8D512AE95E3600A42DFC /* MainGameController.swift in Sources */,
 				194D8D5D2AEA628E00A42DFC /* BasicButton.swift in Sources */,
 				19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */,
 				19CDC7522B0EE80C00A1B6D9 /* ValidationRules.swift in Sources */,
+				19CDC7592B0FA02A00A1B6D9 /* DiceControllerModel.swift in Sources */,
 				194D8D952AF462D800A42DFC /* FontValue.swift in Sources */,
 				19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */,
 				19578E7F2B0BC6C200566B08 /* PlayerNamesControllerModel.swift in Sources */,
@@ -564,6 +604,10 @@
 				19CDC74E2B0ECC3500A1B6D9 /* RenamePopupController.swift in Sources */,
 				194D8D572AE9747800A42DFC /* BasicRools.swift in Sources */,
 				194D8D352AE9506B00A42DFC /* SceneDelegate.swift in Sources */,
+				19CDC7622B0FA8AF00A1B6D9 /* DieModel.swift in Sources */,
+				19CDC75B2B0FA12F00A1B6D9 /* DiceSkins.swift in Sources */,
+				19CDC7642B0FC6E700A1B6D9 /* Ext UIView.swift in Sources */,
+				19CDC75E2B0FA50300A1B6D9 /* DieCellView.swift in Sources */,
 				194D8D6C2AEA75B600A42DFC /* MainMenuController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

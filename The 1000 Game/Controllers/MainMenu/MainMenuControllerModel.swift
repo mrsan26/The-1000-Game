@@ -25,8 +25,4 @@ final class MainMenuControllerModel: Combinable {
     override init() {
         super.init()
     }
-    
-    func updateLabelsInfo() {
-        playersCountLabelVM.textValue = .text((UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault).toString())
-    }
 }
