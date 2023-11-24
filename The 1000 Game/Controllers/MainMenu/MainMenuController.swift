@@ -50,7 +50,7 @@ class MainMenuController: BasicViewController {
     private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var diceChoosenImg = BasicImgView(
         name: nil,
-        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].skin.sixDieSkin,
+        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: .six, withColor: .withPointsStandart),
         height: 30,
         width: 30,
         tintColor: .systemPink
@@ -94,7 +94,7 @@ class MainMenuController: BasicViewController {
     
     private func updateUI() {
         viewModel.playersCountLabelVM.textValue = .text((UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault).toString())
-        diceChoosenImg.image = diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].skin.sixDieSkin
+        diceChoosenImg.image = diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: .six, withColor: .withPointsStandart)
     }
 
     private func setupNavBar() {
@@ -233,6 +233,11 @@ class MainMenuController: BasicViewController {
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         self.startGameButton.setViewModel(viewModel.startGameButton)
+        self.viewModel.startGameButton.action = { [weak self] in
+            let mainGameVC = MainGameController(viewModel: .init())
+            self?.navigationController?.pushViewController(mainGameVC, animated: true)
+        }
+        
         self.mainNameLabel.setViewModel(viewModel.mainNameLabelVM)
         self.playersLabel.setViewModel(viewModel.playersLabelVM)
         self.playersCountLabel.setViewModel(viewModel.playersCountLabelVM)

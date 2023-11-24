@@ -23,7 +23,7 @@ class DieCellView: UIView {
     private lazy var contentStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 0
+        stack.spacing = 25
         stack.distribution = .fill
         return stack
     }()
@@ -31,14 +31,12 @@ class DieCellView: UIView {
     private lazy var firstDie: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemPink
         return imageView
     }()
     
     private lazy var secondDie: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemBlue
         return imageView
     }()
     

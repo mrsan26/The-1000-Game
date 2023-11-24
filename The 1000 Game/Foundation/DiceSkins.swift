@@ -8,26 +8,34 @@
 import UIKit
 
 enum DiceSkins {
-    case system
+    case transparent
     case standart
     
-    var firstDieSkin: UIImage {
+    func getDie(number: DieNumber, withColor: DieColors) -> UIImage {
         switch self {
-        case .system:
-            return UIImage(systemName: "die.face.1.fill")!
+        case .transparent:
+            return UIImage(named: "transparent.die.\(number.rawValue).\(withColor.rawValue)")!
         case .standart:
-            return UIImage(systemName: "die.face.1")!
-        }
-    }
-    
-    var sixDieSkin: UIImage {
-        switch self {
-        case .system:
-            return UIImage(systemName: "die.face.6.fill")!
-        case .standart:
-            return UIImage(systemName: "die.face.6")!
+            return UIImage(named: "default.die.\(number.rawValue).\(withColor.rawValue)")!
         }
     }
 }
 
-var diceSkins: [DieModel] = [.init(skin: .system), .init(skin: .standart)]
+enum DieNumber: Int {
+    case one = 1
+    case two
+    case three
+    case four
+    case five
+    case six
+}
+
+enum DieColors: String {
+    case unactive = "unactive"
+    case withoutPointsStandart = "withoutPointsStandart"
+    case withPointsStandart = "withPointsStandart"
+    case withoutPointsInYama = "withoutPointsInYama"
+    case withPointsInYama = "withPointsInYama"
+}
+
+var diceSkins: [DiceSkins] = [.standart, .transparent]

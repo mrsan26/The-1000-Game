@@ -9,6 +9,13 @@ import Foundation
 
 final class MainGameControllerModel: Combinable {
     
+    let nameLabelVM = BasicLabel.ViewModel(textValue: .text("Игрок"))
+    let pointsLabelVM = BasicLabel.ViewModel(textValue: .text("1000"))
+    
+    let currentActionInfoLabelVM = BasicLabel.ViewModel(textValue: .text("Бросайте кубики"))
+    let currentPointsLabelVM = BasicLabel.ViewModel(textValue: .text("150"))
+    
+    let endOfTurnButtonVM = BasicButton.ViewModel(title: "Конец хода")
     
     var players: [Player] = []
     var whoIsTurnIndex = 1

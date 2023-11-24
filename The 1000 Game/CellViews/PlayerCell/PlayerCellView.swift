@@ -10,7 +10,7 @@ import SnapKit
 
 class PlayerCellView: BasicView {
     private lazy var trashImg: BasicImgView = {
-        let img = BasicImgView(name: .named("trash_img"), height: 23, width: 23)
+        let img = BasicImgView(name: .named("trash_img"), height: 23, width: 23, tintColor: .systemPink)
         img.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deletePlayer)))
         img.isUserInteractionEnabled = true
         return img
