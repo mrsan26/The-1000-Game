@@ -212,6 +212,7 @@
 				194D8D652AEA6C7D00A42DFC /* MainGame */,
 				194D8D6F2AEC03F500A42DFC /* Rools */,
 				194D8D762AEC080F00A42DFC /* Settings */,
+				19CDC74C2B0ECBFE00A1B6D9 /* RenamePopup */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -236,7 +237,6 @@
 				194D8D842AEC171300A42DFC /* BasicTextField */,
 				194D8D5B2AEA615F00A42DFC /* BasicLabel */,
 				194D8D5A2AEA614E00A42DFC /* BasicButton */,
-				19CDC74C2B0ECBFE00A1B6D9 /* RenamePopup */,
 			);
 			path = Components;
 			sourceTree = "<group>";

@@ -12,7 +12,7 @@ final class MainGameControllerModel: Combinable {
     let nameLabelVM = BasicLabel.ViewModel()
     let pointsLabelVM = BasicLabel.ViewModel()
     
-    let currentActionInfoLabelVM = BasicLabel.ViewModel(textValue: .text("Бросайте кубики"))
+    let currentActionInfoLabelVM = BasicLabel.ViewModel()
     let currentPointsLabelVM = BasicLabel.ViewModel()
     
     let endOfTurnButtonVM = BasicButton.ViewModel(title: "Конец хода")
@@ -29,6 +29,25 @@ final class MainGameControllerModel: Combinable {
     
     private func updatePlayersArray() {
         players = RealmManager().read()
+        
+        let amountOfPlayers = UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault
+        if players.count < amountOfPlayers {
+            for _ in 1...amountOfPlayers - players.count {
+                let uniqID = BasicMechanics().getUniqPlayerID(players: players)
+                let player: Player = .init(
+                    name: "Игрок \(uniqID)",
+                    numberID: uniqID,
+                    positionNumber: players.count,
+                    emoji: BasicMechanics().getUniqEmoji(players: players)
+                )
+                RealmManager().write(player)
+                players.append(player)
+            }
+        }
+        
+        if UserManager.read(key: .randomOrderPlayers) {
+            players.shuffle()
+        }
         guard let lastPlayer = players.last else { return }
         players.removeLast()
         players.insert(lastPlayer, at: 0)
@@ -113,10 +132,6 @@ final class MainGameControllerModel: Combinable {
         }
         
         checkRoolsAfterSuccesRoll()
-    }
-    
-    private func checkRoolsBeforeTurn() {
-        
     }
     
     func checkRoolsAfterSuccesRoll() {

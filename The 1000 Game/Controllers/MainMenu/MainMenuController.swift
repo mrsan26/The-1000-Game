@@ -99,6 +99,7 @@ class MainMenuController: BasicViewController {
 
     private func setupNavBar() {
         let roolsImgView = BasicImgView(name: .named("rools_img"), height: 38, width: 38)
+        roolsImgView.contentMode = .scaleAspectFit
         roolsImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(roolsAction)))
         let roolButton = UIBarButtonItem(customView: roolsImgView)
         navigationItem.rightBarButtonItem = roolButton

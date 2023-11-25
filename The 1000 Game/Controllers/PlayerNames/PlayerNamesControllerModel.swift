@@ -57,7 +57,7 @@ final class PlayerNamesControllerModel: Combinable {
                 let player: Player = .init(
                     name: "Игрок \(uniqID)",
                     numberID: uniqID,
-                    positionNumber: players.count - 1,
+                    positionNumber: players.count,
                     emoji: BasicMechanics().getUniqEmoji(players: players)
                     )
                 RealmManager().write(player)

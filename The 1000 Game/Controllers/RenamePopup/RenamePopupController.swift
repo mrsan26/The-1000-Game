@@ -17,13 +17,6 @@ class RenamePopupController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.831, green: 0.529, blue: 0.655, alpha: 1)
         view.layer.cornerRadius = 20
-        
-//        view.layer.masksToBounds = false
-//        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
-//        view.layer.shadowOpacity = 0.8
-//        view.layer.shadowOffset = CGSize(width: 0, height: 4)
-//        view.layer.shadowRadius = 4
-        
         return view
     }()
     
