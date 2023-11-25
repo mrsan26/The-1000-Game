@@ -79,6 +79,27 @@ struct RoolsCheck {
         }
     }
     
-    
+    func checkOvertake(currentPlayer: Player, playersArray: [Player]) {
+        let overalPoints = currentPlayer.points + currentPlayer.currentPoints
+        var isItCurrentPlayerStillInYama = false
+        
+        // перед проверко на обгон необходимо дополнительно проверять, будет ли текущий игрок все еще в яме - в таком случае обгон засчитываться не будет (тк в яме очки не присваюваются в конце хода)
+        if currentPlayer.turnsInYamaCounter >= 1, overalPoints >= 200, overalPoints < 300 || overalPoints >= 600, overalPoints < 700 {
+            isItCurrentPlayerStillInYama = true
+        }
+        
+        for everyPlayer in playersArray where everyPlayer.numberID != currentPlayer.numberID {
+            // проверка обгона должна выполняться СТРОГО ДО суммирования points и currentPoints текущего игрока
+            if isItCurrentPlayerStillInYama == false,
+                everyPlayer.gameOpen == true,
+                currentPlayer.points < everyPlayer.points,
+                currentPlayer.points + currentPlayer.currentPoints > everyPlayer.points
+            {
+                everyPlayer.wasOvertaken = true
+                RoolsCheck().overtakeMinus(player: everyPlayer)
+                RoolsCheck().checkMinusPoints(player: everyPlayer)
+            }
+        }
+    }
     
 }

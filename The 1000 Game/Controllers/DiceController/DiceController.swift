@@ -72,8 +72,8 @@ extension DiceController: UITableViewDataSource {
         diceCell.mainView.setItemIndex(index: indexPath.row)
         
         diceCell.mainView.setImages(
-            firstDieImg: diceSkins[indexPath.row].getDie(number: .one, withColor: .withPointsStandart),
-            secondDieImg: diceSkins[indexPath.row].getDie(number: .six, withColor: .withoutPointsStandart)
+            firstDieImg: diceSkins[indexPath.row].getDie(number: 1, withColor: .withPointsStandart),
+            secondDieImg: diceSkins[indexPath.row].getDie(number: 6, withColor: .withoutPointsStandart)
         )
         
         diceCell.mainView.chooseClosure = { choosenIndex in

@@ -138,9 +138,7 @@ extension PlayersAmountController: UIPickerViewDelegate {
         basicView.snp.makeConstraints { make in
             make.width.equalTo(self.playersAmountPicker.bounds.size.width - 18)
         }
-//        label.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
+
         return label
     }
     

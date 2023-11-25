@@ -94,13 +94,13 @@ class PlayerCollectionCell: UIView {
     
     func isActive(_ active: Bool) {
         if active {
-            circleView.snp.makeConstraints { make in
+            circleView.snp.updateConstraints { make in
                 make.height.width.equalTo(100)
             }
             circleView.layer.cornerRadius = 50
             emojiLabel.font = UIFont(name: "inter-black", size: 55)
         } else {
-            circleView.snp.makeConstraints { make in
+            circleView.snp.updateConstraints { make in
                 make.height.width.equalTo(80)
             }
             circleView.layer.cornerRadius = 40

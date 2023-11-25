@@ -28,7 +28,7 @@ class Player: Object {
     var pointsHistory: [Int] = [0]
     var changesHistory: [Int] = [0]
     
-    var nowIsDisplaying = false
+//    var nowIsDisplaying = false
     var winStatus = false
 //    var allCubesArePlus = false
     var turnIsFinish = false
@@ -68,7 +68,7 @@ class Player: Object {
         bolts = 0
         turnsInYamaCounter = 0
         gameOpenCounter = 0
-        nowIsDisplaying = false
+//        nowIsDisplaying = false
         winStatus = false
 //        allCubesArePlus = false
         turnIsFinish = false
@@ -79,5 +79,18 @@ class Player: Object {
         isSamosvalCrash = false
         pointsHistory = [0]
         changesHistory = [0]
+    }
+    
+    func updateStatsAfterTurn() {
+        currentPoints = 0
+        curentRoll.removeAll()
+        amountOfCubes = 5
+        lastAmountOfCubes = 5
+        turnIsFinish = false
+        isBoltsCrash = false
+        wasOvertaken = false
+        
+        addPointsInHistory()
+        addChangesInHistory()
     }
 }

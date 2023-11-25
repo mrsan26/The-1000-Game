@@ -50,7 +50,7 @@ class MainMenuController: BasicViewController {
     private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var diceChoosenImg = BasicImgView(
         name: nil,
-        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: .six, withColor: .withPointsStandart),
+        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 6, withColor: .withPointsStandart),
         height: 30,
         width: 30,
         tintColor: .systemPink
@@ -94,7 +94,7 @@ class MainMenuController: BasicViewController {
     
     private func updateUI() {
         viewModel.playersCountLabelVM.textValue = .text((UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault).toString())
-        diceChoosenImg.image = diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: .six, withColor: .withPointsStandart)
+        diceChoosenImg.image = diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 6, withColor: .withPointsStandart)
     }
 
     private func setupNavBar() {

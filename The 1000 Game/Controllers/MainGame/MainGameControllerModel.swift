@@ -9,38 +9,86 @@ import Foundation
 
 final class MainGameControllerModel: Combinable {
     
-    let nameLabelVM = BasicLabel.ViewModel(textValue: .text("Игрок"))
-    let pointsLabelVM = BasicLabel.ViewModel(textValue: .text("1000"))
+    let nameLabelVM = BasicLabel.ViewModel()
+    let pointsLabelVM = BasicLabel.ViewModel()
     
     let currentActionInfoLabelVM = BasicLabel.ViewModel(textValue: .text("Бросайте кубики"))
-    let currentPointsLabelVM = BasicLabel.ViewModel(textValue: .text("150"))
+    let currentPointsLabelVM = BasicLabel.ViewModel()
     
     let endOfTurnButtonVM = BasicButton.ViewModel(title: "Конец хода")
     
-    var players: [Player] = RealmManager<Player>().read()
-    var whoIsTurnIndex = 1
+    var players: [Player] = []
+    var currentPlayer: Player {
+        return players[1]
+    }
     
     override init() {
         super.init()
-        
-        
+        updatePlayersArray()
     }
     
-//    private func testingMainAlgorithm() {
-//        var randomNumbers = [Int]()
-//        for _ in 1...6 {
-//            randomNumbers.append(Int.random(in: 1...6))
-//        }
-//        print(randomNumbers)
-//        print(BasicMechanics().getResult(cubeDigits: randomNumbers).points)
-//    }
-    
-    private func checkRoolsBeforeTurn() {
-        
+    private func updatePlayersArray() {
+        players = RealmManager().read()
+        guard let lastPlayer = players.last else { return }
+        players.removeLast()
+        players.insert(lastPlayer, at: 0)
     }
     
-    private func turn() {
-        let currentPlayer = players[whoIsTurnIndex]
+    private func updatePlayersOrder() {
+        guard let firstPlayer = players.first else { return }
+        players.remove(at: 0)
+        players.append(firstPlayer)
+    }
+    
+    func actionsBeforeTurn() {
+        RoolsCheck().samosvalCheck(player: currentPlayer)
+        RoolsCheck().yamaCheckBeforeTurn(player: currentPlayer)
+        
+        nameLabelVM.textValue = .text("\(currentPlayer.name)")
+        pointsLabelVM.textValue = .text(currentPlayer.points.toString())
+        
+        currentActionInfoLabelVM.textValue = .text("Бросайте кубики")
+        currentPointsLabelVM.textValue = .text("")
+    }
+    
+    func actionsAfterRoll() {
+        if currentPlayer.currentPoints == 0 {
+            currentActionInfoLabelVM.textValue = .text("Выпала какая-то дичь :(")
+            currentPointsLabelVM.textValue = .text("")
+        } else {
+            currentActionInfoLabelVM.textValue = .text("Очки за ход:")
+            currentPointsLabelVM.textValue = .text(currentPlayer.currentPoints.toString())
+        }
+    }
+    
+    func actionsAfterTurn() {
+        // проверка в яме ли игрок - суммирование полученых за ход очков
+        RoolsCheck().yamaCheckAfterTurn(player: currentPlayer)
+        if currentPlayer.turnsInYamaCounter <= 1 {
+            currentPlayer.points += currentPlayer.currentPoints
+        }
+        // проверка открылась ли игра после завершения хода по общему количеству очков
+        RoolsCheck().openGameCheck(player: currentPlayer)
+        
+        // проверка на самосвал
+        RoolsCheck().samosvalCheck(player: currentPlayer)
+        
+        // проверка на победителя
+        RoolsCheck().winCheck(player: currentPlayer)
+        
+        currentPlayer.updateStatsAfterTurn()
+        
+        guard !currentPlayer.winStatus else {
+//            endOfTheGameAction()
+            return
+        }
+        
+        updatePlayersOrder()
+        actionsBeforeTurn()
+    }
+    
+    
+    func roll() {
         guard !currentPlayer.turnIsFinish else {
             print("Turn is finish")
             return
@@ -63,5 +111,17 @@ final class MainGameControllerModel: Combinable {
             currentPlayer.turnIsFinish = true
             currentPlayer.currentPoints = 0
         }
+        
+        checkRoolsAfterSuccesRoll()
     }
+    
+    private func checkRoolsBeforeTurn() {
+        
+    }
+    
+    func checkRoolsAfterSuccesRoll() {
+        RoolsCheck().boltsCheck(player: currentPlayer)
+        RoolsCheck().checkMinusPoints(player: currentPlayer)
+    }
+    
 }

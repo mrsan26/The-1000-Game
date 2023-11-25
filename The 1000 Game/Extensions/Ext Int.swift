@@ -11,4 +11,8 @@ extension Int {
     func toString() -> String {
         return String(self)
     }
+    
+    func toFloat() -> Float {
+        return Float(self)
+    }
 }
