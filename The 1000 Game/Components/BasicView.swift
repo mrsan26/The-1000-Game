@@ -21,19 +21,17 @@ class BasicView: UIView {
     }
     
     private func commonInit() {
-        self.backgroundColor = .white.withAlphaComponent(0.3)
-        
-//        self.alpha = 0.3
-        
+        self.backgroundColor = .white.withAlphaComponent(0.4)
         self.layer.cornerRadius = 20
         self.clipsToBounds = true
 
         // Применение тени
-//        self.layer.masksToBounds = false
-//        self.layer.shadowColor = UIColor.black.cgColor
-//        self.layer.shadowOpacity = 0.8
-//        self.layer.shadowOffset = CGSize(width: 0, height: 4)
-//        self.layer.shadowRadius = 4
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
+        self.layer.shadowOpacity = 0.8
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.layer.shadowRadius = 4
         
         self.snp.makeConstraints { make in
             make.height.equalTo(70)

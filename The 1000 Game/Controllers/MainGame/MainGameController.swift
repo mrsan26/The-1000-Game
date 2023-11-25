@@ -49,10 +49,10 @@ class MainGameController: BasicViewController {
     }()
     private lazy var shadowProgressView: UIView = {
         let shadowView = UIView()
-        shadowView.backgroundColor = .white.withAlphaComponent(0.25)
+        shadowView.backgroundColor = .white.withAlphaComponent(0.5)
         shadowView.layer.cornerRadius = 8
         shadowView.layer.masksToBounds = false
-        shadowView.layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
+        shadowView.layer.shadowColor = UIColor.black.withAlphaComponent(0.5).cgColor
         shadowView.layer.shadowOpacity = 0.8
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 4)
         shadowView.layer.shadowRadius = 4
@@ -72,8 +72,16 @@ class MainGameController: BasicViewController {
     private lazy var currentPointsLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 20)
     
     private lazy var playersCollection: UICollectionView = {
-        let collection = UICollectionView()
-        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.register(
+            BasicCollectionViewCell<PlayerCollectionCell>.self,
+            forCellWithReuseIdentifier: String(describing: BasicCollectionViewCell<PlayerCollectionCell>.self)
+        )
+        collection.dataSource = self
+        collection.delegate = self
+        collection.backgroundColor = .clear
         return collection
     }()
     
@@ -82,6 +90,10 @@ class MainGameController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
         
     }
     
@@ -117,7 +129,7 @@ class MainGameController: BasicViewController {
         centerActionLabelsView.addSubview(currentActionInfoLabel)
         centerActionLabelsView.addSubview(currentPointsLabel)
         
-//        mainContentStack.addArrangedSubview(playersCollection)
+        mainContentStack.addArrangedSubview(playersCollection)
         
         mainContentStack.addArrangedSubview(endOfTurnButtonView)
         endOfTurnButtonView.addSubview(endOfTurnButton)
@@ -125,7 +137,9 @@ class MainGameController: BasicViewController {
     
     override func makeConstraints() {
         mainContentStack.snp.makeConstraints { make in
-            make.edges.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide).offset(6)
+            make.bottom.trailing.equalTo(self.view.safeAreaLayoutGuide).offset(-6)
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -148,7 +162,6 @@ class MainGameController: BasicViewController {
                 make.leading.equalToSuperview().offset(10)
                 make.trailing.equalToSuperview().offset(-10)
                 make.height.equalTo(16)
-                
             }
         }
         shadowProgressView.snp.updateConstraints { make in
@@ -160,26 +173,26 @@ class MainGameController: BasicViewController {
         }
         
         diceMainView.snp.makeConstraints { make in
-            make.height.equalTo(self.view.frame.size.height / 3)
+            make.height.equalTo(self.view.frame.size.height / 3.2)
         }
         firstDie.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(40)
+            make.leading.equalToSuperview().offset(30)
         }
         secondDie.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-40)
+            make.trailing.equalToSuperview().offset(-30)
         }
         thirdDie.snp.makeConstraints { make in
             make.centerY.centerX.equalToSuperview()
         }
         fourthDie.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(40)
+            make.leading.equalToSuperview().offset(30)
         }
         fifthDie.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-40)
+            make.trailing.equalToSuperview().offset(-30)
         }
         
         centerActionLabelsView.snp.makeConstraints { make in
@@ -200,6 +213,10 @@ class MainGameController: BasicViewController {
             make.centerY.centerX.equalToSuperview()
             make.top.bottom.equalToSuperview()
         }
+        
+        playersCollection.snp.makeConstraints { make in
+            make.height.equalTo(160)
+        }
     }
     
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
@@ -213,4 +230,36 @@ class MainGameController: BasicViewController {
         self.endOfTurnButton.setViewModel(viewModel.endOfTurnButtonVM)
     }
 
+}
+
+
+extension MainGameController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.players.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let playerCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: BasicCollectionViewCell<PlayerCollectionCell>.self),
+            for: indexPath
+        ) as? BasicCollectionViewCell<PlayerCollectionCell> else { return .init() }
+        
+        playerCell.mainView.isActive(indexPath.row == 1)
+        playerCell.mainView.setPlayer(player: viewModel.players[indexPath.row])
+        
+        return playerCell
+    }
+}
+
+extension MainGameController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: 100, height: playersCollection.frame.size.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return (mainContentStack.frame.size.width - 100 * 3) / 2
+    }
+}
+
+extension MainGameController: UICollectionViewDelegate {
 }

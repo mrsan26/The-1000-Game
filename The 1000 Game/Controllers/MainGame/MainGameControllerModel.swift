@@ -17,7 +17,7 @@ final class MainGameControllerModel: Combinable {
     
     let endOfTurnButtonVM = BasicButton.ViewModel(title: "Конец хода")
     
-    var players: [Player] = []
+    var players: [Player] = RealmManager<Player>().read()
     var whoIsTurnIndex = 1
     
     override init() {
