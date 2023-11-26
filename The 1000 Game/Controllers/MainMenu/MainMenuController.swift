@@ -71,6 +71,7 @@ class MainMenuController: BasicViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        addRoolsButtonInNavBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,12 +99,6 @@ class MainMenuController: BasicViewController {
     }
 
     private func setupNavBar() {
-        let roolsImgView = BasicImgView(name: .named("rools_img"), height: 38, width: 38)
-        roolsImgView.contentMode = .scaleAspectFit
-        roolsImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(roolsAction)))
-        let roolButton = UIBarButtonItem(customView: roolsImgView)
-        navigationItem.rightBarButtonItem = roolButton
-        
         let mainLangView = UIView()
         let langLabel: UILabel = {
             let label = UILabel()
@@ -124,9 +119,6 @@ class MainMenuController: BasicViewController {
             .font: UIFont(name: "robotrondotmatrix", size: 0)!
         ]
         title = "1000"
-    }
-    
-    @objc private func roolsAction() {
     }
     
     @objc private func langAction() {

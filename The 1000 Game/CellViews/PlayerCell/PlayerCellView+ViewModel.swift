@@ -17,5 +17,6 @@ extension PlayerCellView {
         
         init() {
         }
+        
     }
 }

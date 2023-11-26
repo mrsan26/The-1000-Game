@@ -45,9 +45,10 @@ final class MainGameControllerModel: Combinable {
             }
         }
         
-        if UserManager.read(key: .randomOrderPlayers) {
-            players.shuffle()
-        }
+        UserManager.read(key: .randomOrderPlayers) ?
+        players.shuffle() :
+        players.sort( by: {$0.positionNumber < $1.positionNumber} )
+        
         guard let lastPlayer = players.last else { return }
         players.removeLast()
         players.insert(lastPlayer, at: 0)

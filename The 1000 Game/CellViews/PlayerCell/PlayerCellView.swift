@@ -25,8 +25,8 @@ class PlayerCellView: BasicView {
 
     let viewModel = ViewModel()
     
-    var deletePlayerClosure: ((Player) -> Void)?
-    var renamePlayerClosure: ((Player) -> Void)?
+    var deletePlayerAction: ((Player) -> Void)?
+    var renamingPlayerDidFinish: ((Player) -> Void)?
     var longPressViewClosure: VoidBlock?
     var tapViewClosure: VoidBlock?
     
@@ -77,12 +77,14 @@ class PlayerCellView: BasicView {
     
     @objc private func renamePlayer() {
         guard let player = viewModel.player else { return }
-        renamePlayerClosure?(player)
+        RenamePopupController.show(playerForEditing: player) { [ weak self ] in
+            self?.viewModel.nameLabelVM.textValue = .text(player.name)
+        }
     }
     
     @objc private func deletePlayer() {
         guard let player = viewModel.player else { return }
-        deletePlayerClosure?(player)
+        deletePlayerAction?(player)
     }
     
     @objc private func longPressView() {
@@ -91,6 +93,11 @@ class PlayerCellView: BasicView {
     
     @objc private func tapView() {
         tapViewClosure?()
+    }
+    
+    func setPlayer(player: Player) {
+        viewModel.player = player
+        viewModel.nameLabelVM.textValue = .text(player.name)
     }
     
     func setViewModel(_ viewModel: ViewModel) {

@@ -20,11 +20,12 @@ final class PlayersAmountControllerModel: Combinable {
     
     func setPlayersAmount(amount: Int) {
         UserManager.write(value: amount, for: .amountOfPlayers)
+        updatePlayersArray()
         setDefaultPlayers()
     }
     
     private func updatePlayersArray() {
-        players = RealmManager<Player>().read()
+        players = RealmManager().read()
     }
     
     private func setDefaultPlayers() {
@@ -39,7 +40,7 @@ final class PlayersAmountControllerModel: Combinable {
                     emoji: BasicMechanics().getUniqEmoji(players: players)
                     )
                 RealmManager().write(player)
-                updatePlayersArray()
+                players.append(player)
             }
         } else if players.count > amountOfPlayers {
             var playersForDeleting: [Player] = []

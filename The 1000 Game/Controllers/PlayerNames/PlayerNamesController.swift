@@ -81,6 +81,7 @@ class PlayerNamesController: BasicViewController {
     @objc private func plusPlayerAction() {
         self.viewModel.addPlayer()
         playersTableView.insertRows(at: [IndexPath(row: self.viewModel.players.count - 1, section: 0)], with: .fade)
+        playersTableView.scrollToRow(at: IndexPath(row: self.viewModel.players.count - 1, section: 0), at: .top, animated: true)
     }
     
     override func makeLayout() {
@@ -159,22 +160,11 @@ extension PlayerNamesController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BasicTableCell<PlayerCellView>.self), for: indexPath)
         
         guard let playerCell = cell as? BasicTableCell<PlayerCellView> else { return UITableViewCell() }
-        playerCell.mainView.viewModel.nameLabelVM.textValue = .text(viewModel.players[indexPath.row].name)
-        playerCell.mainView.viewModel.player = viewModel.players[indexPath.row]
-        
-        playerCell.mainView.renamePlayerClosure = { [weak self] renamingPlayer in
+        playerCell.mainView.setPlayer(player: viewModel.players[indexPath.row])
+                
+        playerCell.mainView.deletePlayerAction = { [weak self] deletingPlayer in
             guard let self else { return }
-            for (index, player) in self.viewModel.players.enumerated() where player.numberID == renamingPlayer.numberID {
-                self.viewModel.renamePlayer(player: renamingPlayer) {
-                    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
-                }
-                break
-            }
-        }
-        
-        playerCell.mainView.deletePlayerClosure = { [weak self] deletedPlayer in
-            guard let self else { return }
-            for (index, player) in self.viewModel.players.enumerated() where player.numberID == deletedPlayer.numberID {
+            for (index, player) in self.viewModel.players.enumerated() where player.numberID == deletingPlayer.numberID {
                 self.viewModel.deletePlayer(player: player)
                 tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
                 break

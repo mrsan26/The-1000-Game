@@ -21,7 +21,7 @@ class MainGameController: BasicViewController {
     }()
     
     private lazy var topView = UIView()
-    private lazy var nameLabel = BasicLabel(font: .RobotronDot, fontSize: 30)
+    private lazy var nameLabel = BasicLabel(font: .RobotronDot, fontSize: 25)
     private lazy var indicatorStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -149,10 +149,13 @@ class MainGameController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
+        addRoolsButtonInNavBar()
+        
         diceArray = [firstDie, secondDie, thirdDie, fourthDie, fifthDie]
         
-        self.viewModel.actionsBeforeTurn()
-        self.updateUIBeforeTurn()
+        viewModel.actionsBeforeTurn()
+        updateUIBeforeTurn()
     }
     
     override func viewDidLayoutSubviews() {
@@ -167,6 +170,26 @@ class MainGameController: BasicViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupNavBar() {
+        title = "1000"
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.black.withAlphaComponent(0.25)
+        shadow.shadowOffset = CGSize(width: 0, height: 4)
+        shadow.shadowBlurRadius = 4
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont(name: "AlfaSlabOne-Regular", size: 20)!,
+            .shadow: shadow
+        ]
+        
+        let backImgView = BasicImgView(name: .named("back_button_img"), height: 20, width: 40)
+        backImgView.contentMode = .scaleAspectFit
+        backImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backAction)))
+        let backButton = UIBarButtonItem(customView: backImgView)
+        navigationItem.leftBarButtonItem = backButton
     }
     
     override func makeLayout() {
@@ -305,7 +328,7 @@ class MainGameController: BasicViewController {
             RoolsCheck().checkOvertake(currentPlayer: self.viewModel.currentPlayer,
                                        playersArray: self.viewModel.players)
             self.viewModel.actionsAfterTurn()
-            self.playersCollection.reloadDataWithAnimation()
+            self.playersCollection.reloadDataWithAnimation(duration: 0.1)
             
             self.viewModel.actionsBeforeTurn()
             self.updateUIBeforeTurn()
@@ -318,6 +341,9 @@ class MainGameController: BasicViewController {
         updateUIAfterRoll()
     }
 
+    @objc private func backAction() {
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 // методы обновления ui во время игры

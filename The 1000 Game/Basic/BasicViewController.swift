@@ -37,6 +37,14 @@ class BasicViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
     }
     
+    func addRoolsButtonInNavBar() {
+        let roolsImgView = BasicImgView(name: .named("rools_img"), height: 38, width: 38)
+        roolsImgView.contentMode = .scaleAspectFit
+        roolsImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(roolsAction)))
+        let roolButton = UIBarButtonItem(customView: roolsImgView)
+        navigationItem.rightBarButtonItem = roolButton
+    }
+    
     private func makeBackground() {
         let gradientLayer = CAGradientLayer()
 
@@ -47,6 +55,10 @@ class BasicViewController: UIViewController {
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.frame = view.bounds
         self.view.layer.addSublayer(gradientLayer)
+    }
+    
+    @objc private func roolsAction() {
+        
     }
     
     func makeLayout() {}

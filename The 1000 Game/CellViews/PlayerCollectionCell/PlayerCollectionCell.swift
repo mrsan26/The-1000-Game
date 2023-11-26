@@ -104,7 +104,7 @@ class PlayerCollectionCell: UIView {
                 make.height.width.equalTo(80)
             }
             circleView.layer.cornerRadius = 40
-            emojiLabel.font = UIFont(name: "inter-black", size: 30)
+            emojiLabel.font = UIFont(name: "inter-black", size: 40)
         }
         circleView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

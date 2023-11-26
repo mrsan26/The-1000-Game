@@ -31,12 +31,12 @@ final class PlayerNamesControllerModel: Combinable {
         updatePlayersPositionsForRealm()
     }
     
-    private func updatePlayersArray() {
+    func updatePlayersArray() {
         players = RealmManager<Player>().read()
         players.sort( by: {$0.positionNumber < $1.positionNumber} )
     }
     
-    private func updatePlayersPositionsForRealm() {
+    func updatePlayersPositionsForRealm() {
         for (index, player) in players.enumerated() {
             RealmManager().update { realm in
                 try? realm.write({
@@ -61,7 +61,7 @@ final class PlayerNamesControllerModel: Combinable {
                     emoji: BasicMechanics().getUniqEmoji(players: players)
                     )
                 RealmManager().write(player)
-                updatePlayersArray()
+                players.append(player)
             }
         } else if players.count > amountOfPlayers {
             var playersForDeleting: [Player] = []
@@ -86,16 +86,16 @@ final class PlayerNamesControllerModel: Combinable {
         updatePlayersArray()
     }
     
-    func renamePlayer(player: Player, endRenamingClosure: VoidBlock?) {
-        RenamePopupController.show(playerForEditing: player) {
-            self.updatePlayersArray()
-            endRenamingClosure?()
-        }
-    }
+//    func renamePlayer(player: Player, endRenamingClosure: VoidBlock?) {
+//        RenamePopupController.show(playerForEditing: player) {
+//            self.updatePlayersArray()
+//            endRenamingClosure?()
+//        }
+//    }
     
     func deletePlayer(player: Player) {
         RealmManager<Player>().delete(object: player)
-        
+
         updatePlayersArray()
         updatePlayersPositionsForRealm()
     }
