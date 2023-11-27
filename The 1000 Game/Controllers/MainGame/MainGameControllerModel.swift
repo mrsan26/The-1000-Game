@@ -109,11 +109,6 @@ final class MainGameControllerModel: Combinable {
     
     
     func roll() {
-        guard !currentPlayer.turnIsFinish else {
-            print("Turn is finish")
-            return
-        }
-        
         currentPlayer.lastAmountOfCubes = currentPlayer.amountOfCubes
         currentPlayer.curentRoll = BasicMechanics().diceRoll(cubesAmount: currentPlayer.amountOfCubes)
         

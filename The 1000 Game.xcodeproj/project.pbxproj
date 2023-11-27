@@ -189,7 +189,6 @@
 				194D8D482AE95A8900A42DFC /* Components */,
 				19CDC7442B0BFC5E00A1B6D9 /* CellViews */,
 				194D8D462AE95A5600A42DFC /* Controllers */,
-				194D8D472AE95A5E00A42DFC /* Basic */,
 				19578E782B0BA68500566B08 /* Extensions */,
 				194D8D322AE9506B00A42DFC /* AppDelegate.swift */,
 				194D8D342AE9506B00A42DFC /* SceneDelegate.swift */,
@@ -217,18 +216,10 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		194D8D472AE95A5E00A42DFC /* Basic */ = {
-			isa = PBXGroup;
-			children = (
-				194D8D492AE95AB900A42DFC /* BasicViewController.swift */,
-				194D8D4E2AE95D7700A42DFC /* CombinableModel.swift */,
-			);
-			path = Basic;
-			sourceTree = "<group>";
-		};
 		194D8D482AE95A8900A42DFC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				194D8D492AE95AB900A42DFC /* BasicViewController.swift */,
 				19CDC7652B113EC900A1B6D9 /* BasicCollectionCell.swift */,
 				19CDC73E2B0BF77900A1B6D9 /* BasicTableCell.swift */,
 				194D8D8B2AF3A20000A42DFC /* BasicView.swift */,
@@ -274,6 +265,7 @@
 		194D8D622AEA634900A42DFC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				194D8D4E2AE95D7700A42DFC /* CombinableModel.swift */,
 				194D8D942AF462D800A42DFC /* FontValue.swift */,
 				194D8D632AEA635D00A42DFC /* TextValue.swift */,
 				194D8D602AEA630900A42DFC /* Typealias.swift */,

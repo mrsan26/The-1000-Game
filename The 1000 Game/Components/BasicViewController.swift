@@ -58,7 +58,8 @@ class BasicViewController: UIViewController {
     }
     
     @objc private func roolsAction() {
-        
+        let roolsVC = RoolsController(viewModel: .init())
+        present(roolsVC, animated: true)
     }
     
     func makeLayout() {}

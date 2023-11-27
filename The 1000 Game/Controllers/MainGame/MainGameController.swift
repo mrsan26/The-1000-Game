@@ -225,11 +225,11 @@ class MainGameController: BasicViewController {
     
     override func makeConstraints() {
         mainContentStack.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(self.view.frame.size.height / 80)
             make.leading.equalTo(self.view.safeAreaLayoutGuide).offset(6)
             make.bottom.trailing.equalTo(self.view.safeAreaLayoutGuide).offset(-6)
         }
-        
+        print(self.view.frame.size.height)
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
             make.top.equalToSuperview().offset(6)
@@ -310,7 +310,7 @@ class MainGameController: BasicViewController {
         }
         
         playersCollection.snp.makeConstraints { make in
-            make.height.equalTo(160)
+            make.height.equalTo(154)
         }
     }
     
@@ -336,6 +336,10 @@ class MainGameController: BasicViewController {
     }
     
     @objc private func tapOnDiceView() {
+        guard !viewModel.currentPlayer.turnIsFinish else {
+            endOfTurnButton.pulseAnimation(duration: 0.3)
+            return
+        }
         self.viewModel.roll()
         self.viewModel.actionsAfterRoll()
         updateUIAfterRoll()
@@ -362,17 +366,18 @@ extension MainGameController {
     }
     
     private func updateUIBeforeTurn() {
-        nameLabel.flyInFromLeft()
-        pointsLabel.flyInFromRight()
-        currentActionInfoLabel.fadeIn()
+        nameLabel.flyInFromLeftAnimation()
+        pointsLabel.flyInFromRightAnimation()
+        currentActionInfoLabel.fadeInAnimation()
         
         updateIndicatorsImg()
-        indicatorStack.fadeIn()
+        indicatorStack.fadeInAnimation()
         maybePointsProgressView.progress = 0
         
         for (index, die) in diceArray.enumerated() {
             die.image = currentDiceSkin.getDie(number: index + 1, withColor: .unactive)
-            die.fadeIn()
+            die.isHidden = false
+            die.fadeInAnimation()
         }
         
         playersCollection.reloadItems(at: [IndexPath(row: 1, section: 0)])
@@ -391,14 +396,18 @@ extension MainGameController {
             diceColorWithoutPoints = .withoutPointsInYama
         }
         
-        // выставление изначально всем кубам невидимость
-        for die in diceArray {
-            die.alpha = 0
-        }
         // в зависимости от количества последнего доступного количества кубиков (перед броском) выставление значений видимости у кубов
-        for (index, die) in diceArray.enumerated() where index < viewModel.currentPlayer.lastAmountOfCubes {
-            die.fadeIn()
-            die.rotate(rotations: 1)
+        for (index, die) in diceArray.enumerated() {
+            if index < viewModel.currentPlayer.lastAmountOfCubes {
+                die.isHidden = false
+                die.fadeInAnimation()
+                die.rotateAnimation(rotations: 1)
+                die.pulseAnimation()
+            } else {
+                die.fadeOutAnimation()
+                die.isHidden = true
+            }
+            
         }
         // придавание кубам фактического значения и выделение их соответствующим цветом в зависимости от значений массива положительных значений (и статуса нахождения игрока в яме)
         for (index, number) in viewModel.currentPlayer.curentRoll.enumerated() {
