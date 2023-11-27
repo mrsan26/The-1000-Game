@@ -118,7 +118,7 @@ class WinController: BasicViewController {
         winnerContentStack.addArrangedSubview(mainCircleView)
         playersInfoLabelsView.addSubview(nameLabel)
         playersInfoLabelsView.addSubview(pointsLabel)
-        mainContentStack.addArrangedSubview(playersInfoLabelsView)
+        winnerContentStack.addArrangedSubview(playersInfoLabelsView)
         mainContentStack.addArrangedSubview(playersCollection)
         resetButtonView.addSubview(resetButton)
         mainContentStack.addArrangedSubview(resetButtonView)
@@ -127,12 +127,14 @@ class WinController: BasicViewController {
     override func makeConstraints() {
         mainContentStack.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.equalTo(self.view.safeAreaLayoutGuide).offset(6)
-            make.bottom.trailing.equalTo(self.view.safeAreaLayoutGuide).offset(-6)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide).offset(12)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide).offset(-12)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-6)
         }
         
         circleView.snp.makeConstraints { make in
             make.height.width.equalTo(self.view.frame.size.width / 2)
+            circleView.layer.cornerRadius = self.view.frame.size.width / 4
             make.top.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
         }
@@ -149,7 +151,7 @@ class WinController: BasicViewController {
         }
         
         playersCollection.snp.makeConstraints { make in
-            make.height.equalTo(134)
+            make.height.equalTo(154)
         }
         
         resetButton.snp.makeConstraints { make in
@@ -192,6 +194,7 @@ extension WinController: UICollectionViewDataSource {
             for: indexPath
         ) as? BasicCollectionViewCell<PlayerCollectionCell> else { return .init() }
         
+        playerCell.mainView.isActive(true)
         playerCell.mainView.setPlayer(player: viewModel.playersWithoutWinner[indexPath.row])
         
         return playerCell
@@ -204,11 +207,26 @@ extension WinController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if viewModel.playersWithoutWinner.count < 3 {
-            return 20
-        } else {
+        switch viewModel.playersWithoutWinner.count {
+        case 1:
+            return 0
+        case 2:
+            return 30
+        default:
             return (mainContentStack.frame.size.width - 100 * 3) / 2
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        guard viewModel.playersWithoutWinner.count < 3 else { return .init() }
+        var spacing = 0
+        viewModel.playersWithoutWinner.count == 2 ? (spacing = 30) : (spacing = 0)
+        
+        let cellsNumber = collectionView.numberOfItems(inSection: section)
+        let totalCellWidth = 100 * CGFloat(cellsNumber) + CGFloat(spacing)
+        let leftInset = ((collectionView.frame.width - CGFloat(totalCellWidth)) / 2)
+        
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: 0)
     }
 }
 

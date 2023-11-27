@@ -131,7 +131,6 @@ extension RenamePopupController {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
             }
-            
             topController.present(popup, animated: true)
         }
     }

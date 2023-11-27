@@ -86,7 +86,7 @@ class PlayerCollectionCell: UIView {
         self.viewModel.player = player
     }
     
-    func isActive(_ active: Bool = false) {
+    func isActive(_ active: Bool) {
         if active {
             circleView.snp.updateConstraints { make in
                 make.height.width.equalTo(100)

@@ -334,7 +334,9 @@ class MainGameController: BasicViewController {
                 return
             }
             
+            self.viewModel.updatePlayersOrder()
             self.playersCollection.reloadDataWithAnimation(duration: 0.1)
+            
             self.viewModel.actionsBeforeTurn()
             self.updateUIBeforeTurn()
         }
@@ -456,13 +458,16 @@ extension MainGameController {
                 UserManager.read(key: .randomOrderPlayers) ?
                 self.viewModel.players.shuffle() :
                 self.viewModel.players.sort(by: {$0.positionNumber < $1.positionNumber})
+                guard let lastPlayer = self.viewModel.players.last else { return }
+                self.viewModel.players.removeLast()
+                self.viewModel.players.insert(lastPlayer, at: 0)
                 
                 self.viewModel.actionsBeforeTurn()
+                self.playersCollection.reloadData()
                 self.updateUIBeforeTurn()
-                self.playersCollection.reloadDataWithAnimation()
             }
+        
         self.navigationController?.pushViewController(winVC, animated: false)
-        return
     }
 }
 

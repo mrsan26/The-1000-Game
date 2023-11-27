@@ -53,9 +53,13 @@ final class MainGameControllerModel: Combinable {
         guard let lastPlayer = players.last else { return }
         players.removeLast()
         players.insert(lastPlayer, at: 0)
+        
+        lastPlayer.points = 990
+        lastPlayer.gameOpen = true
+        lastPlayer.gameOpenCounter = 5
     }
     
-    private func updatePlayersOrder() {
+    func updatePlayersOrder() {
         guard let firstPlayer = players.first else { return }
         players.remove(at: 0)
         players.append(firstPlayer)
@@ -100,9 +104,9 @@ final class MainGameControllerModel: Combinable {
         currentPlayer.updateStatsAfterTurn()
         
         // тут была проверка на победителя
+        // тут было обновление порядка игроков
         
-        updatePlayersOrder()
-        actionsBeforeTurn()
+//        actionsBeforeTurn()
     }
     
     
