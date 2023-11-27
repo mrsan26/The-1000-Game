@@ -451,6 +451,7 @@ extension MainGameController {
             winnerPlayer: viewModel.currentPlayer,
             allPlayers: viewModel.players) { [weak self] in
                 guard let self else { return }
+                
                 self.viewModel.players.forEach { player in
                     player.resetStats()
                 }
@@ -501,4 +502,8 @@ extension MainGameController: UICollectionViewDelegateFlowLayout {
 }
 
 extension MainGameController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let historyVC = HistoryController(viewModel: .init(), player: viewModel.players[indexPath.row])
+        present(UINavigationController(rootViewController: historyVC), animated: true)
+    }
 }

@@ -51,6 +51,13 @@ class BasicLabel: UILabel {
         }
         .store(in: &cancellables)
         
+        vm.$isHidden.sink { value in
+            guard let value else { return }
+            
+            self.isHidden = value
+        }
+        .store(in: &cancellables)
+        
     }
     
 }

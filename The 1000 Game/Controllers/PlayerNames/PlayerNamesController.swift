@@ -158,8 +158,8 @@ extension PlayerNamesController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BasicTableCell<PlayerCellView>.self), for: indexPath)
-        
         guard let playerCell = cell as? BasicTableCell<PlayerCellView> else { return UITableViewCell() }
+        
         playerCell.mainView.setPlayer(player: viewModel.players[indexPath.row])
                 
         playerCell.mainView.deletePlayerAction = { [weak self] deletingPlayer in

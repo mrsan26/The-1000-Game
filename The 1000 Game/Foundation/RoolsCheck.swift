@@ -52,7 +52,7 @@ struct RoolsCheck {
             player.isSamosvalCrash = true
             player.points = 0
         } else {
-            player.isSamosvalCrash = false
+//            player.isSamosvalCrash = false
         }
     }
     

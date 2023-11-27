@@ -40,6 +40,8 @@ class WinController: BasicViewController {
         view.layer.shadowOpacity = 0.8
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
         view.layer.shadowRadius = 4
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOnWinnerView)))
         return view
     }()
     private lazy var winerEmojiLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 100)
@@ -177,6 +179,12 @@ class WinController: BasicViewController {
         SPConfetti.startAnimating(.fullWidthToDown, particles: [.triangle, .arc, .heart, .star], duration: 5)
     }
     
+    @objc private func tapOnWinnerView() {
+        guard let winnerPlayer = viewModel.winnerPlayer else { return }
+        let historyVC = HistoryController(viewModel: .init(), player: winnerPlayer)
+        present(UINavigationController(rootViewController: historyVC), animated: true)
+    }
+    
     @objc private func backAction() {
         navigationController?.popToRootViewController(animated: true)
     }
@@ -231,5 +239,8 @@ extension WinController: UICollectionViewDelegateFlowLayout {
 }
 
 extension WinController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let historyVC = HistoryController(viewModel: .init(), player: viewModel.playersWithoutWinner[indexPath.row])
+        present(UINavigationController(rootViewController: historyVC), animated: true)
+    }
 }
