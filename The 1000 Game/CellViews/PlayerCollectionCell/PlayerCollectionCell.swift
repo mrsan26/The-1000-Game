@@ -74,12 +74,6 @@ class PlayerCollectionCell: UIView {
             make.top.trailing.leading.equalToSuperview()
         }
         
-//        circleView.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.top.bottom.equalToSuperview()
-//            make.height.width.equalTo(100)
-//        }
-        
         let labels = [nameLabel, pointsLabel, emojiLabel]
         labels.forEach { label in
             label.snp.makeConstraints { make in
@@ -92,7 +86,7 @@ class PlayerCollectionCell: UIView {
         self.viewModel.player = player
     }
     
-    func isActive(_ active: Bool) {
+    func isActive(_ active: Bool = false) {
         if active {
             circleView.snp.updateConstraints { make in
                 make.height.width.equalTo(100)

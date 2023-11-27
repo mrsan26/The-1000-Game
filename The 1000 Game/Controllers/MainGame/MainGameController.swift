@@ -328,8 +328,13 @@ class MainGameController: BasicViewController {
             RoolsCheck().checkOvertake(currentPlayer: self.viewModel.currentPlayer,
                                        playersArray: self.viewModel.players)
             self.viewModel.actionsAfterTurn()
-            self.playersCollection.reloadDataWithAnimation(duration: 0.1)
             
+            guard !self.viewModel.currentPlayer.winStatus else {
+                self.winnerAction()
+                return
+            }
+            
+            self.playersCollection.reloadDataWithAnimation(duration: 0.1)
             self.viewModel.actionsBeforeTurn()
             self.updateUIBeforeTurn()
         }
@@ -436,6 +441,28 @@ extension MainGameController {
         UIView.animate(withDuration: 0.7) { [weak self] in
             self?.maybePointsProgressView.setProgress(maybePoints, animated: true)
         }
+    }
+    
+    private func winnerAction() {
+        let winVC = WinController(
+            viewModel: .init(),
+            winnerPlayer: viewModel.currentPlayer,
+            allPlayers: viewModel.players) { [weak self] in
+                guard let self else { return }
+                self.viewModel.players.forEach { player in
+                    player.resetStats()
+                }
+                
+                UserManager.read(key: .randomOrderPlayers) ?
+                self.viewModel.players.shuffle() :
+                self.viewModel.players.sort(by: {$0.positionNumber < $1.positionNumber})
+                
+                self.viewModel.actionsBeforeTurn()
+                self.updateUIBeforeTurn()
+                self.playersCollection.reloadDataWithAnimation()
+            }
+        self.navigationController?.pushViewController(winVC, animated: false)
+        return
     }
 }
 

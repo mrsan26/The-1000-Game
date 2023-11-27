@@ -31,8 +31,8 @@
 		194D8D6E2AEA75CA00A42DFC /* MainMenuControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D6D2AEA75CA00A42DFC /* MainMenuControllerModel.swift */; };
 		194D8D732AEC064200A42DFC /* RoolsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D722AEC064200A42DFC /* RoolsController.swift */; };
 		194D8D752AEC065500A42DFC /* RoolsControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D742AEC065500A42DFC /* RoolsControllerModel.swift */; };
-		194D8D792AEC088F00A42DFC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D782AEC088F00A42DFC /* SettingsController.swift */; };
-		194D8D7B2AEC08CE00A42DFC /* SettingsControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D7A2AEC08CE00A42DFC /* SettingsControllerModel.swift */; };
+		194D8D792AEC088F00A42DFC /* WinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D782AEC088F00A42DFC /* WinController.swift */; };
+		194D8D7B2AEC08CE00A42DFC /* WinControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D7A2AEC08CE00A42DFC /* WinControllerModel.swift */; };
 		194D8D7E2AEC0B1E00A42DFC /* PlayersAmountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D7D2AEC0B1E00A42DFC /* PlayersAmountController.swift */; };
 		194D8D802AEC0B4800A42DFC /* PlayersAmountControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D7F2AEC0B4700A42DFC /* PlayersAmountControllerModel.swift */; };
 		194D8D832AEC150800A42DFC /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D822AEC150800A42DFC /* PlayerModel.swift */; };
@@ -98,8 +98,8 @@
 		194D8D6D2AEA75CA00A42DFC /* MainMenuControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuControllerModel.swift; sourceTree = "<group>"; };
 		194D8D722AEC064200A42DFC /* RoolsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolsController.swift; sourceTree = "<group>"; };
 		194D8D742AEC065500A42DFC /* RoolsControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolsControllerModel.swift; sourceTree = "<group>"; };
-		194D8D782AEC088F00A42DFC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		194D8D7A2AEC08CE00A42DFC /* SettingsControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsControllerModel.swift; sourceTree = "<group>"; };
+		194D8D782AEC088F00A42DFC /* WinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinController.swift; sourceTree = "<group>"; };
+		194D8D7A2AEC08CE00A42DFC /* WinControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinControllerModel.swift; sourceTree = "<group>"; };
 		194D8D7D2AEC0B1E00A42DFC /* PlayersAmountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersAmountController.swift; sourceTree = "<group>"; };
 		194D8D7F2AEC0B4700A42DFC /* PlayersAmountControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersAmountControllerModel.swift; sourceTree = "<group>"; };
 		194D8D822AEC150800A42DFC /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
@@ -184,7 +184,6 @@
 			children = (
 				19CDC7372B0BCECD00A1B6D9 /* Managers */,
 				194D8D552AE9746200A42DFC /* Foundation */,
-				194D8D812AEC14DE00A42DFC /* Models */,
 				194D8D622AEA634900A42DFC /* Common */,
 				194D8D482AE95A8900A42DFC /* Components */,
 				19CDC7442B0BFC5E00A1B6D9 /* CellViews */,
@@ -204,13 +203,14 @@
 		194D8D462AE95A5600A42DFC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				194D8D812AEC14DE00A42DFC /* Models */,
 				194D8D6A2AEA758D00A42DFC /* MainMenu */,
 				194D8D7C2AEC092F00A42DFC /* PlayersAmount */,
 				19578E7B2B0BC67C00566B08 /* PlayerNames */,
 				19CDC7552B0F9FE000A1B6D9 /* DiceController */,
 				194D8D652AEA6C7D00A42DFC /* MainGame */,
 				194D8D6F2AEC03F500A42DFC /* Rools */,
-				194D8D762AEC080F00A42DFC /* Settings */,
+				194D8D762AEC080F00A42DFC /* Win */,
 				19CDC74C2B0ECBFE00A1B6D9 /* RenamePopup */,
 			);
 			path = Controllers;
@@ -301,13 +301,13 @@
 			path = Rools;
 			sourceTree = "<group>";
 		};
-		194D8D762AEC080F00A42DFC /* Settings */ = {
+		194D8D762AEC080F00A42DFC /* Win */ = {
 			isa = PBXGroup;
 			children = (
-				194D8D782AEC088F00A42DFC /* SettingsController.swift */,
-				194D8D7A2AEC08CE00A42DFC /* SettingsControllerModel.swift */,
+				194D8D782AEC088F00A42DFC /* WinController.swift */,
+				194D8D7A2AEC08CE00A42DFC /* WinControllerModel.swift */,
 			);
-			path = Settings;
+			path = Win;
 			sourceTree = "<group>";
 		};
 		194D8D7C2AEC092F00A42DFC /* PlayersAmount */ = {
@@ -573,7 +573,7 @@
 				19CDC7602B0FA52800A1B6D9 /* DieCellView+ViewModel.swift in Sources */,
 				19CDC73F2B0BF77900A1B6D9 /* BasicTableCell.swift in Sources */,
 				194D8D752AEC065500A42DFC /* RoolsControllerModel.swift in Sources */,
-				194D8D7B2AEC08CE00A42DFC /* SettingsControllerModel.swift in Sources */,
+				194D8D7B2AEC08CE00A42DFC /* WinControllerModel.swift in Sources */,
 				19CDC7492B0D11C700A1B6D9 /* Ext Table.swift in Sources */,
 				194D8D642AEA635D00A42DFC /* TextValue.swift in Sources */,
 				19578E7A2B0BA6AD00566B08 /* Ext Int.swift in Sources */,
@@ -609,7 +609,7 @@
 				194D8D692AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift in Sources */,
 				194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */,
 				19CDC7472B0BFCE700A1B6D9 /* PlayerCellView+ViewModel.swift in Sources */,
-				194D8D792AEC088F00A42DFC /* SettingsController.swift in Sources */,
+				194D8D792AEC088F00A42DFC /* WinController.swift in Sources */,
 				19578E7D2B0BC6B100566B08 /* PlayerNamesController.swift in Sources */,
 				194D8D8A2AF123A800A42DFC /* RoolsCheck.swift in Sources */,
 				19CDC7432B0BFB4F00A1B6D9 /* PlayerCellView.swift in Sources */,

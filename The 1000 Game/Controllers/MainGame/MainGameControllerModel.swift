@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class MainGameControllerModel: Combinable {
     
@@ -98,10 +99,7 @@ final class MainGameControllerModel: Combinable {
         
         currentPlayer.updateStatsAfterTurn()
         
-        guard !currentPlayer.winStatus else {
-//            endOfTheGameAction()
-            return
-        }
+        // тут была проверка на победителя
         
         updatePlayersOrder()
         actionsBeforeTurn()
