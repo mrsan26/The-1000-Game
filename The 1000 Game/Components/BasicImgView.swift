@@ -9,20 +9,41 @@ import UIKit
 
 class BasicImgView: UIImageView {
     
-    init(name: ImageName, height: Int, width: Int, tintColor: UIColor = .white) {
+    init(name: ImageName?,
+         image: UIImage? = nil,
+         height: Int,
+         width: Int,
+         tintColor: UIColor = .white,
+         withShadow: Bool = false
+    ) {
         super.init(frame: .zero)
         
-        switch name {
-        case .named(let name):
-            self.image = UIImage(named: name)
-        case .systemNamed(let name):
-            self.image = UIImage(systemName: name)
+        if let name {
+            switch name {
+            case .named(let name):
+                self.image = UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
+            case .systemNamed(let name):
+                self.image = UIImage(systemName: name)
+            }
         }
         
-        self.tintColor = .tintColor
+        if let image {
+            self.image = image
+        }
+        
+        self.tintColor = tintColor
+        
         self.snp.makeConstraints { make in
             make.height.equalTo(height)
             make.width.equalTo(width)
+        }
+        
+        if withShadow {
+            self.layer.masksToBounds = false
+            self.layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
+            self.layer.shadowOpacity = 0.8
+            self.layer.shadowOffset = CGSize(width: 0, height: 4)
+            self.layer.shadowRadius = 4
         }
     }
     

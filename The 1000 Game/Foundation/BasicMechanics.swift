@@ -88,7 +88,7 @@ struct BasicMechanics {
     func getUniqPlayerID(players: [Player]) -> Int {
         guard !players.isEmpty else { return 1 }
         var playersIDs: [Int] = []
-        var uniqID = 1
+        var uniqID = 0
         for player in players {
             playersIDs.append(player.numberID)
         }

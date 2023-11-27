@@ -21,6 +21,7 @@ class MainMenuController: BasicViewController {
         stack.spacing = 13
         return stack
     }()
+    
     private lazy var mainNameLabelView = UIView()
     private lazy var mainNameLabel: BasicLabel = {
         let label = BasicLabel(aligment: .center, font: .AlfaSlabOne, fontSize: 60)
@@ -31,6 +32,7 @@ class MainMenuController: BasicViewController {
         label.layer.shadowOffset = CGSize(width: 0, height: 4)
         return label
     }()
+    
     private lazy var playersGestureView: BasicView = {
         let view = BasicView()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playersGestureAction)))
@@ -39,31 +41,47 @@ class MainMenuController: BasicViewController {
     private lazy var playersLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var playersChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     private lazy var playersCountLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 16)
+    
     private lazy var dicesChoiseGestureView: BasicView = {
         let view = BasicView()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dicesChoiseGestureAction)))
         return view
     }()
     private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var diceChoosenImg = BasicImgView(
+        name: nil,
+        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 6, withColor: .withPointsStandart),
+        height: 30,
+        width: 30,
+        tintColor: .systemPink
+    )
     private lazy var dicesChoiseChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
+    
     private lazy var bochkiToogleView = BasicView()
     private lazy var bochkiLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var bochkiSwitcher = BasicSwitcher()
+    
     private lazy var botsToogleView = BasicView()
     private lazy var botsLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
     private lazy var botsSwitcher = BasicSwitcher()
+    
     private lazy var startGameButtonView = UIView()
     private lazy var startGameButton = BasicButton(style: .red)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        addRoolsButtonInNavBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.updateLabelsInfo()
+        updateUI()
         setupNavBar()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     
     init(viewModel: MainMenuControllerModel) {
@@ -74,25 +92,33 @@ class MainMenuController: BasicViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func updateUI() {
+        viewModel.playersCountLabelVM.textValue = .text((UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault).toString())
+        diceChoosenImg.image = diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 6, withColor: .withPointsStandart)
+    }
 
     private func setupNavBar() {
-        let roolsImgView = BasicImgView(name: .named("rools_img"), height: 38, width: 38)
-        roolsImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(roolsAction)))
-        let roolButton = UIBarButtonItem(customView: roolsImgView)
-        navigationItem.rightBarButtonItem = roolButton
-        
-        let langImgView = BasicImgView(name: .named("lang_img"), height: 38, width: 38)
-        langImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(langAction)))
-        let langButton = UIBarButtonItem(customView: langImgView)
+        let mainLangView = UIView()
+        let langLabel: UILabel = {
+            let label = UILabel()
+            label.textColor = .white
+            label.text = "Ru"
+            label.font = UIFont(name: "inter-black", size: 26)
+            return label
+        }()
+        mainLangView.addSubview(langLabel)
+        langLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        mainLangView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(langAction)))
+        let langButton = UIBarButtonItem(customView: mainLangView)
         navigationItem.leftBarButtonItem = langButton
         
         self.navigationController?.navigationBar.titleTextAttributes = [
             .font: UIFont(name: "robotrondotmatrix", size: 0)!
         ]
         title = "1000"
-    }
-    
-    @objc private func roolsAction() {
     }
     
     @objc private func langAction() {
@@ -104,6 +130,8 @@ class MainMenuController: BasicViewController {
     }
     
     @objc private func dicesChoiseGestureAction() {
+        let diceVC = DiceController(viewModel: .init())
+        self.navigationController?.pushViewController(diceVC, animated: true)
     }
     
     override func makeLayout() {
@@ -118,6 +146,7 @@ class MainMenuController: BasicViewController {
         
         buttonsStackView.addArrangedSubview(dicesChoiseGestureView)
         dicesChoiseGestureView.addSubview(dicesChoiseLabel)
+        dicesChoiseGestureView.addSubview(diceChoosenImg)
         dicesChoiseGestureView.addSubview(dicesChoiseChevronImg)
         
         buttonsStackView.addArrangedSubview(bochkiToogleView)
@@ -152,6 +181,11 @@ class MainMenuController: BasicViewController {
         playersCountLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(playersChevronImg.snp.leading).offset(-7)
+        }
+        
+        diceChoosenImg.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(dicesChoiseChevronImg.snp.leading).offset(-4)
         }
         
         let namelabels = [playersLabel, dicesChoiseLabel, bochkiLabel, botsLabel]
@@ -192,6 +226,11 @@ class MainMenuController: BasicViewController {
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         self.startGameButton.setViewModel(viewModel.startGameButton)
+        self.viewModel.startGameButton.action = { [weak self] in
+            let mainGameVC = MainGameController(viewModel: .init())
+            self?.navigationController?.pushViewController(mainGameVC, animated: true)
+        }
+        
         self.mainNameLabel.setViewModel(viewModel.mainNameLabelVM)
         self.playersLabel.setViewModel(viewModel.playersLabelVM)
         self.playersCountLabel.setViewModel(viewModel.playersCountLabelVM)

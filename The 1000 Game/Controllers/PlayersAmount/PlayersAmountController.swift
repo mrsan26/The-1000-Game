@@ -18,9 +18,10 @@ class PlayersAmountController: BasicViewController {
     private lazy var pickerView = UIView()
     private lazy var playersAmountPicker: UIPickerView = {
         let picker = UIPickerView()
+        
         return picker
     }()
-    private lazy var pickerSelectedView = BasicView()
+    private lazy var pickerSelectorView = BasicView()
     
     private lazy var playerNamesButtonView = UIView()
     private lazy var playerNamesButton = BasicButton(style: .red)
@@ -32,8 +33,12 @@ class PlayersAmountController: BasicViewController {
         playersAmountPicker.dataSource = self
         playersAmountPicker.delegate = self
         
-        let playersAmount = UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault
-        playersAmountPicker.selectRow(playersAmount - 2, inComponent: 0, animated: true)
+        setupPicker()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupPicker()
     }
     
     init(viewModel: PlayersAmountControllerModel) {
@@ -46,17 +51,28 @@ class PlayersAmountController: BasicViewController {
     }
     
     override func makeLayout() {
-        self.view.addSubview(playersAmountPicker)
+        self.view.addSubview(pickerView)
+        pickerView.addSubview(pickerSelectorView)
+        pickerView.addSubview(playersAmountPicker)
         self.view.addSubview(playerNamesButtonView)
         playerNamesButtonView.addSubview(playerNamesButton)
     }
     
     override func makeConstraints() {
-        playersAmountPicker.snp.makeConstraints { make in
+        pickerView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalTo(playerNamesButtonView.snp.top)
             make.leading.equalTo(12)
             make.trailing.equalTo(-12)
+        }
+        
+        pickerSelectorView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview().offset(-18)
+        }
+        
+        playersAmountPicker.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         playerNamesButtonView.snp.makeConstraints { make in
@@ -80,12 +96,15 @@ class PlayersAmountController: BasicViewController {
         }
     }
     
-    private func makePickerContent() {
-        var counter = 1
-        for _ in 1...20 {
-            pickerContent.append(counter)
-            counter += 1
+    private func setupPicker() {
+        guard let
+                playersAmount = UserManager.read(key: .amountOfPlayers),
+              playersAmount >= BasicRools.Constants.playersAmountDefault
+        else {
+            playersAmountPicker.selectRow(0, inComponent: 0, animated: true)
+            return
         }
+        playersAmountPicker.selectRow(playersAmount - BasicRools.Constants.playersAmountDefault, inComponent: 0, animated: true)
     }
 
 }
@@ -119,10 +138,8 @@ extension PlayersAmountController: UIPickerViewDelegate {
         basicView.snp.makeConstraints { make in
             make.width.equalTo(self.playersAmountPicker.bounds.size.width - 18)
         }
-        label.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        return basicView
+
+        return label
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

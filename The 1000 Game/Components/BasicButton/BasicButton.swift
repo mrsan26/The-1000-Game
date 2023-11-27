@@ -63,8 +63,10 @@ class BasicButton: PressableButton {
         switch style {
         case .red:
             self.colors = .init(button: UIColor(red: 0.922, green: 0.294, blue: 0.384, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
-            self.setTitleColor(.white, for: .normal)
+        case .blue:
+            self.colors = .init(button: UIColor(red: 0.227, green: 0.51, blue: 0.969, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
         }
+        self.setTitleColor(.white, for: .normal)
         
         self.cornerRadius = 20
         self.shadowHeight = 4
@@ -79,6 +81,7 @@ class BasicButton: PressableButton {
 extension BasicButton {
     enum Style {
         case red
+        case blue
     }
 }
 

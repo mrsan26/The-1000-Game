@@ -6,43 +6,111 @@
 //
 
 import Foundation
+import UIKit
 
 final class MainGameControllerModel: Combinable {
     
+    let nameLabelVM = BasicLabel.ViewModel()
+    let pointsLabelVM = BasicLabel.ViewModel()
     
-    let players: [Player] = [
-        .init(name: "San", numberID: 0, emoji: "👹"),
-        .init(name: "Kek", numberID: 1, emoji: "🤗"),
-        .init(name: "Lol", numberID: 2, emoji: "🤌🏻")
-    ]
-    var whoIsTurnIndex = 1
+    let currentActionInfoLabelVM = BasicLabel.ViewModel()
+    let currentPointsLabelVM = BasicLabel.ViewModel()
+    
+    let endOfTurnButtonVM = BasicButton.ViewModel(title: "Конец хода")
+    
+    var players: [Player] = []
+    var currentPlayer: Player {
+        return players[1]
+    }
     
     override init() {
         super.init()
-        
-        
+        updatePlayersArray()
     }
     
-//    private func testingMainAlgorithm() {
-//        var randomNumbers = [Int]()
-//        for _ in 1...6 {
-//            randomNumbers.append(Int.random(in: 1...6))
-//        }
-//        print(randomNumbers)
-//        print(BasicMechanics().getResult(cubeDigits: randomNumbers).points)
-//    }
-    
-    private func checkRoolsBeforeTurn() {
+    private func updatePlayersArray() {
+        players = RealmManager().read()
         
-    }
-    
-    private func turn() {
-        let currentPlayer = players[whoIsTurnIndex]
-        guard !currentPlayer.turnIsFinish else {
-            print("Turn is finish")
-            return
+        let amountOfPlayers = UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault
+        if players.count < amountOfPlayers {
+            for _ in 1...amountOfPlayers - players.count {
+                let uniqID = BasicMechanics().getUniqPlayerID(players: players)
+                let player: Player = .init(
+                    name: "Игрок \(uniqID)",
+                    numberID: uniqID,
+                    positionNumber: players.count,
+                    emoji: BasicMechanics().getUniqEmoji(players: players)
+                )
+                RealmManager().write(player)
+                players.append(player)
+            }
         }
         
+        UserManager.read(key: .randomOrderPlayers) ?
+        players.shuffle() :
+        players.sort( by: {$0.positionNumber < $1.positionNumber} )
+        
+        guard let lastPlayer = players.last else { return }
+        players.removeLast()
+        players.insert(lastPlayer, at: 0)
+        
+        lastPlayer.points = 990
+        lastPlayer.gameOpen = true
+        lastPlayer.gameOpenCounter = 5
+    }
+    
+    func updatePlayersOrder() {
+        guard let firstPlayer = players.first else { return }
+        players.remove(at: 0)
+        players.append(firstPlayer)
+    }
+    
+    func actionsBeforeTurn() {
+        RoolsCheck().samosvalCheck(player: currentPlayer)
+        RoolsCheck().yamaCheckBeforeTurn(player: currentPlayer)
+        
+        nameLabelVM.textValue = .text("\(currentPlayer.name)")
+        pointsLabelVM.textValue = .text(currentPlayer.points.toString())
+        
+        currentActionInfoLabelVM.textValue = .text("Бросайте кубики")
+        currentPointsLabelVM.textValue = .text("")
+    }
+    
+    func actionsAfterRoll() {
+        if currentPlayer.currentPoints == 0 {
+            currentActionInfoLabelVM.textValue = .text("Выпала какая-то дичь :(")
+            currentPointsLabelVM.textValue = .text("")
+        } else {
+            currentActionInfoLabelVM.textValue = .text("Очки за ход:")
+            currentPointsLabelVM.textValue = .text(currentPlayer.currentPoints.toString())
+        }
+    }
+    
+    func actionsAfterTurn() {
+        // проверка в яме ли игрок - суммирование полученых за ход очков
+        RoolsCheck().yamaCheckAfterTurn(player: currentPlayer)
+        if currentPlayer.turnsInYamaCounter <= 1 {
+            currentPlayer.points += currentPlayer.currentPoints
+        }
+        // проверка открылась ли игра после завершения хода по общему количеству очков
+        RoolsCheck().openGameCheck(player: currentPlayer)
+        
+        // проверка на самосвал
+        RoolsCheck().samosvalCheck(player: currentPlayer)
+        
+        // проверка на победителя
+        RoolsCheck().winCheck(player: currentPlayer)
+        
+        currentPlayer.updateStatsAfterTurn()
+        
+        // тут была проверка на победителя
+        // тут было обновление порядка игроков
+        
+//        actionsBeforeTurn()
+    }
+    
+    
+    func roll() {
         currentPlayer.lastAmountOfCubes = currentPlayer.amountOfCubes
         currentPlayer.curentRoll = BasicMechanics().diceRoll(cubesAmount: currentPlayer.amountOfCubes)
         
@@ -60,5 +128,13 @@ final class MainGameControllerModel: Combinable {
             currentPlayer.turnIsFinish = true
             currentPlayer.currentPoints = 0
         }
+        
+        checkRoolsAfterSuccesRoll()
     }
+    
+    func checkRoolsAfterSuccesRoll() {
+        RoolsCheck().boltsCheck(player: currentPlayer)
+        RoolsCheck().checkMinusPoints(player: currentPlayer)
+    }
+    
 }

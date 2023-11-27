@@ -35,7 +35,9 @@ class BasicTableCell<T: UIView>: UITableViewCell {
     
     private func makeConstraints() {
         self.mainView.snp.makeConstraints { make in
-            make.top.trailing.leading.equalToSuperview()
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-12)
             make.bottom.equalTo(separatorView.snp.top)
         }
         self.separatorView.snp.makeConstraints { make in

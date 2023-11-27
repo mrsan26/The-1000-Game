@@ -10,9 +10,11 @@ import Foundation
 extension BasicLabel {
     final class ViewModel: Combinable {
         @Published var textValue: TextValue?
+        @Published var isHidden: Bool?
         
-        init(textValue: TextValue? = nil) {
+        init(textValue: TextValue? = nil, isHidden: Bool? = nil) {
             self.textValue = textValue
+            self.isHidden = isHidden
         }
     }
 }

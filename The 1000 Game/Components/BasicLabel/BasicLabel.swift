@@ -25,6 +25,8 @@ class BasicLabel: UILabel {
             self.font = UIFont(name: "robotrondotmatrix", size: fontSize)
         case .AlfaSlabOne:
             self.font = UIFont(name: "AlfaSlabOne-Regular", size: fontSize)
+        case .InterBlack:
+            self.font = UIFont(name: "inter-black", size: fontSize)
         }
         self.minimumScaleFactor = 0.5
     }
@@ -46,6 +48,13 @@ class BasicLabel: UILabel {
             case .attributed(let attributed):
                 self?.attributedText = attributed
             }
+        }
+        .store(in: &cancellables)
+        
+        vm.$isHidden.sink { value in
+            guard let value else { return }
+            
+            self.isHidden = value
         }
         .store(in: &cancellables)
         
