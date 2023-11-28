@@ -178,7 +178,6 @@ extension PlayerNamesController: UITableViewDataSource {
         playerCell.mainView.longPressViewClosure = {
             // gesture of starting editing
             tableView.isEditing = true
-            Vibration.selection.vibrate()
         }
         
         playerCell.mainView.tapViewClosure = {

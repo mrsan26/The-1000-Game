@@ -91,7 +91,6 @@ class PlayerCellView: BasicView {
     
     @objc private func longPressView() {
         longPressViewClosure?()
-        Vibration.selection.vibrate()
     }
     
     @objc private func tapView() {
