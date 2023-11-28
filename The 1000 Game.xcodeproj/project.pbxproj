@@ -75,6 +75,8 @@
 		19E64B0E2B1527F80037E441 /* HistoryCellView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B0D2B1527F80037E441 /* HistoryCellView+ViewModel.swift */; };
 		19E64B102B155DD80037E441 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B0F2B155DD80037E441 /* Vibration.swift */; };
 		19E64B142B16254A0037E441 /* inter-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 19E64B132B16254A0037E441 /* inter-medium.otf */; };
+		19E64B172B165EA10037E441 /* ConfirmPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B162B165EA00037E441 /* ConfirmPopupController.swift */; };
+		19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +151,8 @@
 		19E64B0D2B1527F80037E441 /* HistoryCellView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryCellView+ViewModel.swift"; sourceTree = "<group>"; };
 		19E64B0F2B155DD80037E441 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		19E64B132B16254A0037E441 /* inter-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "inter-medium.otf"; sourceTree = "<group>"; };
+		19E64B162B165EA00037E441 /* ConfirmPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupController.swift; sourceTree = "<group>"; };
+		19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupControllerModel.swift; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
 		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 				19E64B052B15265B0037E441 /* History */,
 				194D8D6F2AEC03F500A42DFC /* Rools */,
 				194D8D762AEC080F00A42DFC /* Win */,
+				19E64B152B165E1A0037E441 /* ConfirmPopup */,
 				19CDC74C2B0ECBFE00A1B6D9 /* RenamePopup */,
 			);
 			path = Controllers;
@@ -468,6 +473,15 @@
 			path = HistoryCellView;
 			sourceTree = "<group>";
 		};
+		19E64B152B165E1A0037E441 /* ConfirmPopup */ = {
+			isa = PBXGroup;
+			children = (
+				19E64B162B165EA00037E441 /* ConfirmPopupController.swift */,
+				19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */,
+			);
+			path = ConfirmPopup;
+			sourceTree = "<group>";
+		};
 		57D1D8F40D3C289E0F81C23E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +620,7 @@
 			files = (
 				194D8D732AEC064200A42DFC /* RoolsController.swift in Sources */,
 				19CDC7692B11410400A1B6D9 /* PlayerCollectionCell.swift in Sources */,
+				19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */,
 				19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */,
 				19CDC7662B113EC900A1B6D9 /* BasicCollectionCell.swift in Sources */,
 				19CDC7602B0FA52800A1B6D9 /* DieCellView+ViewModel.swift in Sources */,
@@ -650,6 +665,7 @@
 				19E64B0E2B1527F80037E441 /* HistoryCellView+ViewModel.swift in Sources */,
 				194D8D5F2AEA62E300A42DFC /* BasicButton+ViewModel.swift in Sources */,
 				194D8D692AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift in Sources */,
+				19E64B172B165EA10037E441 /* ConfirmPopupController.swift in Sources */,
 				194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */,
 				19CDC7472B0BFCE700A1B6D9 /* PlayerCellView+ViewModel.swift in Sources */,
 				19E64B042B1516790037E441 /* ActionHistoryPointModel.swift in Sources */,

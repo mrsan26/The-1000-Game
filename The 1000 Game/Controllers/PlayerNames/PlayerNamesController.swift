@@ -136,8 +136,10 @@ class PlayerNamesController: BasicViewController {
         
         self.deleteAllButton.setViewModel(viewModel.deleteAllButtonVM)
         self.viewModel.deleteAllButtonVM.action = { [weak self] in
-            self?.viewModel.deleteAllPlayers()
-            self?.playersTableView.reloadDataWithAnimation()
+            ConfirmPopupController.show(titleText: "Удалить всех игроков?", position: .center) { [weak self] in
+                self?.viewModel.deleteAllPlayers()
+                self?.playersTableView.reloadDataWithAnimation()
+            }
             Vibration.button.vibrate()
         }
         
