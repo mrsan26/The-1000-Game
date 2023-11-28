@@ -383,7 +383,7 @@ extension MainGameController {
         updateCubesImg()
         updateMaybeProgressLine()
         
-        // переписать с помощью замыкания на проверки правила болтов в модели
+        // переписать с помощью замыкания на проверке правила болтов в модели
         if viewModel.currentPlayer.isBoltsCrash {
             viewModel.pointsLabelVM.textValue = .text(viewModel.currentPlayer.points.toString())
             playersCollection.reloadItems(at: [IndexPath(row: 1, section: 0)])
@@ -522,7 +522,7 @@ extension MainGameController: UICollectionViewDelegateFlowLayout {
 extension MainGameController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let historyVC = HistoryController(viewModel: .init(), player: viewModel.players[indexPath.row])
-        present(UINavigationController(rootViewController: historyVC), animated: true)
+        present(historyVC, animated: true)
         Vibration.selection.vibrate()        
     }
 }

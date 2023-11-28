@@ -183,7 +183,7 @@ class WinController: BasicViewController {
     @objc private func tapOnWinnerView() {
         guard let winnerPlayer = viewModel.winnerPlayer else { return }
         let historyVC = HistoryController(viewModel: .init(), player: winnerPlayer)
-        present(UINavigationController(rootViewController: historyVC), animated: true)
+        present(historyVC, animated: true)
         Vibration.selection.vibrate()
     }
     
@@ -244,7 +244,7 @@ extension WinController: UICollectionViewDelegateFlowLayout {
 extension WinController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let historyVC = HistoryController(viewModel: .init(), player: viewModel.playersWithoutWinner[indexPath.row])
-        present(UINavigationController(rootViewController: historyVC), animated: true)
+        present(historyVC, animated: true)
         Vibration.selection.vibrate()
     }
 }

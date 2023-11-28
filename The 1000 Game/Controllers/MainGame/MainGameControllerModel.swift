@@ -74,7 +74,7 @@ final class MainGameControllerModel: Combinable {
     
     func actionsAfterRoll() {
         if currentPlayer.currentPoints == 0 {
-            currentActionInfoLabelVM.textValue = .text("Выпала какая-то дичь :(")
+            currentActionInfoLabelVM.textValue = .text("Не повезло :(")
             currentPointsLabelVM.textValue = .text("")
         } else {
             currentActionInfoLabelVM.textValue = .text("Очки за ход:")

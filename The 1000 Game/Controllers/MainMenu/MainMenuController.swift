@@ -38,7 +38,7 @@ class MainMenuController: BasicViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playersGestureAction)))
         return view
     }()
-    private lazy var playersLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var playersLabel = BasicLabel(font: .RobotronDot, fontSize: 18)
     private lazy var playersChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     private lazy var playersCountLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 16)
     
@@ -47,7 +47,7 @@ class MainMenuController: BasicViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dicesChoiseGestureAction)))
         return view
     }()
-    private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var dicesChoiseLabel = BasicLabel(font: .RobotronDot, fontSize: 18)
     private lazy var diceChoosenImg = BasicImgView(
         name: nil,
         image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 6, withColor: .withPointsStandart),
@@ -58,11 +58,11 @@ class MainMenuController: BasicViewController {
     private lazy var dicesChoiseChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     
     private lazy var bochkiToogleView = BasicView()
-    private lazy var bochkiLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var bochkiLabel = BasicLabel(font: .RobotronDot, fontSize: 18)
     private lazy var bochkiSwitcher = BasicSwitcher()
     
     private lazy var botsToogleView = BasicView()
-    private lazy var botsLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var botsLabel = BasicLabel(font: .RobotronDot, fontSize: 18)
     private lazy var botsSwitcher = BasicSwitcher()
     
     private lazy var startGameButtonView = UIView()

@@ -18,9 +18,9 @@ class HistoryCellView: UIView {
     }()
     
     private lazy var labelsView = UIView()
-    private lazy var turnNumberLabel = BasicLabel(color: .systemBlue, font: .InterBlack, fontSize: 16)
-    private lazy var pointsNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
-    private lazy var pointsChangesNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
+    private lazy var turnNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
+    private lazy var pointsNumberLabel = BasicLabel(font: .InterMedium, fontSize: 16)
+    private lazy var pointsChangesNumberLabel = BasicLabel(font: .InterMedium, fontSize: 16)
     
     private lazy var gameOpenedLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 16)
     private lazy var overtakenLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 16)

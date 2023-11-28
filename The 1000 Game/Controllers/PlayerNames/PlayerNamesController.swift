@@ -110,7 +110,7 @@ class PlayerNamesController: BasicViewController {
         randomOrderSwitcher.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-20)
             make.centerY.equalToSuperview()
-            make.width.equalTo(51).priority(1000)
+            make.width.equalTo(49).priority(1000)
         }
         
         playersTableView.snp.makeConstraints { make in
@@ -185,7 +185,6 @@ extension PlayerNamesController: UITableViewDataSource {
             // gesture of ending editing
             guard tableView.isEditing else { return }
             tableView.isEditing = false
-            Vibration.selection.vibrate()
         }
         return playerCell
     }
