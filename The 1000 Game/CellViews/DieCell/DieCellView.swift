@@ -103,6 +103,7 @@ class DieCellView: UIView {
         guard !choosen, let chooseIndex else { return }
         choosen.toggle()
         chooseClosure?(chooseIndex)
+        Vibration.viewTap.vibrate()
     }
     
     private func binding() {

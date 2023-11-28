@@ -5,6 +5,7 @@
 //  Created by Sanchez on 28.11.2023.
 //
 
+import Foundation
 import UIKit
 import Combine
 
@@ -32,9 +33,9 @@ class HistoryController: UIViewController {
     private lazy var nameLabel = BasicLabel(font: .RobotronDot, fontSize: 30)
     
     private lazy var tableTitleView = UIView()
-    private lazy var turnNumberLabel = BasicLabel(color: .systemBlue, font: .InterBlack, fontSize: 16)
-    private lazy var pointsNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
-    private lazy var pointsChangesNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
+    private lazy var turnNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
+    private lazy var pointsNumberLabel = BasicLabel(font: .InterMedium, fontSize: 16)
+    private lazy var pointsChangesNumberLabel = BasicLabel(font: .InterMedium, fontSize: 16)
     
     private lazy var historyTableView: UITableView = {
         let table = UITableView()
@@ -169,6 +170,7 @@ class HistoryController: UIViewController {
     
     @objc private func closeAction() {
         dismiss(animated: true)
+        Vibration.viewTap.vibrate()
     }
 }
 

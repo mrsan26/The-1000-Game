@@ -15,12 +15,12 @@ class PlayerCellView: BasicView {
         img.isUserInteractionEnabled = true
         return img
     }()
-    private lazy var nameLabel = BasicLabel(font: .RobotronDot, fontSize: 20)
-    private lazy var renameLabel: BasicLabel = {
-        let label = BasicLabel(font: .InterBlack, fontSize: 16)
-        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(renamePlayer)))
-        label.isUserInteractionEnabled = true
-        return label
+    private lazy var nameLabel = BasicLabel(aligment: .center, font: .RobotronDot, fontSize: 20)
+    private lazy var renameImg: BasicImgView = {
+        let img = BasicImgView(name: .named("edit_img"), height: 23, width: 23, tintColor: .systemBlue)
+        img.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(renamePlayer)))
+        img.isUserInteractionEnabled = true
+        return img
     }()
 
     let viewModel = ViewModel()
@@ -50,11 +50,11 @@ class PlayerCellView: BasicView {
     private func makeLayout() {
         self.addSubview(trashImg)
         self.addSubview(nameLabel)
-        self.addSubview(renameLabel)
+        self.addSubview(renameImg)
     }
     
     private func makeConstraints() {
-        let subviews = [trashImg, nameLabel, renameLabel]
+        let subviews = [trashImg, nameLabel, renameImg]
         subviews.forEach { subview in
             subview.snp.makeConstraints { make in
                 make.centerY.equalToSuperview()
@@ -65,13 +65,13 @@ class PlayerCellView: BasicView {
             make.leading.equalToSuperview().offset(20)
         }
         
-        renameLabel.snp.makeConstraints { make in
+        renameImg.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-20)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(trashImg.snp.trailing).offset(10).priority(1000)
-            make.trailing.equalTo(renameLabel.snp.leading).offset(-10).priority(1000)
+            make.trailing.equalTo(renameImg.snp.leading).offset(-10).priority(1000)
         }
     }
     
@@ -80,11 +80,13 @@ class PlayerCellView: BasicView {
         RenamePopupController.show(playerForEditing: player) { [ weak self ] in
             self?.viewModel.nameLabelVM.textValue = .text(player.name)
         }
+        Vibration.viewTap.vibrate()
     }
     
     @objc private func deletePlayer() {
         guard let player = viewModel.player else { return }
         deletePlayerAction?(player)
+        Vibration.viewTap.vibrate()
     }
     
     @objc private func longPressView() {
@@ -93,6 +95,7 @@ class PlayerCellView: BasicView {
     
     @objc private func tapView() {
         tapViewClosure?()
+        Vibration.selection.vibrate()
     }
     
     func setPlayer(player: Player) {
@@ -102,7 +105,6 @@ class PlayerCellView: BasicView {
     
     func setViewModel(_ viewModel: ViewModel) {
         self.nameLabel.setViewModel(viewModel.nameLabelVM)
-        self.renameLabel.setViewModel(viewModel.renameLabelVM)
     }
     
 }

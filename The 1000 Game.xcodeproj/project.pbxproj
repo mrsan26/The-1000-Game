@@ -73,6 +73,8 @@
 		19E64B092B15268B0037E441 /* HistoryControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B082B15268B0037E441 /* HistoryControllerModel.swift */; };
 		19E64B0C2B1527A40037E441 /* HistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B0B2B1527A40037E441 /* HistoryCellView.swift */; };
 		19E64B0E2B1527F80037E441 /* HistoryCellView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B0D2B1527F80037E441 /* HistoryCellView+ViewModel.swift */; };
+		19E64B102B155DD80037E441 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B0F2B155DD80037E441 /* Vibration.swift */; };
+		19E64B142B16254A0037E441 /* inter-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 19E64B132B16254A0037E441 /* inter-medium.otf */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +147,8 @@
 		19E64B082B15268B0037E441 /* HistoryControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryControllerModel.swift; sourceTree = "<group>"; };
 		19E64B0B2B1527A40037E441 /* HistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellView.swift; sourceTree = "<group>"; };
 		19E64B0D2B1527F80037E441 /* HistoryCellView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryCellView+ViewModel.swift"; sourceTree = "<group>"; };
+		19E64B0F2B155DD80037E441 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
+		19E64B132B16254A0037E441 /* inter-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "inter-medium.otf"; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
 		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
@@ -281,6 +285,7 @@
 				194D8D632AEA635D00A42DFC /* TextValue.swift */,
 				194D8D602AEA630900A42DFC /* Typealias.swift */,
 				19CDC7512B0EE80C00A1B6D9 /* ValidationRules.swift */,
+				19E64B0F2B155DD80037E441 /* Vibration.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				194D8D902AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf */,
 				194D8D982AF473C000A42DFC /* robotrondotmatrix.otf */,
 				19CDC74A2B0D24A600A1B6D9 /* inter-black.otf */,
+				19E64B132B16254A0037E441 /* inter-medium.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19E64B142B16254A0037E441 /* inter-medium.otf in Resources */,
 				194D8D3F2AE9506C00A42DFC /* LaunchScreen.storyboard in Resources */,
 				194D8D3C2AE9506C00A42DFC /* Assets.xcassets in Resources */,
 				194D8D912AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf in Resources */,
@@ -621,6 +628,7 @@
 				19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */,
 				19CDC7522B0EE80C00A1B6D9 /* ValidationRules.swift in Sources */,
 				19CDC7592B0FA02A00A1B6D9 /* DiceControllerModel.swift in Sources */,
+				19E64B102B155DD80037E441 /* Vibration.swift in Sources */,
 				194D8D952AF462D800A42DFC /* FontValue.swift in Sources */,
 				19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */,
 				19578E7F2B0BC6C200566B08 /* PlayerNamesControllerModel.swift in Sources */,

@@ -53,10 +53,6 @@ final class MainGameControllerModel: Combinable {
         guard let lastPlayer = players.last else { return }
         players.removeLast()
         players.insert(lastPlayer, at: 0)
-        
-        lastPlayer.points = 990
-        lastPlayer.gameOpen = true
-        lastPlayer.gameOpenCounter = 5
     }
     
     func updatePlayersOrder() {
@@ -78,7 +74,7 @@ final class MainGameControllerModel: Combinable {
     
     func actionsAfterRoll() {
         if currentPlayer.currentPoints == 0 {
-            currentActionInfoLabelVM.textValue = .text("Выпала какая-то дичь :(")
+            currentActionInfoLabelVM.textValue = .text("Не повезло :(")
             currentPointsLabelVM.textValue = .text("")
         } else {
             currentActionInfoLabelVM.textValue = .text("Очки за ход:")

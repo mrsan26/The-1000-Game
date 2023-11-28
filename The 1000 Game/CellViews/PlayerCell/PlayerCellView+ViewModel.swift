@@ -11,8 +11,7 @@ import Combine
 extension PlayerCellView {
     final class ViewModel {
         let nameLabelVM = BasicLabel.ViewModel()
-        let renameLabelVM = BasicLabel.ViewModel(textValue: .text("Редактировать"))
-        
+            
         var player: Player?
         
         init() {

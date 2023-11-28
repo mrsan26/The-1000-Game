@@ -27,8 +27,11 @@ class BasicLabel: UILabel {
             self.font = UIFont(name: "AlfaSlabOne-Regular", size: fontSize)
         case .InterBlack:
             self.font = UIFont(name: "inter-black", size: fontSize)
+        case .InterMedium:
+            self.font = UIFont(name: "inter-medium", size: fontSize)
         }
         self.minimumScaleFactor = 0.5
+        self.adjustsFontSizeToFitWidth = true
     }
     
     required init?(coder: NSCoder) {

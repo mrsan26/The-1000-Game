@@ -131,5 +131,6 @@ class RoolsController: UIViewController {
     
     @objc private func closeAction() {
         dismiss(animated: true)
+        Vibration.viewTap.vibrate()
     }
 }

@@ -113,6 +113,7 @@ class BasicTextField: UIView {
             return true
         } else {
             errorLabel.isHidden = false
+            Vibration.error.vibrate()
             return false
         }
     }
