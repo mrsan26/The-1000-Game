@@ -53,10 +53,6 @@ final class MainGameControllerModel: Combinable {
         guard let lastPlayer = players.last else { return }
         players.removeLast()
         players.insert(lastPlayer, at: 0)
-        
-        lastPlayer.points = 990
-        lastPlayer.gameOpen = true
-        lastPlayer.gameOpenCounter = 5
     }
     
     func updatePlayersOrder() {

@@ -29,6 +29,7 @@ class BasicLabel: UILabel {
             self.font = UIFont(name: "inter-black", size: fontSize)
         }
         self.minimumScaleFactor = 0.5
+        self.adjustsFontSizeToFitWidth = true
     }
     
     required init?(coder: NSCoder) {

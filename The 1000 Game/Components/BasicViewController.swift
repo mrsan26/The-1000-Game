@@ -60,6 +60,7 @@ class BasicViewController: UIViewController {
     @objc private func roolsAction() {
         let roolsVC = RoolsController(viewModel: .init())
         present(roolsVC, animated: true)
+        Vibration.viewTap.vibrate()
     }
     
     func makeLayout() {}

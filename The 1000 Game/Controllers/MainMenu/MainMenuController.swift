@@ -127,11 +127,13 @@ class MainMenuController: BasicViewController {
     @objc private func playersGestureAction() {
         let playersVC = PlayersAmountController(viewModel: .init())
         self.navigationController?.pushViewController(playersVC, animated: true)
+        Vibration.viewTap.vibrate()
     }
     
     @objc private func dicesChoiseGestureAction() {
         let diceVC = DiceController(viewModel: .init())
         self.navigationController?.pushViewController(diceVC, animated: true)
+        Vibration.viewTap.vibrate()
     }
     
     override func makeLayout() {
@@ -229,6 +231,7 @@ class MainMenuController: BasicViewController {
         self.viewModel.startGameButton.action = { [weak self] in
             let mainGameVC = MainGameController(viewModel: .init())
             self?.navigationController?.pushViewController(mainGameVC, animated: true)
+            Vibration.button.vibrate()
         }
         
         self.mainNameLabel.setViewModel(viewModel.mainNameLabelVM)

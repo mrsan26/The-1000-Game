@@ -93,6 +93,7 @@ class PlayersAmountController: BasicViewController {
         self.viewModel.playerNamesButtonVM.action = { [weak self] in
             let playerNamesVC = PlayerNamesController(viewModel: .init())
             self?.navigationController?.pushViewController(playerNamesVC, animated: true)
+            Vibration.button.vibrate()
         }
     }
     

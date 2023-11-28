@@ -64,7 +64,7 @@ class WinController: BasicViewController {
     }()
     
     private lazy var resetButtonView = UIView()
-    private lazy var resetButton = BasicButton(style: .red, titleFontSize: 20)
+    private lazy var resetButton = BasicButton(style: .red, titleFontSize: 18)
     
     private var resetGameClosure: VoidBlock?
     
@@ -172,6 +172,7 @@ class WinController: BasicViewController {
         self.viewModel.resetButtonVM.action = { [weak self] in
             self?.resetGameClosure?()
             self?.navigationController?.popViewController(animated: true)
+            Vibration.button.vibrate()
         }
     }
     
@@ -183,10 +184,12 @@ class WinController: BasicViewController {
         guard let winnerPlayer = viewModel.winnerPlayer else { return }
         let historyVC = HistoryController(viewModel: .init(), player: winnerPlayer)
         present(UINavigationController(rootViewController: historyVC), animated: true)
+        Vibration.selection.vibrate()
     }
     
     @objc private func backAction() {
         navigationController?.popToRootViewController(animated: true)
+        Vibration.selection.vibrate()
     }
     
 }
@@ -242,5 +245,6 @@ extension WinController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let historyVC = HistoryController(viewModel: .init(), player: viewModel.playersWithoutWinner[indexPath.row])
         present(UINavigationController(rootViewController: historyVC), animated: true)
+        Vibration.selection.vibrate()
     }
 }

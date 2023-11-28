@@ -13,7 +13,7 @@ class BasicImgView: UIImageView {
          image: UIImage? = nil,
          height: Int,
          width: Int,
-         tintColor: UIColor = .white,
+         tintColor: UIColor? = .white,
          withShadow: Bool = false
     ) {
         super.init(frame: .zero)
@@ -31,7 +31,9 @@ class BasicImgView: UIImageView {
             self.image = image
         }
         
-        self.tintColor = tintColor
+        if let tintColor {
+            self.tintColor = tintColor
+        }
         
         self.snp.makeConstraints { make in
             make.height.equalTo(height)

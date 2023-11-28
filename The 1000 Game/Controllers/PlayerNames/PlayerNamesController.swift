@@ -14,7 +14,7 @@ class PlayerNamesController: BasicViewController {
     let viewModel: PlayerNamesControllerModel
     
     private lazy var randomOrderToogleView = BasicView()
-    private lazy var randomOrderLabel = BasicLabel(font: .RobotronDot, fontSize: 16)
+    private lazy var randomOrderLabel = BasicLabel(font: .InterBlack, fontSize: 17)
     private lazy var randomOrderSwitcher = BasicSwitcher()
     
     private lazy var playersTableView: UITableView = {
@@ -82,6 +82,7 @@ class PlayerNamesController: BasicViewController {
         self.viewModel.addPlayer()
         playersTableView.insertRows(at: [IndexPath(row: self.viewModel.players.count - 1, section: 0)], with: .fade)
         playersTableView.scrollToRow(at: IndexPath(row: self.viewModel.players.count - 1, section: 0), at: .top, animated: true)
+        Vibration.viewTap.vibrate()
     }
     
     override func makeLayout() {
@@ -109,6 +110,7 @@ class PlayerNamesController: BasicViewController {
         randomOrderSwitcher.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-20)
             make.centerY.equalToSuperview()
+            make.width.equalTo(51).priority(1000)
         }
         
         playersTableView.snp.makeConstraints { make in
@@ -136,6 +138,7 @@ class PlayerNamesController: BasicViewController {
         self.viewModel.deleteAllButtonVM.action = { [weak self] in
             self?.viewModel.deleteAllPlayers()
             self?.playersTableView.reloadDataWithAnimation()
+            Vibration.button.vibrate()
         }
         
         self.randomOrderSwitcher.setViewModel(viewModel.randomOrderSwitcherVM)
@@ -148,6 +151,7 @@ class PlayerNamesController: BasicViewController {
     @objc private func tapOnTableView() {
         guard playersTableView.isEditing else { return }
         playersTableView.isEditing = false
+        Vibration.selection.vibrate()
     }
 }
 
@@ -174,12 +178,14 @@ extension PlayerNamesController: UITableViewDataSource {
         playerCell.mainView.longPressViewClosure = {
             // gesture of starting editing
             tableView.isEditing = true
+            Vibration.selection.vibrate()
         }
         
         playerCell.mainView.tapViewClosure = {
             // gesture of ending editing
             guard tableView.isEditing else { return }
             tableView.isEditing = false
+            Vibration.selection.vibrate()
         }
         return playerCell
     }
