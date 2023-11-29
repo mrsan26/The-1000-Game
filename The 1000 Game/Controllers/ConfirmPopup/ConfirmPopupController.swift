@@ -27,7 +27,7 @@ class ConfirmPopupController: UIViewController {
         return stack
     }()
     
-    private lazy var titleLabel = BasicLabel(color: .white, aligment: .center, font: .InterBlack, fontSize: 16)
+    private lazy var titleLabel = BasicLabel(color: .white, aligment: .center, font: .InterBlack, fontSize: 18)
         
     private lazy var buttonStack: UIStackView = {
         let stack = UIStackView()

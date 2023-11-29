@@ -179,17 +179,24 @@ extension HistoryController: UITableViewDataSource {
         return player.pointsHistory.count
     }
     
+    func doesObjectExist(index objectIndex: Int, in array: [Any]) -> Bool {
+        return objectIndex >= 0 && objectIndex < array.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BasicTableCell<HistoryCellView>.self), for: indexPath)
         guard let historyCell = cell as? BasicTableCell<HistoryCellView> else { return UITableViewCell() }
         
-        
-        
         historyCell.mainView.setInfo(
             turnNumber: indexPath.row,
             points: player.pointsHistory[indexPath.row],
-            changesPoints: player.changesPointsHistory[indexPath.row],
-            actions: player.actionsHistory[indexPath.row]
+            changesPoints:
+                doesObjectExist(index: indexPath.row, in: player.changesPointsHistory) ?
+                player.changesPointsHistory[indexPath.row] :
+                nil,
+            actions: doesObjectExist(index: indexPath.row, in: player.actionsHistory) ?
+                player.actionsHistory[indexPath.row] :
+                nil
         )
         
         return historyCell

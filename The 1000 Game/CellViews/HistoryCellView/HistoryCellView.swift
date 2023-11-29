@@ -77,7 +77,7 @@ class HistoryCellView: UIView {
         }
     }
     
-    func setInfo(turnNumber: Int, points: Int, changesPoints: Int, actions: ActionHistoryPoint) {
+    func setInfo(turnNumber: Int, points: Int, changesPoints: Int?, actions: ActionHistoryPoint?) {
         viewModel.setupLabels(turnNumber: turnNumber, points: points, changesPoints: changesPoints, actions: actions)
     }
     

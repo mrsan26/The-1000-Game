@@ -51,12 +51,17 @@ class Player: Object {
         pointsHistory.append(points)
     }
     
+//    old version
+//    func addChangesPointInHistory() {
+//        if pointsHistory.count > 1 {
+//            changesPointsHistory.append(pointsHistory.last! - pointsHistory[pointsHistory.count - 2])
+//        } else {
+//            changesPointsHistory.append(points)
+//        }
+//    }
+    
     func addChangesPointInHistory() {
-        if pointsHistory.count > 1 {
-            changesPointsHistory.append(pointsHistory.last! - pointsHistory[pointsHistory.count - 2])
-        } else {
-            changesPointsHistory.append(points)
-        }
+        changesPointsHistory.append(currentPoints)
     }
     
     func addChangesActionInHistory() {
@@ -92,7 +97,6 @@ class Player: Object {
     }
     
     func updateStatsAfterTurn() {
-        addChangesActionInHistory()
         
         currentPoints = 0
         curentRoll.removeAll()
@@ -103,7 +107,5 @@ class Player: Object {
         wasOvertaken = false
         isSamosvalCrash = false
         
-        addPointsInHistory()
-        addChangesPointInHistory()
     }
 }

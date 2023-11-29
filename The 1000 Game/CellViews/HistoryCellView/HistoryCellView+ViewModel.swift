@@ -23,19 +23,24 @@ extension HistoryCellView {
         init() {
         }
         
-        func setupLabels(turnNumber: Int, points: Int, changesPoints: Int, actions: ActionHistoryPoint) {
-            var plus = ""
-            changesPoints > 0 ? (plus = "+") : (plus = "")
+        func setupLabels(turnNumber: Int, points: Int, changesPoints: Int?, actions: ActionHistoryPoint?) {
             
             turnNumberLabelVM.textValue = .text(turnNumber.toString())
             pointsNumberLabelVM.textValue = .text(points.toString())
-            pointsChangesNumberLabelVM.textValue = .text(plus + changesPoints.toString())
             
-            gameOpenedLabelVM.isHidden = !actions.gameOpened
-            overtakenLabelVM.isHidden = !actions.overtaken
-            boltsCrashLabelVM.isHidden = !actions.boltsCrash
-            yamaStatusLabelVM.isHidden = !actions.yamaStatus
-            samosvalCrashLabelVM.isHidden = !actions.samosvalCrash
+            if let changesPoints {
+                var plus = ""
+                changesPoints > 0 ? (plus = "+") : (plus = "")
+                pointsChangesNumberLabelVM.textValue = .text(plus + changesPoints.toString())
+            }
+            
+            if let actions {
+                gameOpenedLabelVM.isHidden = !actions.gameOpened
+                overtakenLabelVM.isHidden = !actions.overtaken
+                boltsCrashLabelVM.isHidden = !actions.boltsCrash
+                yamaStatusLabelVM.isHidden = !actions.yamaStatus
+                samosvalCrashLabelVM.isHidden = !actions.samosvalCrash
+            }
         }
     }
 }

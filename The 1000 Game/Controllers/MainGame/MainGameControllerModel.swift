@@ -70,6 +70,8 @@ final class MainGameControllerModel: Combinable {
         
         currentActionInfoLabelVM.textValue = .text("Бросайте кубики")
         currentPointsLabelVM.textValue = .text("")
+        
+        currentPlayer.addPointsInHistory()
     }
     
     func actionsAfterRoll() {
@@ -97,6 +99,8 @@ final class MainGameControllerModel: Combinable {
         // проверка на победителя
         RoolsCheck().winCheck(player: currentPlayer)
         
+        currentPlayer.addChangesActionInHistory()
+        currentPlayer.addChangesPointInHistory()
         currentPlayer.updateStatsAfterTurn()
     }
     
