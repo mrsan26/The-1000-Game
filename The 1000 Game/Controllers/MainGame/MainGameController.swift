@@ -370,7 +370,9 @@ class MainGameController: BasicViewController {
     }
 
     @objc private func backAction() {
-        navigationController?.popToRootViewController(animated: true)
+        ConfirmPopupController.show(titleText: "Выйти из игры?", position: .center) { [weak self] in
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
         Vibration.viewTap.vibrate()
     }
 }

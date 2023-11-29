@@ -98,11 +98,6 @@ final class MainGameControllerModel: Combinable {
         RoolsCheck().winCheck(player: currentPlayer)
         
         currentPlayer.updateStatsAfterTurn()
-        
-        // тут была проверка на победителя
-        // тут было обновление порядка игроков
-        
-//        actionsBeforeTurn()
     }
     
     
