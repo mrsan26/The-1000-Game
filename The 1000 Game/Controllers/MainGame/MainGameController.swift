@@ -252,7 +252,6 @@ class MainGameController: BasicViewController {
         }
         indicatorStack.snp.makeConstraints { make in
             make.leading.equalTo(nameLabel.snp.trailing).offset(15)
-//            make.trailing.equalTo(pointsLabel.snp.leading).offset(-10)
             make.centerY.equalTo(nameLabel)
         }
         let progressView = [maybePointsProgressView, pointsProgressView]
@@ -456,6 +455,7 @@ extension MainGameController {
     }
     
     private func updateMaybeProgressLine() {
+        maybePointsProgressView.setProgress(0, animated: false)
         let maybePoints = ((viewModel.currentPlayer.points + viewModel.currentPlayer.currentPoints).toFloat()) / 1000
         maybePointsProgressView.fillingAnimation(progressValue: maybePoints, duration: 0.5)
     }
