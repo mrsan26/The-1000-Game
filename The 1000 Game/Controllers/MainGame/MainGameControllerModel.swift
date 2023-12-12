@@ -87,11 +87,13 @@ final class MainGameControllerModel: Combinable {
     func actionsAfterTurn() {
         // проверка в яме ли игрок - суммирование полученых за ход очков
         RoolsCheck().yamaCheckAfterTurn(player: currentPlayer)
-        if currentPlayer.turnsInYamaCounter <= 1 {
-            currentPlayer.points += currentPlayer.currentPoints
-        }
+        
         // проверка открылась ли игра после завершения хода по общему количеству очков
         RoolsCheck().openGameCheck(player: currentPlayer)
+        
+        if currentPlayer.turnsInYamaCounter <= 1, currentPlayer.gameOpened {
+            currentPlayer.points += currentPlayer.currentPoints
+        }
         
         // проверка на самосвал
         RoolsCheck().samosvalCheck(player: currentPlayer)

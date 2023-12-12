@@ -23,7 +23,6 @@ class Player: Object {
     var lastAmountOfCubes: Int = 5
     var bolts = 0
     var turnsInYamaCounter = 0
-    var gameOpenCounter = 0
     
     var pointsHistory: [Int] = [0]
     var changesPointsHistory: [Int] = [0]
@@ -32,7 +31,8 @@ class Player: Object {
     var winStatus = false
     var turnIsFinish = false
     var isItInYama = false
-    var gameOpen = false
+    var gameOpened = false
+    var firstGameOpening = false
     var wasOvertaken = false
     var isBoltsCrash = false
     var isSamosvalCrash = false
@@ -64,7 +64,7 @@ class Player: Object {
     
     func addChangesActionInHistory() {
         actionsHistory.append(.init(
-            gameOpened: gameOpenCounter == 1,
+            firstGameOpening: firstGameOpening,
             overtaken: wasOvertaken,
             boltsCrash: isBoltsCrash,
             yamaStatus: turnsInYamaCounter > 1,
@@ -80,11 +80,11 @@ class Player: Object {
         lastAmountOfCubes = 5
         bolts = 0
         turnsInYamaCounter = 0
-        gameOpenCounter = 0
         winStatus = false
         turnIsFinish = false
         isItInYama = false
-        gameOpen = false
+        gameOpened = false
+        firstGameOpening = false
         wasOvertaken = false
         isBoltsCrash = false
         isSamosvalCrash = false
@@ -94,11 +94,11 @@ class Player: Object {
     }
     
     func updateStatsAfterTurn() {
-        
         currentPoints = 0
         curentRoll.removeAll()
         amountOfCubes = 5
         lastAmountOfCubes = 5
+        firstGameOpening = false
         turnIsFinish = false
         isBoltsCrash = false
         wasOvertaken = false

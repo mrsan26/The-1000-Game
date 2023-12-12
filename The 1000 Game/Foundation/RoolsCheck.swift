@@ -16,12 +16,9 @@ struct RoolsCheck {
     }
     
     func openGameCheck(player: Player) {
-        if player.points >= 50 {
-            player.gameOpen = true
-            player.gameOpenCounter += 1
-        } else if player.gameOpen == false {
-            player.points = 0
-        }
+        guard !player.gameOpened else { return }
+        player.gameOpened = player.currentPoints >= 50
+        player.firstGameOpening = player.currentPoints >= 50
     }
     
     func yamaCheckAfterTurn(player: Player) {
@@ -57,10 +54,10 @@ struct RoolsCheck {
     }
     
     func boltsCheck(player: Player) {
-        if player.gameOpen, player.currentPoints == 0 {
+        if player.gameOpened, player.currentPoints == 0 {
             player.bolts += 1
         }
-        if player.gameOpen, player.bolts == 3 {
+        if player.gameOpened, player.bolts == 3 {
             player.points -= 100
             player.bolts = 0
             player.isBoltsCrash = true
@@ -91,7 +88,7 @@ struct RoolsCheck {
         for everyPlayer in playersArray where everyPlayer.numberID != currentPlayer.numberID {
             // проверка обгона должна выполняться СТРОГО ДО суммирования points и currentPoints текущего игрока
             if isItCurrentPlayerStillInYama == false,
-                everyPlayer.gameOpen == true,
+                everyPlayer.gameOpened == true,
                 currentPlayer.points < everyPlayer.points,
                 currentPlayer.points + currentPlayer.currentPoints > everyPlayer.points
             {

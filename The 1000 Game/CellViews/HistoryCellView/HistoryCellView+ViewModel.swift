@@ -35,7 +35,7 @@ extension HistoryCellView {
             }
             
             if let actions {
-                gameOpenedLabelVM.isHidden = !actions.gameOpened
+                gameOpenedLabelVM.isHidden = !actions.firstGameOpening
                 overtakenLabelVM.isHidden = !actions.overtaken
                 boltsCrashLabelVM.isHidden = !actions.boltsCrash
                 yamaStatusLabelVM.isHidden = !actions.yamaStatus

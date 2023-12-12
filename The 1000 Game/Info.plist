@@ -2,24 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIApplicationShortcutItems</key>
+	<key>UIAppFonts</key>
 	<array>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>newGameShortcut</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Новая игра</string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypePlay</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>playersNameShortcut</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Имена игроков</string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeContact</string>
-		</dict>
+		<string>robotrondotmatrix.otf</string>
+		<string>AlfaSlabOne-Regular.ttf</string>
+		<string>inter-black.otf</string>
+		<string>inter-medium.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -40,12 +28,24 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UIAppFonts</key>
+	<key>UIApplicationShortcutItems</key>
 	<array>
-		<string>robotrondotmatrix.otf</string>
-		<string>AlfaSlabOne-Regular.ttf</string>
-		<string>inter-black.otf</string>
-		<string>inter-medium.otf</string>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypePlay</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Новая игра</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>newGameShortcut</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeContact</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Имена игроков</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>playersNameShortcut</string>
+		</dict>
 	</array>
 </dict>
 </plist>
