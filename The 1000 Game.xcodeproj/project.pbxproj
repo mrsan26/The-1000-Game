@@ -78,6 +78,7 @@
 		19E64B142B16254A0037E441 /* inter-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 19E64B132B16254A0037E441 /* inter-medium.otf */; };
 		19E64B172B165EA10037E441 /* ConfirmPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B162B165EA00037E441 /* ConfirmPopupController.swift */; };
 		19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */; };
+		19F628092B28CF650003F85C /* Ext ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F628082B28CF650003F85C /* Ext ProgressView.swift */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +156,7 @@
 		19E64B132B16254A0037E441 /* inter-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "inter-medium.otf"; sourceTree = "<group>"; };
 		19E64B162B165EA00037E441 /* ConfirmPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupController.swift; sourceTree = "<group>"; };
 		19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupControllerModel.swift; sourceTree = "<group>"; };
+		19F628082B28CF650003F85C /* Ext ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext ProgressView.swift"; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
 		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				19CDC7632B0FC6E700A1B6D9 /* Ext UIView.swift */,
 				19CDC76C2B129D1B00A1B6D9 /* Ext Collection.swift */,
 				19D3FC362B1BAD0C008F26F8 /* Ext UIViewController.swift */,
+				19F628082B28CF650003F85C /* Ext ProgressView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F628092B28CF650003F85C /* Ext ProgressView.swift in Sources */,
 				194D8D732AEC064200A42DFC /* RoolsController.swift in Sources */,
 				19CDC7692B11410400A1B6D9 /* PlayerCollectionCell.swift in Sources */,
 				19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */,

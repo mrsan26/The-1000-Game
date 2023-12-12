@@ -452,17 +452,12 @@ extension MainGameController {
     }
     
     private func updateMainProgressLine() {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            guard let self else { return }
-            self.pointsProgressView.setProgress(self.viewModel.currentPlayer.points.toFloat() / 1000.0, animated: true)
-        }
+        pointsProgressView.fillingAnimation(progressValue: viewModel.currentPlayer.points.toFloat() / 1000, duration: 0.5)
     }
     
     private func updateMaybeProgressLine() {
-        let maybePoints = (viewModel.currentPlayer.points + viewModel.currentPlayer.currentPoints).toFloat() / 1000.0
-        UIView.animate(withDuration: 0.7) { [weak self] in
-            self?.maybePointsProgressView.setProgress(maybePoints, animated: true)
-        }
+        let maybePoints = ((viewModel.currentPlayer.points + viewModel.currentPlayer.currentPoints).toFloat()) / 1000
+        maybePointsProgressView.fillingAnimation(progressValue: maybePoints, duration: 0.5)
     }
     
     private func winnerAction() {
