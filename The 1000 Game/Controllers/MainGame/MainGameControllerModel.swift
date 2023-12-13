@@ -111,15 +111,16 @@ final class MainGameControllerModel: Combinable {
         currentPlayer.lastAmountOfCubes = currentPlayer.amountOfCubes
         currentPlayer.curentRoll = BasicMechanics().diceRoll(cubesAmount: currentPlayer.amountOfCubes)
         
-        let plusCubesArray = BasicMechanics().getResult(cubeDigits: currentPlayer.curentRoll).plusCubesArray
+        let currentPlayerResults = BasicMechanics().getResult(cubeDigits: currentPlayer.curentRoll)
+        
         // проверка есть ли положительные кубы
-        if !plusCubesArray.isEmpty {
-            currentPlayer.currentPoints += BasicMechanics().getResult(cubeDigits: currentPlayer.curentRoll).points
+        if !currentPlayerResults.plusCubesArray.isEmpty {
+            currentPlayer.currentPoints += currentPlayerResults.points
             // проверка все ли кубы выкинуты положительно и выставление остаточного кол-ва кубов
-            if plusCubesArray.count == currentPlayer.amountOfCubes {
+            if currentPlayerResults.plusCubesArray.count == currentPlayer.amountOfCubes {
                 currentPlayer.amountOfCubes = BasicRools.Constants.cubesAmount
             } else {
-                currentPlayer.amountOfCubes = BasicMechanics().getResult(cubeDigits: currentPlayer.curentRoll).notPlusCubeCount
+                currentPlayer.amountOfCubes = currentPlayerResults.notPlusCubeCount
             }
         } else {
             currentPlayer.turnIsFinish = true
