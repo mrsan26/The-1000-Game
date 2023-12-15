@@ -40,12 +40,12 @@
 		194D8D882AEC174100A42DFC /* BasicTextField+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D872AEC174100A42DFC /* BasicTextField+ViewModel.swift */; };
 		194D8D8A2AF123A800A42DFC /* RoolsCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D892AF123A800A42DFC /* RoolsCheck.swift */; };
 		194D8D8C2AF3A20000A42DFC /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D8B2AF3A20000A42DFC /* BasicView.swift */; };
-		194D8D912AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 194D8D902AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf */; };
 		194D8D952AF462D800A42DFC /* FontValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194D8D942AF462D800A42DFC /* FontValue.swift */; };
 		194D8D992AF473C000A42DFC /* robotrondotmatrix.otf in Resources */ = {isa = PBXBuildFile; fileRef = 194D8D982AF473C000A42DFC /* robotrondotmatrix.otf */; };
 		19578E7A2B0BA6AD00566B08 /* Ext Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19578E792B0BA6AD00566B08 /* Ext Int.swift */; };
 		19578E7D2B0BC6B100566B08 /* PlayerNamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19578E7C2B0BC6B100566B08 /* PlayerNamesController.swift */; };
 		19578E7F2B0BC6C200566B08 /* PlayerNamesControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19578E7E2B0BC6C200566B08 /* PlayerNamesControllerModel.swift */; };
+		196E2E8E2B2C9C6D0076EA65 /* AlfaSlabOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 196E2E8D2B2C9C6D0076EA65 /* AlfaSlabOne-Regular.ttf */; };
 		19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7382B0BCED900A1B6D9 /* RealmManager.swift */; };
 		19CDC73B2B0BD03400A1B6D9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73A2B0BD03400A1B6D9 /* UserManager.swift */; };
 		19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */; };
@@ -118,12 +118,12 @@
 		194D8D872AEC174100A42DFC /* BasicTextField+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicTextField+ViewModel.swift"; sourceTree = "<group>"; };
 		194D8D892AF123A800A42DFC /* RoolsCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolsCheck.swift; sourceTree = "<group>"; };
 		194D8D8B2AF3A20000A42DFC /* BasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
-		194D8D902AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AlfaSlabOne-Regular.ttf"; path = "../../../../../../../Downloads/Alfa Slab One/AlfaSlabOne-Regular.ttf"; sourceTree = "<group>"; };
 		194D8D942AF462D800A42DFC /* FontValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontValue.swift; sourceTree = "<group>"; };
 		194D8D982AF473C000A42DFC /* robotrondotmatrix.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = robotrondotmatrix.otf; sourceTree = "<group>"; };
 		19578E792B0BA6AD00566B08 /* Ext Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext Int.swift"; sourceTree = "<group>"; };
 		19578E7C2B0BC6B100566B08 /* PlayerNamesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNamesController.swift; sourceTree = "<group>"; };
 		19578E7E2B0BC6C200566B08 /* PlayerNamesControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNamesControllerModel.swift; sourceTree = "<group>"; };
+		196E2E8D2B2C9C6D0076EA65 /* AlfaSlabOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlfaSlabOne-Regular.ttf"; sourceTree = "<group>"; };
 		19CDC7382B0BCED900A1B6D9 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		19CDC73A2B0BD03400A1B6D9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojies.swift; sourceTree = "<group>"; };
@@ -365,7 +365,7 @@
 		194D8D8D2AF3B00B00A42DFC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				194D8D902AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf */,
+				196E2E8D2B2C9C6D0076EA65 /* AlfaSlabOne-Regular.ttf */,
 				194D8D982AF473C000A42DFC /* robotrondotmatrix.otf */,
 				19CDC74A2B0D24A600A1B6D9 /* inter-black.otf */,
 				19E64B132B16254A0037E441 /* inter-medium.otf */,
@@ -565,10 +565,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196E2E8E2B2C9C6D0076EA65 /* AlfaSlabOne-Regular.ttf in Resources */,
 				19E64B142B16254A0037E441 /* inter-medium.otf in Resources */,
 				194D8D3F2AE9506C00A42DFC /* LaunchScreen.storyboard in Resources */,
 				194D8D3C2AE9506C00A42DFC /* Assets.xcassets in Resources */,
-				194D8D912AF45E1700A42DFC /* AlfaSlabOne-Regular.ttf in Resources */,
 				194D8D3A2AE9506B00A42DFC /* Main.storyboard in Resources */,
 				19CDC74B2B0D24A600A1B6D9 /* inter-black.otf in Resources */,
 				194D8D992AF473C000A42DFC /* robotrondotmatrix.otf in Resources */,
