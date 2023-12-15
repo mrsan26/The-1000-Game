@@ -384,9 +384,7 @@ extension MainGameController {
         updateCubesImg()
         updateMaybeProgressLine()
         
-        // переписать с помощью замыкания на проверке правила болтов в модели
         if viewModel.currentPlayer.isBoltsCrash {
-            viewModel.pointsLabelVM.textValue = .text(viewModel.currentPlayer.points.toString())
             playersCollection.reloadItems(at: [IndexPath(row: 1, section: 0)])
         }
     }

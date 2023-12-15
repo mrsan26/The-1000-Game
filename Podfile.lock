@@ -1,4 +1,7 @@
 PODS:
+  - DGCharts (5.0.0):
+    - DGCharts/Core (= 5.0.0)
+  - DGCharts/Core (5.0.0)
   - Realm (10.44.0):
     - Realm/Headers (= 10.44.0)
   - Realm/Headers (10.44.0)
@@ -9,6 +12,7 @@ PODS:
   - SwiftyButton (0.8.2)
 
 DEPENDENCIES:
+  - DGCharts
   - RealmSwift
   - SnapKit
   - SPConfetti
@@ -16,6 +20,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - DGCharts
     - Realm
     - RealmSwift
     - SnapKit
@@ -23,12 +28,13 @@ SPEC REPOS:
     - SwiftyButton
 
 SPEC CHECKSUMS:
+  DGCharts: 6e0cf2644e8f81ad13f04caa8bc18502870a1c54
   Realm: 0419a32457873acb720df25bf1d658df36967cf2
   RealmSwift: 352f85c018b4d0efe961974bfa95bf7a30e079f6
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SPConfetti: 4ba720ff652d960f59c3e4eadee2c0c3ef6ce9a4
   SwiftyButton: 5b0ef314e9cf61cf8a83e456ddd1ea1f53f30598
 
-PODFILE CHECKSUM: ceb605e2c835fb844404a72b06b59fd32c8f917a
+PODFILE CHECKSUM: 551b4be76af58f44f17476e191a9233ddb3e948e
 
 COCOAPODS: 1.13.0

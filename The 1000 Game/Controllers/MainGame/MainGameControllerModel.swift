@@ -82,6 +82,10 @@ final class MainGameControllerModel: Combinable {
             currentActionInfoLabelVM.textValue = .text("Очки за ход:")
             currentPointsLabelVM.textValue = .text(currentPlayer.currentPoints.toString())
         }
+        
+        if currentPlayer.isBoltsCrash {
+            pointsLabelVM.textValue = .text(currentPlayer.points.toString())
+        }
     }
     
     func actionsAfterTurn() {
