@@ -10,57 +10,52 @@ import Foundation
 struct RoolsCheck {
     
     func checkMinusPoints(player: Player) {
-        if player.points < 0 {
-            player.points = 0
-        }
+        guard player.points < 0 else { return }
+        player.points = 0
     }
     
     func openGameCheck(player: Player) {
-        if player.points >= 50 {
-            player.gameOpen = true
-            player.gameOpenCounter += 1
-        } else if player.gameOpen == false {
-            player.points = 0
-        }
+        guard !player.gameOpened else { return }
+        player.gameOpened = player.currentPoints >= 50
+        player.firstGameOpening = player.currentPoints >= 50
     }
     
     func yamaCheckAfterTurn(player: Player) {
         let overalPoints = player.points + player.currentPoints
-        if overalPoints >= 200, overalPoints < 300 || overalPoints >= 600, overalPoints < 700 {
+        switch overalPoints {
+        case 200...299, 600...699:
             player.isItInYama = true
             player.turnsInYamaCounter += 1
-        } else {
+        default:
             player.isItInYama = false
             player.turnsInYamaCounter = 0
         }
     }
     
     func yamaCheckBeforeTurn(player: Player) {
-        if player.points >= 200, player.points < 300 || player.points >= 600, player.points < 700 {
+        switch player.points {
+        case 200...299, 600...699:
             player.isItInYama = true
             if player.turnsInYamaCounter == 0 {
                 player.turnsInYamaCounter = 1
             }
-        } else {
+        default:
             player.isItInYama = false
             player.turnsInYamaCounter = 0
         }
     }
     
     func samosvalCheck(player: Player) {
-        if player.points == 555 {
-            player.isSamosvalCrash = true
-            player.points = 0
-        } else {
-//            player.isSamosvalCrash = false
-        }
+        guard player.points == 555 else { return }
+        player.isSamosvalCrash = true
+        player.points = 0
     }
     
     func boltsCheck(player: Player) {
-        if player.gameOpen, player.currentPoints == 0 {
+        if player.gameOpened, player.currentPoints == 0 {
             player.bolts += 1
         }
-        if player.gameOpen, player.bolts == 3 {
+        if player.gameOpened, player.bolts == 3 {
             player.points -= 100
             player.bolts = 0
             player.isBoltsCrash = true
@@ -68,15 +63,13 @@ struct RoolsCheck {
     }
     
     func overtakeMinus(player: Player) {
-        if player.wasOvertaken {
-            player.points -= 50
-        }
+        guard player.wasOvertaken else { return }
+        player.points -= 50
     }
     
     func winCheck(player: Player) {
-        if player.points >= 1000 {
-            player.winStatus = true
-        }
+        guard player.points >= 1000 else { return }
+        player.winStatus = true
     }
     
     func checkOvertake(currentPlayer: Player, playersArray: [Player]) {
@@ -84,14 +77,14 @@ struct RoolsCheck {
         var isItCurrentPlayerStillInYama = false
         
         // перед проверко на обгон необходимо дополнительно проверять, будет ли текущий игрок все еще в яме - в таком случае обгон засчитываться не будет (тк в яме очки не присваюваются в конце хода)
-        if currentPlayer.turnsInYamaCounter >= 1, overalPoints >= 200, overalPoints < 300 || overalPoints >= 600, overalPoints < 700 {
+        if currentPlayer.turnsInYamaCounter >= 1, (200...299).contains(overalPoints) || (600...699).contains(overalPoints) {
             isItCurrentPlayerStillInYama = true
         }
         
         for everyPlayer in playersArray where everyPlayer.numberID != currentPlayer.numberID {
             // проверка обгона должна выполняться СТРОГО ДО суммирования points и currentPoints текущего игрока
             if isItCurrentPlayerStillInYama == false,
-                everyPlayer.gameOpen == true,
+                everyPlayer.gameOpened == true,
                 currentPlayer.points < everyPlayer.points,
                 currentPlayer.points + currentPlayer.currentPoints > everyPlayer.points
             {

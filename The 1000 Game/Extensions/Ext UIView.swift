@@ -70,17 +70,18 @@ extension UIView {
     }
     
     func pulseAnimation(duration: TimeInterval = 0.2, scale: CGFloat = 1.3, completion: (() -> Void)? = nil) {
+        UIView.animate(withDuration: duration, animations: {
+            // Установка масштаба для анимации пульсации
+            self.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }, completion: { _ in
             UIView.animate(withDuration: duration, animations: {
-                // Установка масштаба для анимации пульсации
-                self.transform = CGAffineTransform(scaleX: scale, y: scale)
+                // Возвращение к исходному размеру
+                self.transform = CGAffineTransform.identity
             }, completion: { _ in
-                UIView.animate(withDuration: duration, animations: {
-                    // Возвращение к исходному размеру
-                    self.transform = CGAffineTransform.identity
-                }, completion: { _ in
-                    // Вызов замыкания по завершению анимации
-                    completion?()
-                })
+                // Вызов замыкания по завершению анимации
+                completion?()
             })
-        }
+        })
+    }
+    
 }

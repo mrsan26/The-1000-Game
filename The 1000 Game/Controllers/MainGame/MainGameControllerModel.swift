@@ -70,6 +70,8 @@ final class MainGameControllerModel: Combinable {
         
         currentActionInfoLabelVM.textValue = .text("Бросайте кубики")
         currentPointsLabelVM.textValue = .text("")
+        
+        currentPlayer.addPointsInHistory()
     }
     
     func actionsAfterRoll() {
@@ -80,16 +82,22 @@ final class MainGameControllerModel: Combinable {
             currentActionInfoLabelVM.textValue = .text("Очки за ход:")
             currentPointsLabelVM.textValue = .text(currentPlayer.currentPoints.toString())
         }
+        
+        if currentPlayer.isBoltsCrash {
+            pointsLabelVM.textValue = .text(currentPlayer.points.toString())
+        }
     }
     
     func actionsAfterTurn() {
         // проверка в яме ли игрок - суммирование полученых за ход очков
         RoolsCheck().yamaCheckAfterTurn(player: currentPlayer)
-        if currentPlayer.turnsInYamaCounter <= 1 {
-            currentPlayer.points += currentPlayer.currentPoints
-        }
+        
         // проверка открылась ли игра после завершения хода по общему количеству очков
         RoolsCheck().openGameCheck(player: currentPlayer)
+        
+        if currentPlayer.turnsInYamaCounter <= 1, currentPlayer.gameOpened {
+            currentPlayer.points += currentPlayer.currentPoints
+        }
         
         // проверка на самосвал
         RoolsCheck().samosvalCheck(player: currentPlayer)
@@ -97,6 +105,8 @@ final class MainGameControllerModel: Combinable {
         // проверка на победителя
         RoolsCheck().winCheck(player: currentPlayer)
         
+        currentPlayer.addChangesActionInHistory()
+        currentPlayer.addChangesPointInHistory()
         currentPlayer.updateStatsAfterTurn()
     }
     
@@ -105,15 +115,16 @@ final class MainGameControllerModel: Combinable {
         currentPlayer.lastAmountOfCubes = currentPlayer.amountOfCubes
         currentPlayer.curentRoll = BasicMechanics().diceRoll(cubesAmount: currentPlayer.amountOfCubes)
         
-        let plusCubesArray = BasicMechanics().getResult(cubeDigits: currentPlayer.curentRoll).plusCubesArray
+        let currentPlayerResults = BasicMechanics().getResult(cubeDigits: currentPlayer.curentRoll)
+        
         // проверка есть ли положительные кубы
-        if !plusCubesArray.isEmpty {
-            currentPlayer.currentPoints += BasicMechanics().getResult(cubeDigits: currentPlayer.curentRoll).points
+        if !currentPlayerResults.plusCubesArray.isEmpty {
+            currentPlayer.currentPoints += currentPlayerResults.points
             // проверка все ли кубы выкинуты положительно и выставление остаточного кол-ва кубов
-            if plusCubesArray.count == currentPlayer.amountOfCubes {
+            if currentPlayerResults.plusCubesArray.count == currentPlayer.amountOfCubes {
                 currentPlayer.amountOfCubes = BasicRools.Constants.cubesAmount
             } else {
-                currentPlayer.amountOfCubes = BasicMechanics().getResult(cubeDigits: currentPlayer.curentRoll).notPlusCubeCount
+                currentPlayer.amountOfCubes = currentPlayerResults.notPlusCubeCount
             }
         } else {
             currentPlayer.turnIsFinish = true

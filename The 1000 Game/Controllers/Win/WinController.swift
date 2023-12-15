@@ -70,9 +70,9 @@ class WinController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.alpha = 0
         setupNavBar()
         addRoolsButtonInNavBar()
+        self.view.alpha = 0
         self.view.fadeInAnimation { [weak self] _ in
             self?.confettiAnimation()
         }

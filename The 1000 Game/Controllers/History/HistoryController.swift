@@ -59,6 +59,8 @@ class HistoryController: UIViewController {
         makeLayout()
         makeConstraints()
         binding()
+        
+        historyTableView.scrollToRow(at: IndexPath(row: self.player.pointsHistory.count - 1, section: 0), at: .top, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -183,13 +185,16 @@ extension HistoryController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BasicTableCell<HistoryCellView>.self), for: indexPath)
         guard let historyCell = cell as? BasicTableCell<HistoryCellView> else { return UITableViewCell() }
         
-        
-        
         historyCell.mainView.setInfo(
             turnNumber: indexPath.row,
             points: player.pointsHistory[indexPath.row],
-            changesPoints: player.changesPointsHistory[indexPath.row],
-            actions: player.actionsHistory[indexPath.row]
+            changesPoints:
+                doesObjectExist(index: indexPath.row, in: player.changesPointsHistory) ?
+                player.changesPointsHistory[indexPath.row] :
+                nil,
+            actions: doesObjectExist(index: indexPath.row, in: player.actionsHistory) ?
+                player.actionsHistory[indexPath.row] :
+                nil
         )
         
         return historyCell

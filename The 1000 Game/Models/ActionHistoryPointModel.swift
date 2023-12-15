@@ -8,19 +8,19 @@
 import Foundation
 
 class ActionHistoryPoint {
-    var gameOpened: Bool
+    var firstGameOpening: Bool
     var overtaken: Bool
     var boltsCrash: Bool
     var yamaStatus: Bool
     var samosvalCrash: Bool
     
-    init(gameOpened: Bool = false,
+    init(firstGameOpening: Bool = false,
          overtaken: Bool = false,
          boltsCrash: Bool = false,
          yamaStatus: Bool = false,
          samosvalCrash: Bool = false)
     {
-        self.gameOpened = gameOpened
+        self.firstGameOpening = firstGameOpening
         self.overtaken = overtaken
         self.boltsCrash = boltsCrash
         self.yamaStatus = yamaStatus

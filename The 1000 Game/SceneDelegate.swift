@@ -10,14 +10,44 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    
+    func windowScene(_ windowScene: UIWindowScene,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        
+        guard let rootVC = window?.rootViewController as? UINavigationController else { return }
+        
+        handleShortcutItem(shortcutItem: shortcutItem, vcForNextPush: rootVC)
+        
+        completionHandler(true)
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: MainMenuController(viewModel: .init()))
+        
+        let rootVC = UINavigationController(rootViewController: MainMenuController(viewModel: .init()))
+        window?.rootViewController = rootVC
+        
+        handleShortcutItem(shortcutItem: connectionOptions.shortcutItem, vcForNextPush: rootVC)
+        
         window?.makeKeyAndVisible()
+        
+    }
+    
+    private func handleShortcutItem(shortcutItem item: UIApplicationShortcutItem?, vcForNextPush: UINavigationController) {
+        guard let shortcutItem = item else { return }
+        
+        switch shortcutItem.type {
+        case "newGameShortcut":
+            vcForNextPush.pushViewController(MainGameController(viewModel: .init()), animated: true)
+        case "playersNameShortcut":
+            vcForNextPush.pushViewController(PlayerNamesController(viewModel: .init()), animated: true)
+        default:
+            break
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,7 +77,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
 
 }
 

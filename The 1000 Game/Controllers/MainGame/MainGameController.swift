@@ -252,7 +252,6 @@ class MainGameController: BasicViewController {
         }
         indicatorStack.snp.makeConstraints { make in
             make.leading.equalTo(nameLabel.snp.trailing).offset(15)
-//            make.trailing.equalTo(pointsLabel.snp.leading).offset(-10)
             make.centerY.equalTo(nameLabel)
         }
         let progressView = [maybePointsProgressView, pointsProgressView]
@@ -385,9 +384,7 @@ extension MainGameController {
         updateCubesImg()
         updateMaybeProgressLine()
         
-        // переписать с помощью замыкания на проверке правила болтов в модели
         if viewModel.currentPlayer.isBoltsCrash {
-            viewModel.pointsLabelVM.textValue = .text(viewModel.currentPlayer.points.toString())
             playersCollection.reloadItems(at: [IndexPath(row: 1, section: 0)])
         }
     }
@@ -452,17 +449,13 @@ extension MainGameController {
     }
     
     private func updateMainProgressLine() {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            guard let self else { return }
-            self.pointsProgressView.setProgress(self.viewModel.currentPlayer.points.toFloat() / 1000.0, animated: true)
-        }
+        pointsProgressView.fillingAnimation(progressValue: viewModel.currentPlayer.points.toFloat() / 1000, duration: 0.5)
     }
     
     private func updateMaybeProgressLine() {
-        let maybePoints = (viewModel.currentPlayer.points + viewModel.currentPlayer.currentPoints).toFloat() / 1000.0
-        UIView.animate(withDuration: 0.7) { [weak self] in
-            self?.maybePointsProgressView.setProgress(maybePoints, animated: true)
-        }
+        maybePointsProgressView.setProgress(0, animated: false)
+        let maybePoints = ((viewModel.currentPlayer.points + viewModel.currentPlayer.currentPoints).toFloat()) / 1000
+        maybePointsProgressView.fillingAnimation(progressValue: maybePoints, duration: 0.5)
     }
     
     private func winnerAction() {
