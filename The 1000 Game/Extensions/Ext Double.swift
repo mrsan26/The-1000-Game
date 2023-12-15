@@ -1,13 +1,13 @@
 //
-//  Ext Int.swift
+//  Ext Double.swift
 //  The 1000 Game
 //
-//  Created by Sanchez on 20.11.2023.
+//  Created by Sanchez on 15.12.2023.
 //
 
 import Foundation
 
-extension Int {
+extension Double {
     func toString() -> String {
         return String(self)
     }
@@ -16,7 +16,7 @@ extension Int {
         return Float(self)
     }
     
-    func toDouble() -> Double {
-        return Double(self)
+    func toInt() -> Int {
+        return Int(self)
     }
 }

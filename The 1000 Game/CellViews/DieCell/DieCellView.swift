@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Combine
 
-class DieCellView: UIView {
+class DieCellView: BasicCellView {
     
     var cancellables: Set<AnyCancellable> = []
     
@@ -55,20 +55,16 @@ class DieCellView: UIView {
     
     init() {
         super.init(frame: .zero)
-        makeLayout()
-        makeConstraints()
-        binding()
         setViewModel(viewModel)
         
         self.backgroundColor = .clear
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func makeLayout() {
+    override func makeLayout() {
         self.addSubview(mainView)
         mainView.addSubview(contentStack)
         contentStack.addArrangedSubview(firstDie)
@@ -76,9 +72,9 @@ class DieCellView: UIView {
         mainView.addSubview(chooseIndicatorView)
     }
     
-    private func makeConstraints() {
+    override func makeConstraints() {
         mainView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(UIEdgeInsets(top: 0, left: 12, bottom: 12, right: 12))
         }
         
         contentStack.snp.makeConstraints { make in
@@ -106,7 +102,7 @@ class DieCellView: UIView {
         Vibration.viewTap.vibrate()
     }
     
-    private func binding() {
+    override func binding() {
         self.$choosen.sink { [weak self] choosen in
             guard let self else { return }
             switch choosen {
