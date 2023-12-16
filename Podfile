@@ -8,7 +8,6 @@ target 'The 1000 Game' do
   # Pods for The 1000 Game
 
 	pod 'SnapKit'
-	pod 'SwiftyButton'
 	pod 'RealmSwift'
 	pod 'SPConfetti'
 	pod 'DGCharts'	

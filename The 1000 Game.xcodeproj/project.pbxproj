@@ -81,6 +81,7 @@
 		19E64B172B165EA10037E441 /* ConfirmPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B162B165EA00037E441 /* ConfirmPopupController.swift */; };
 		19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */; };
 		19F628092B28CF650003F85C /* Ext ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F628082B28CF650003F85C /* Ext ProgressView.swift */; };
+		19F720DB2B2E3CDA00CCFE7F /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F720DA2B2E3CDA00CCFE7F /* PressableButton.swift */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +162,7 @@
 		19E64B162B165EA00037E441 /* ConfirmPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupController.swift; sourceTree = "<group>"; };
 		19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupControllerModel.swift; sourceTree = "<group>"; };
 		19F628082B28CF650003F85C /* Ext ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext ProgressView.swift"; sourceTree = "<group>"; };
+		19F720DA2B2E3CDA00CCFE7F /* PressableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableButton.swift; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F743FCFC007B0E49EADAAA /* Pods-The 1000 Game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.debug.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.debug.xcconfig"; sourceTree = "<group>"; };
 		BC115ED0E6B21624CB171C87 /* Pods-The 1000 Game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The 1000 Game.release.xcconfig"; path = "Target Support Files/Pods-The 1000 Game/Pods-The 1000 Game.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				194D8D842AEC171300A42DFC /* BasicTextField */,
 				194D8D5B2AEA615F00A42DFC /* BasicLabel */,
 				194D8D5A2AEA614E00A42DFC /* BasicButton */,
+				19F720DA2B2E3CDA00CCFE7F /* PressableButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				194D8D512AE95E3600A42DFC /* MainGameController.swift in Sources */,
 				194D8D5D2AEA628E00A42DFC /* BasicButton.swift in Sources */,
 				19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */,
+				19F720DB2B2E3CDA00CCFE7F /* PressableButton.swift in Sources */,
 				19CDC7522B0EE80C00A1B6D9 /* ValidationRules.swift in Sources */,
 				19CDC7592B0FA02A00A1B6D9 /* DiceControllerModel.swift in Sources */,
 				19E64B102B155DD80037E441 /* Vibration.swift in Sources */,
@@ -853,6 +857,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -883,6 +888,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

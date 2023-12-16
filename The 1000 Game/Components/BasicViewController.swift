@@ -8,7 +8,6 @@
 import UIKit
 import Combine
 import SnapKit
-import SwiftyButton
 
 class BasicViewController: UIViewController {
     

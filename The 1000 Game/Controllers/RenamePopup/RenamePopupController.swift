@@ -107,13 +107,11 @@ class RenamePopupController: UIViewController {
             }
             self.acceptAction?()
             self.dismiss(animated: true)
-            Vibration.button.vibrate()
         }
         
         self.cancelButton.setViewModel(viewModel.cancelButtonVM)
         self.viewModel.cancelButtonVM.action = { [weak self] in
             self?.dismiss(animated: true)
-            Vibration.button.vibrate()
         }
     }
     
