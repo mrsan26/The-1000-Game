@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Combine
+import DGCharts
 
 class HistoryController: UIViewController {
     
@@ -48,10 +49,18 @@ class HistoryController: UIViewController {
         table.backgroundColor = .clear
         table.separatorColor = .white
         table.separatorStyle = .singleLine
+        table.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return table
     }()
     
+    private lazy var lineChartView: LineChartView = {
+        let chartView = LineChartView()
+        chartView.delegate = self
+        return chartView
+    }()
+    
     var player: Player
+    var selectedCellIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +68,9 @@ class HistoryController: UIViewController {
         makeLayout()
         makeConstraints()
         binding()
+        setupChartView()
         
-        historyTableView.scrollToRow(at: IndexPath(row: self.player.pointsHistory.count - 1, section: 0), at: .top, animated: true)
+        historyTableView.scrollToRow(at: IndexPath(row: self.player.pointsHistory.count - 1, section: 0), at: .bottom, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -110,6 +120,7 @@ class HistoryController: UIViewController {
         tableTitleView.addSubview(pointsChangesNumberLabel)
         
         mainView.addSubview(historyTableView)
+        mainView.addSubview(lineChartView)
     }
     
     private func makeConstraints() {
@@ -157,7 +168,15 @@ class HistoryController: UIViewController {
             make.top.equalTo(tableTitleView.snp.bottom).offset(8)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(lineChartView.snp.top) //.offset(-8)
+        }
+        
+        lineChartView.snp.makeConstraints { make in
+            make.leading.equalToSuperview() //.offset(12)
+            make.trailing.equalToSuperview() //.offset(-12)
+//            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
+            make.height.equalTo(self.view.frame.height / 4)
         }
     }
     
@@ -173,6 +192,51 @@ class HistoryController: UIViewController {
     @objc private func closeAction() {
         dismiss(animated: true)
         Vibration.viewTap.vibrate()
+    }
+    
+    private func setupChartView() {
+        var lineChartEntries: [ChartDataEntry] = []
+        
+        for (index, point) in player.pointsHistory.enumerated() {
+            lineChartEntries.append(ChartDataEntry(x: index.toDouble(), y: point.toDouble()))
+        }
+        
+        let dataSet = LineChartDataSet(entries: lineChartEntries)
+        dataSet.setColor(.white)
+        dataSet.lineWidth = 3
+        dataSet.mode = .horizontalBezier // сглаживание
+        dataSet.drawValuesEnabled = false // убираем значения на графике
+        dataSet.drawCirclesEnabled = false // убираем точки на графике
+        dataSet.drawFilledEnabled = true // нужно для градиента
+        
+        // линия при тапе
+        dataSet.drawHorizontalHighlightIndicatorEnabled = false // оставляем только вертикальную линию
+        dataSet.highlightLineWidth = 3 // толщина вертикальной линии
+        dataSet.highlightColor = .white // цвет вертикальной линии
+        
+        let data = LineChartData(dataSet: dataSet)
+        
+        lineChartView.data = data
+        // отключаем координатную сетку
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.leftAxis.drawGridLinesEnabled = false
+        lineChartView.rightAxis.drawGridLinesEnabled = false
+        lineChartView.drawGridBackgroundEnabled = false
+        // отключаем подписи к осям
+        lineChartView.xAxis.drawLabelsEnabled = false
+        lineChartView.leftAxis.drawLabelsEnabled = false
+        lineChartView.rightAxis.drawLabelsEnabled = false
+        // отключаем легенду
+        lineChartView.legend.enabled = false
+        // отключаем зум
+        lineChartView.pinchZoomEnabled = false
+        lineChartView.doubleTapToZoomEnabled = false
+        // убираем артефакты вокруг области графика
+        lineChartView.xAxis.enabled = false
+        lineChartView.leftAxis.enabled = false
+        lineChartView.rightAxis.enabled = false
+        lineChartView.drawBordersEnabled = false
+        lineChartView.minOffset = 0
     }
 }
 
@@ -197,6 +261,41 @@ extension HistoryController: UITableViewDataSource {
                 nil
         )
         
+        if indexPath == selectedCellIndexPath {
+            historyCell.mainView.chooseStatus(true)
+        }
+        
         return historyCell
+    }
+}
+
+extension HistoryController: ChartViewDelegate {
+    
+    func deselectCell() {
+        guard let selectedCellIndexPath else { return }
+        let cell = historyTableView.cellForRow(at: selectedCellIndexPath)
+        guard let historyCell = cell as? BasicTableCell<HistoryCellView> else { return }
+        
+        historyCell.mainView.chooseStatus(false)
+        self.selectedCellIndexPath = nil
+    }
+    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        if selectedCellIndexPath != nil {
+            deselectCell()
+        }
+        
+        selectedCellIndexPath = IndexPath(row: entry.x.toInt(), section: 0)
+        historyTableView.scrollToRow(at: selectedCellIndexPath!, at: .middle, animated: true)
+        
+        let cell = historyTableView.cellForRow(at: IndexPath(row: entry.x.toInt(), section: 0))
+        guard let historyCell = cell as? BasicTableCell<HistoryCellView> else { return }
+        
+        historyCell.mainView.chooseStatus(true)
+        Vibration.selection.vibrate()
+    }
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+        deselectCell()
+        Vibration.selection.vibrate()
     }
 }

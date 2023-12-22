@@ -7,7 +7,6 @@
 
 import UIKit
 import Combine
-import SwiftyButton
 import SnapKit
 
 class BasicButton: PressableButton {
@@ -57,6 +56,7 @@ class BasicButton: PressableButton {
     
     @objc private func tapAction() {
         vm?.action?()
+        Vibration.button.vibrate()
     }
     
     private func setStyle(_ style: Style) {

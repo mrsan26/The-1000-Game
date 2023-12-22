@@ -231,7 +231,6 @@ class MainMenuController: BasicViewController {
         self.viewModel.startGameButton.action = { [weak self] in
             let mainGameVC = MainGameController(viewModel: .init())
             self?.navigationController?.pushViewController(mainGameVC, animated: true)
-            Vibration.button.vibrate()
         }
         
         self.mainNameLabel.setViewModel(viewModel.mainNameLabelVM)

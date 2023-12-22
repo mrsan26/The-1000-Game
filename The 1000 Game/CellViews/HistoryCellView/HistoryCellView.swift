@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HistoryCellView: UIView {
+class HistoryCellView: BasicCellView {
     
     private lazy var mainContentStack: UIStackView = {
         let stack = UIStackView()
@@ -32,16 +32,15 @@ class HistoryCellView: UIView {
     
     init() {
         super.init(frame: .zero)
-        makeLayout()
-        makeConstraints()
         setViewModel(viewModel)
+        self.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func makeLayout() {
+    override func makeLayout() {
         self.addSubview(mainContentStack)
         
         labelsView.addSubview(turnNumberLabel)
@@ -56,10 +55,11 @@ class HistoryCellView: UIView {
         mainContentStack.addArrangedSubview(samosvalCrashLabel)
     }
     
-    private func makeConstraints() {        
+    override func makeConstraints() {
         mainContentStack.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-10)
+            make.leading.trailing.equalToSuperview()
         }
         
         turnNumberLabel.snp.makeConstraints { make in
@@ -77,8 +77,16 @@ class HistoryCellView: UIView {
         }
     }
     
+    override func prepareForReuse() {
+        self.backgroundColor = .clear
+    }
+    
     func setInfo(turnNumber: Int, points: Int, changesPoints: Int?, actions: ActionHistoryPoint?) {
         viewModel.setupLabels(turnNumber: turnNumber, points: points, changesPoints: changesPoints, actions: actions)
+    }
+    
+    func chooseStatus(_ value: Bool) {
+        value ? backgroundColorChangingAnimate(to: .white.withAlphaComponent(0.3)) : backgroundColorChangingAnimate(to: .clear)
     }
     
     func setViewModel(_ viewModel: ViewModel) {

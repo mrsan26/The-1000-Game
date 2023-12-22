@@ -350,8 +350,6 @@ class MainGameController: BasicViewController {
             
             self.viewModel.actionsBeforeTurn()
             self.updateUIBeforeTurn()
-            
-            Vibration.button.vibrate()
         }
     }
     

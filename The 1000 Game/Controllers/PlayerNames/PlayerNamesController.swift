@@ -140,7 +140,6 @@ class PlayerNamesController: BasicViewController {
                 self?.viewModel.deleteAllPlayers()
                 self?.playersTableView.reloadDataWithAnimation()
             }
-            Vibration.button.vibrate()
         }
         
         self.randomOrderSwitcher.setViewModel(viewModel.randomOrderSwitcherVM)

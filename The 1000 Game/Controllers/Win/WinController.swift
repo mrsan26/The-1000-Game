@@ -172,7 +172,6 @@ class WinController: BasicViewController {
         self.viewModel.resetButtonVM.action = { [weak self] in
             self?.resetGameClosure?()
             self?.navigationController?.popViewController(animated: true)
-            Vibration.button.vibrate()
         }
     }
     

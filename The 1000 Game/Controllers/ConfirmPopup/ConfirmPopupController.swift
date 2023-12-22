@@ -106,13 +106,11 @@ class ConfirmPopupController: UIViewController {
 
             self.dismiss(animated: true)
             self.acceptAction?()
-            Vibration.button.vibrate()
         }
         
         self.cancelButton.setViewModel(viewModel.cancelButtonVM)
         self.viewModel.cancelButtonVM.action = { [weak self] in
             self?.dismiss(animated: true)
-            Vibration.button.vibrate()
         }
     }
     

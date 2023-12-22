@@ -8,7 +8,8 @@
 import UIKit
 import SnapKit
 
-class PlayerCellView: BasicView {
+class PlayerCellView: BasicCellView {
+    private lazy var mainView = BasicView()
     private lazy var trashImg: BasicImgView = {
         let img = BasicImgView(name: .named("trash_img"), height: 23, width: 23, tintColor: .systemPink)
         img.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deletePlayer)))
@@ -32,8 +33,6 @@ class PlayerCellView: BasicView {
     
     init() {
         super.init(frame: .zero)
-        makeLayout()
-        makeConstraints()
         setViewGestures()
         setViewModel(viewModel)
     }
@@ -47,13 +46,18 @@ class PlayerCellView: BasicView {
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapView)))
     }
     
-    private func makeLayout() {
-        self.addSubview(trashImg)
-        self.addSubview(nameLabel)
-        self.addSubview(renameImg)
+    override func makeLayout() {
+        self.addSubview(mainView)
+        mainView.addSubview(trashImg)
+        mainView.addSubview(nameLabel)
+        mainView.addSubview(renameImg)
     }
     
-    private func makeConstraints() {
+    override func makeConstraints() {
+        mainView.snp.makeConstraints { make in
+            make.edges.equalTo(UIEdgeInsets(top: 0, left: 12, bottom: 10, right: 12))
+        }
+        
         let subviews = [trashImg, nameLabel, renameImg]
         subviews.forEach { subview in
             subview.snp.makeConstraints { make in
