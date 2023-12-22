@@ -71,7 +71,9 @@ final class MainGameControllerModel: Combinable {
         currentActionInfoLabelVM.textValue = .text("Бросайте кубики")
         currentPointsLabelVM.textValue = .text("")
         
-        currentPlayer.addPointsInHistory()
+        currentPlayer.addPointsInHistory(forPoint: .overtake)
+        currentPlayer.addChangesActionInHistory(forPoint: .overtake)
+        currentPlayer.addChangesPointInHistory(forPoint: .overtake)
     }
     
     func actionsAfterRoll() {
@@ -102,12 +104,13 @@ final class MainGameControllerModel: Combinable {
         // проверка на самосвал
         RoolsCheck().samosvalCheck(player: currentPlayer)
         
+        currentPlayer.addPointsInHistory(forPoint: .other)
+        currentPlayer.addChangesActionInHistory(forPoint: .other)
+        currentPlayer.addChangesPointInHistory(forPoint: .other)
+        currentPlayer.updateStatsAfterTurn()
+        
         // проверка на победителя
         RoolsCheck().winCheck(player: currentPlayer)
-        
-        currentPlayer.addChangesActionInHistory()
-        currentPlayer.addChangesPointInHistory()
-        currentPlayer.updateStatsAfterTurn()
     }
     
     
