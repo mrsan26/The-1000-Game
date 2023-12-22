@@ -55,15 +55,6 @@ class Player: Object {
         }
     }
     
-//    old version
-//    func addChangesPointInHistory() {
-//        if pointsHistory.count > 1 {
-//            changesPointsHistory.append(pointsHistory.last! - pointsHistory[pointsHistory.count - 2])
-//        } else {
-//            changesPointsHistory.append(points)
-//        }
-//    }
-    
     func addChangesPointInHistory(forPoint: ChangesInHistoryPoint) {
         switch forPoint {
         case .overtake:
@@ -79,7 +70,6 @@ class Player: Object {
             }
             changesPointsHistory.append(changes)
         }
-//        changesPointsHistory.append(currentPoints)
     }
     
     func addChangesActionInHistory(forPoint: ChangesInHistoryPoint) {
