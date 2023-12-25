@@ -55,36 +55,38 @@ class Player: Object {
         }
     }
     
-    func addChangesPointInHistory(forPoint: ChangesInHistoryPoint) {
+    func addChangesPointInHistory(forPoint: ActionsChangesInHistoryPoint) {
         switch forPoint {
-        case .overtake:
-            if wasOvertaken {
-                changesPointsHistory[changesPointsHistory.count - 1] = changesPointsHistory.last! - 50
-            }
-        case .other:
+        case .beforeTurn:
+            changesPointsHistory.append(0)
+            guard wasOvertaken else { return }
+            changesPointsHistory[changesPointsHistory.count - 2] = changesPointsHistory.last! - 50
+        case .afterRoll:
             var changes = currentPoints
             if isBoltsCrash {
                 changes += -100
             } else if isSamosvalCrash {
                 changes += -555
             }
-            changesPointsHistory.append(changes)
+            changesPointsHistory[changesPointsHistory.count - 1] = changes
+        case .afterTurn:
+            break
         }
     }
     
-    func addChangesActionInHistory(forPoint: ChangesInHistoryPoint) {
+    func addChangesActionInHistory(forPoint: ActionsChangesInHistoryPoint) {
         switch forPoint {
-        case .overtake:
-            guard wasOvertaken else { return }
+        case .beforeTurn:
+            actionsHistory.append(.init())
             actionsHistory[actionsHistory.count - 1].overtaken = wasOvertaken
-        case .other:
-            actionsHistory.append(.init(
-                firstGameOpening: firstGameOpening,
-                overtaken: false,
-                boltsCrash: isBoltsCrash,
-                yamaStatus: turnsInYamaCounter > 1,
-                samosvalCrash: isSamosvalCrash)
-            )
+            actionsHistory[actionsHistory.count - 1].yamaStatus = isItInYama
+        case .afterRoll:
+            actionsHistory[actionsHistory.count - 1].boltsCrash = isBoltsCrash
+            actionsHistory[actionsHistory.count - 1].samosvalCrash = isSamosvalCrash
+            actionsHistory[actionsHistory.count - 1].yamaStatus = isItInYama
+        case .afterTurn:
+            actionsHistory[actionsHistory.count - 1].firstGameOpening = firstGameOpening
+            actionsHistory[actionsHistory.count - 1].yamaStatus = turnsInYamaCounter > 1
         }
     }
     
@@ -126,4 +128,11 @@ class Player: Object {
 enum ChangesInHistoryPoint {
     case overtake
     case other
+}
+
+enum ActionsChangesInHistoryPoint {
+    case beforeTurn
+    case afterRoll
+    case afterTurn
+//    case overtake
 }

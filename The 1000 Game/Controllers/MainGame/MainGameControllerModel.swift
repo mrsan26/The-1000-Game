@@ -71,9 +71,12 @@ final class MainGameControllerModel: Combinable {
         currentActionInfoLabelVM.textValue = .text("Бросайте кубики")
         currentPointsLabelVM.textValue = .text("")
         
+        // инициализация позиции и обновление обгона
+        currentPlayer.addChangesPointInHistory(forPoint: .beforeTurn)
+        currentPlayer.addChangesActionInHistory(forPoint: .beforeTurn)
+        
+        // обновление истории очков (в случае обгона)
         currentPlayer.addPointsInHistory(forPoint: .overtake)
-        currentPlayer.addChangesActionInHistory(forPoint: .overtake)
-        currentPlayer.addChangesPointInHistory(forPoint: .overtake)
     }
     
     func actionsAfterRoll() {
@@ -88,6 +91,9 @@ final class MainGameControllerModel: Combinable {
         if currentPlayer.isBoltsCrash {
             pointsLabelVM.textValue = .text(currentPlayer.points.toString())
         }
+        
+        currentPlayer.addChangesActionInHistory(forPoint: .afterRoll)
+        currentPlayer.addChangesPointInHistory(forPoint: .afterRoll)
     }
     
     func actionsAfterTurn() {
@@ -104,9 +110,12 @@ final class MainGameControllerModel: Combinable {
         // проверка на самосвал
         RoolsCheck().samosvalCheck(player: currentPlayer)
         
+        // добавление истории очков
         currentPlayer.addPointsInHistory(forPoint: .other)
-        currentPlayer.addChangesActionInHistory(forPoint: .other)
-        currentPlayer.addChangesPointInHistory(forPoint: .other)
+        currentPlayer.addChangesActionInHistory(forPoint: .afterTurn)
+        
+        
+        // сброс показателей к стандартным после хода
         currentPlayer.updateStatsAfterTurn()
         
         // проверка на победителя
