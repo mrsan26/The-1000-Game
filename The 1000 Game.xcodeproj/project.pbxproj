@@ -71,6 +71,7 @@
 		19CDC76B2B11413F00A1B6D9 /* PlayerCollectionCell+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC76A2B11413F00A1B6D9 /* PlayerCollectionCell+ViewModel.swift */; };
 		19CDC76D2B129D1B00A1B6D9 /* Ext Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC76C2B129D1B00A1B6D9 /* Ext Collection.swift */; };
 		19D3FC372B1BAD0C008F26F8 /* Ext UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D3FC362B1BAD0C008F26F8 /* Ext UIViewController.swift */; };
+		19D7050A2B3D97BC0068A51C /* Ext Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D705092B3D97BC0068A51C /* Ext Float.swift */; };
 		19E64B042B1516790037E441 /* ActionHistoryPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B032B1516790037E441 /* ActionHistoryPointModel.swift */; };
 		19E64B072B1526810037E441 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B062B1526810037E441 /* HistoryController.swift */; };
 		19E64B092B15268B0037E441 /* HistoryControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B082B15268B0037E441 /* HistoryControllerModel.swift */; };
@@ -152,6 +153,7 @@
 		19CDC76A2B11413F00A1B6D9 /* PlayerCollectionCell+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerCollectionCell+ViewModel.swift"; sourceTree = "<group>"; };
 		19CDC76C2B129D1B00A1B6D9 /* Ext Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext Collection.swift"; sourceTree = "<group>"; };
 		19D3FC362B1BAD0C008F26F8 /* Ext UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext UIViewController.swift"; sourceTree = "<group>"; };
+		19D705092B3D97BC0068A51C /* Ext Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext Float.swift"; sourceTree = "<group>"; };
 		19E64B032B1516790037E441 /* ActionHistoryPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionHistoryPointModel.swift; sourceTree = "<group>"; };
 		19E64B062B1526810037E441 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		19E64B082B15268B0037E441 /* HistoryControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryControllerModel.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				19CDC76C2B129D1B00A1B6D9 /* Ext Collection.swift */,
 				19D3FC362B1BAD0C008F26F8 /* Ext UIViewController.swift */,
 				19F628082B28CF650003F85C /* Ext ProgressView.swift */,
+				19D705092B3D97BC0068A51C /* Ext Float.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				19463A722AFB60C0003B1908 /* BasicSwitcher.swift in Sources */,
 				19E64B0E2B1527F80037E441 /* HistoryCellView+ViewModel.swift in Sources */,
 				194D8D5F2AEA62E300A42DFC /* BasicButton+ViewModel.swift in Sources */,
+				19D7050A2B3D97BC0068A51C /* Ext Float.swift in Sources */,
 				194D8D692AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift in Sources */,
 				19E64B172B165EA10037E441 /* ConfirmPopupController.swift in Sources */,
 				194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */,

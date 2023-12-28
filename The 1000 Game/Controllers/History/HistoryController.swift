@@ -75,7 +75,7 @@ class HistoryController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupBackground()
-        historyTableView.scrollToRow(at: IndexPath(row: self.player.pointsHistory.count - 1, section: 0), at: .bottom, animated: true)
+        historyTableView.setContentOffset(CGPoint(x: 0, y: CGFloat.greatestFiniteMagnitude), animated: false)
     }
     
     init(viewModel: HistoryControllerModel, player: Player) {

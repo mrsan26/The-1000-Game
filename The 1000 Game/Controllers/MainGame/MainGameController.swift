@@ -451,7 +451,6 @@ extension MainGameController {
     }
     
     private func updateMaybeProgressLine() {
-        maybePointsProgressView.setProgress(0, animated: false)
         let maybePoints = ((viewModel.currentPlayer.points + viewModel.currentPlayer.currentPoints).toFloat()) / 1000
         maybePointsProgressView.fillingAnimation(progressValue: maybePoints, duration: 0.5)
     }
