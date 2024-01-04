@@ -60,17 +60,17 @@ class Player: Object {
         case .beforeTurn:
             changesPointsHistory.append(0)
             guard wasOvertaken else { return }
-            changesPointsHistory[changesPointsHistory.count - 2] = changesPointsHistory.last! - 50
+            print(changesPointsHistory.last!)
+            changesPointsHistory[changesPointsHistory.count - 2] -= 50
         case .afterRoll:
             var changes = currentPoints
             if isBoltsCrash {
-                changes += -100
-            } else if isSamosvalCrash {
-                changes += -555
+                changes -= 100
             }
             changesPointsHistory[changesPointsHistory.count - 1] = changes
         case .afterTurn:
-            break
+            guard isSamosvalCrash else { return }
+            changesPointsHistory[changesPointsHistory.count - 1] -= 555
         }
     }
     
@@ -82,11 +82,9 @@ class Player: Object {
             actionsHistory[actionsHistory.count - 1].yamaStatus = isItInYama
         case .afterRoll:
             actionsHistory[actionsHistory.count - 1].boltsCrash = isBoltsCrash
-            actionsHistory[actionsHistory.count - 1].samosvalCrash = isSamosvalCrash
-            actionsHistory[actionsHistory.count - 1].yamaStatus = isItInYama
         case .afterTurn:
             actionsHistory[actionsHistory.count - 1].firstGameOpening = firstGameOpening
-            actionsHistory[actionsHistory.count - 1].yamaStatus = turnsInYamaCounter > 1
+            actionsHistory[actionsHistory.count - 1].samosvalCrash = isSamosvalCrash
         }
     }
     

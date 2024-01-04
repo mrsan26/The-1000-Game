@@ -53,6 +53,8 @@ final class MainGameControllerModel: Combinable {
         guard let lastPlayer = players.last else { return }
         players.removeLast()
         players.insert(lastPlayer, at: 0)
+        
+        Testing().playersStats(players: players)
     }
     
     func updatePlayersOrder() {
@@ -112,6 +114,7 @@ final class MainGameControllerModel: Combinable {
         
         // добавление истории очков
         currentPlayer.addPointsInHistory(forPoint: .other)
+        currentPlayer.addChangesPointInHistory(forPoint: .afterTurn)
         currentPlayer.addChangesActionInHistory(forPoint: .afterTurn)
         
         
