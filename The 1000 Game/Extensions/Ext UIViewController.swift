@@ -8,7 +8,4 @@
 import UIKit
 
 extension UIViewController {
-    func doesObjectExist(index objectIndex: Int, in array: [Any]) -> Bool {
-        return objectIndex >= 0 && objectIndex < array.count
-    }
 }

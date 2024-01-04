@@ -51,7 +51,7 @@ struct BasicRools {
                 case .little:
                     return 125
                 case .big:
-                    return 150
+                    return 250
                 }
             }
         }

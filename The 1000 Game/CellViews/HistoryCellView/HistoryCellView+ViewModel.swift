@@ -42,5 +42,16 @@ extension HistoryCellView {
                 samosvalCrashLabelVM.isHidden = !actions.samosvalCrash
             }
         }
+        
+        func prepareForReuse() {
+            turnNumberLabelVM.textValue = nil
+            pointsNumberLabelVM.textValue = nil
+            pointsChangesNumberLabelVM.textValue = nil
+            
+            let statusLabels = [gameOpenedLabelVM, overtakenLabelVM, boltsCrashLabelVM, yamaStatusLabelVM, samosvalCrashLabelVM]
+            statusLabels.forEach { basicLabelVM in
+                basicLabelVM.isHidden = true
+            }
+        }
     }
 }

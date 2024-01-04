@@ -48,6 +48,7 @@
 		196E2E8E2B2C9C6D0076EA65 /* AlfaSlabOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 196E2E8D2B2C9C6D0076EA65 /* AlfaSlabOne-Regular.ttf */; };
 		196E2E902B2CB4D30076EA65 /* Ext Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E2E8F2B2CB4D30076EA65 /* Ext Double.swift */; };
 		196E2E922B2CC1AE0076EA65 /* BasicCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E2E912B2CC1AE0076EA65 /* BasicCellView.swift */; };
+		19743FC82B3F8A3C00EF6B95 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19743FC72B3F8A3C00EF6B95 /* Methods.swift */; };
 		19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7382B0BCED900A1B6D9 /* RealmManager.swift */; };
 		19CDC73B2B0BD03400A1B6D9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73A2B0BD03400A1B6D9 /* UserManager.swift */; };
 		19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */; };
@@ -71,6 +72,8 @@
 		19CDC76B2B11413F00A1B6D9 /* PlayerCollectionCell+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC76A2B11413F00A1B6D9 /* PlayerCollectionCell+ViewModel.swift */; };
 		19CDC76D2B129D1B00A1B6D9 /* Ext Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC76C2B129D1B00A1B6D9 /* Ext Collection.swift */; };
 		19D3FC372B1BAD0C008F26F8 /* Ext UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D3FC362B1BAD0C008F26F8 /* Ext UIViewController.swift */; };
+		19D7050A2B3D97BC0068A51C /* Ext Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D705092B3D97BC0068A51C /* Ext Float.swift */; };
+		19D7050C2B3DB65F0068A51C /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7050B2B3DB65F0068A51C /* Testing.swift */; };
 		19E64B042B1516790037E441 /* ActionHistoryPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B032B1516790037E441 /* ActionHistoryPointModel.swift */; };
 		19E64B072B1526810037E441 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B062B1526810037E441 /* HistoryController.swift */; };
 		19E64B092B15268B0037E441 /* HistoryControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B082B15268B0037E441 /* HistoryControllerModel.swift */; };
@@ -129,6 +132,7 @@
 		196E2E8D2B2C9C6D0076EA65 /* AlfaSlabOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlfaSlabOne-Regular.ttf"; sourceTree = "<group>"; };
 		196E2E8F2B2CB4D30076EA65 /* Ext Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext Double.swift"; sourceTree = "<group>"; };
 		196E2E912B2CC1AE0076EA65 /* BasicCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCellView.swift; sourceTree = "<group>"; };
+		19743FC72B3F8A3C00EF6B95 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		19CDC7382B0BCED900A1B6D9 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		19CDC73A2B0BD03400A1B6D9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojies.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 		19CDC76A2B11413F00A1B6D9 /* PlayerCollectionCell+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerCollectionCell+ViewModel.swift"; sourceTree = "<group>"; };
 		19CDC76C2B129D1B00A1B6D9 /* Ext Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext Collection.swift"; sourceTree = "<group>"; };
 		19D3FC362B1BAD0C008F26F8 /* Ext UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext UIViewController.swift"; sourceTree = "<group>"; };
+		19D705092B3D97BC0068A51C /* Ext Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext Float.swift"; sourceTree = "<group>"; };
+		19D7050B2B3DB65F0068A51C /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		19E64B032B1516790037E441 /* ActionHistoryPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionHistoryPointModel.swift; sourceTree = "<group>"; };
 		19E64B062B1526810037E441 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		19E64B082B15268B0037E441 /* HistoryControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryControllerModel.swift; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 		194D8D312AE9506B00A42DFC /* The 1000 Game */ = {
 			isa = PBXGroup;
 			children = (
+				19D7050B2B3DB65F0068A51C /* Testing.swift */,
 				19CDC7372B0BCECD00A1B6D9 /* Managers */,
 				194D8D552AE9746200A42DFC /* Foundation */,
 				194D8D622AEA634900A42DFC /* Common */,
@@ -303,6 +310,7 @@
 				194D8D602AEA630900A42DFC /* Typealias.swift */,
 				19CDC7512B0EE80C00A1B6D9 /* ValidationRules.swift */,
 				19E64B0F2B155DD80037E441 /* Vibration.swift */,
+				19743FC72B3F8A3C00EF6B95 /* Methods.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -392,6 +400,7 @@
 				19CDC76C2B129D1B00A1B6D9 /* Ext Collection.swift */,
 				19D3FC362B1BAD0C008F26F8 /* Ext UIViewController.swift */,
 				19F628082B28CF650003F85C /* Ext ProgressView.swift */,
+				19D705092B3D97BC0068A51C /* Ext Float.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -655,6 +664,7 @@
 				194D8D612AEA630900A42DFC /* Typealias.swift in Sources */,
 				19CDC7572B0FA01300A1B6D9 /* DiceController.swift in Sources */,
 				194D8D4F2AE95D7700A42DFC /* CombinableModel.swift in Sources */,
+				19D7050C2B3DB65F0068A51C /* Testing.swift in Sources */,
 				194D8D512AE95E3600A42DFC /* MainGameController.swift in Sources */,
 				194D8D5D2AEA628E00A42DFC /* BasicButton.swift in Sources */,
 				19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */,
@@ -683,10 +693,12 @@
 				19463A722AFB60C0003B1908 /* BasicSwitcher.swift in Sources */,
 				19E64B0E2B1527F80037E441 /* HistoryCellView+ViewModel.swift in Sources */,
 				194D8D5F2AEA62E300A42DFC /* BasicButton+ViewModel.swift in Sources */,
+				19D7050A2B3D97BC0068A51C /* Ext Float.swift in Sources */,
 				194D8D692AEA6D3F00A42DFC /* BasicLabel+ViewModel.swift in Sources */,
 				19E64B172B165EA10037E441 /* ConfirmPopupController.swift in Sources */,
 				194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */,
 				19CDC7472B0BFCE700A1B6D9 /* PlayerCellView+ViewModel.swift in Sources */,
+				19743FC82B3F8A3C00EF6B95 /* Methods.swift in Sources */,
 				196E2E922B2CC1AE0076EA65 /* BasicCellView.swift in Sources */,
 				19E64B042B1516790037E441 /* ActionHistoryPointModel.swift in Sources */,
 				194D8D792AEC088F00A42DFC /* WinController.swift in Sources */,

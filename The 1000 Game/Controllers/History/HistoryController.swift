@@ -70,12 +70,12 @@ class HistoryController: UIViewController {
         binding()
         setupChartView()
         
-        historyTableView.scrollToRow(at: IndexPath(row: self.player.pointsHistory.count - 1, section: 0), at: .bottom, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupBackground()
+        historyTableView.setContentOffset(CGPoint(x: 0, y: CGFloat.greatestFiniteMagnitude), animated: false)
     }
     
     init(viewModel: HistoryControllerModel, player: Player) {
@@ -250,7 +250,7 @@ extension HistoryController: UITableViewDataSource {
         guard let historyCell = cell as? BasicTableCell<HistoryCellView> else { return UITableViewCell() }
         
         historyCell.mainView.setInfo(
-            turnNumber: indexPath.row,
+            turnNumber: indexPath.row + 1,
             points: player.pointsHistory[indexPath.row],
             changesPoints:
                 doesObjectExist(index: indexPath.row, in: player.changesPointsHistory) ?

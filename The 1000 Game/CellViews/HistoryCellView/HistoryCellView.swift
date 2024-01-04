@@ -78,6 +78,7 @@ class HistoryCellView: BasicCellView {
     }
     
     override func prepareForReuse() {
+        self.viewModel.prepareForReuse()
         self.backgroundColor = .clear
     }
     

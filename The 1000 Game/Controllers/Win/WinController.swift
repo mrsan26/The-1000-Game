@@ -187,8 +187,10 @@ class WinController: BasicViewController {
     }
     
     @objc private func backAction() {
-        navigationController?.popToRootViewController(animated: true)
-        Vibration.selection.vibrate()
+        ConfirmPopupController.show(titleText: "Выйти из игры?", position: .center) { [weak self] in
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
+        Vibration.viewTap.vibrate()
     }
     
 }

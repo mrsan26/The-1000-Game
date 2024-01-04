@@ -10,7 +10,7 @@ import UIKit
 extension UIProgressView {
     func fillingAnimation(progressValue: Float, duration: TimeInterval) {
         UIView.animate(withDuration: duration) { [weak self] in
-            self?.setProgress(progressValue, animated: true)
+            self?.setProgress(progressValue.roundForSignsAfterDot(3), animated: true)
         }
     }
 }

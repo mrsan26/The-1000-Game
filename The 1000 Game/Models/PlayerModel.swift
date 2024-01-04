@@ -25,8 +25,8 @@ class Player: Object {
     var turnsInYamaCounter = 0
     
     var pointsHistory: [Int] = [0]
-    var changesPointsHistory: [Int] = [0]
-    var actionsHistory: [ActionHistoryPoint] = [.init()]
+    var changesPointsHistory: [Int] = []
+    var actionsHistory: [ActionHistoryPoint] = []
     
     var winStatus = false
     var turnIsFinish = false
@@ -45,31 +45,47 @@ class Player: Object {
         self.emoji = emoji
     }
     
-    func addPointsInHistory() {
-        pointsHistory.append(points)
+    func addPointsInHistory(forPoint: ChangesInHistoryPoint) {
+        switch forPoint {
+        case .overtake:
+            guard wasOvertaken else { return }
+            pointsHistory[pointsHistory.count - 1] = points
+        case .other:
+            pointsHistory.append(points)
+        }
     }
     
-//    old version
-//    func addChangesPointInHistory() {
-//        if pointsHistory.count > 1 {
-//            changesPointsHistory.append(pointsHistory.last! - pointsHistory[pointsHistory.count - 2])
-//        } else {
-//            changesPointsHistory.append(points)
-//        }
-//    }
-    
-    func addChangesPointInHistory() {
-        changesPointsHistory.append(currentPoints)
+    func addChangesPointInHistory(forPoint: ActionsChangesInHistoryPoint) {
+        switch forPoint {
+        case .beforeTurn:
+            changesPointsHistory.append(0)
+            guard wasOvertaken else { return }
+            print(changesPointsHistory.last!)
+            changesPointsHistory[changesPointsHistory.count - 2] -= 50
+        case .afterRoll:
+            var changes = currentPoints
+            if isBoltsCrash {
+                changes -= 100
+            }
+            changesPointsHistory[changesPointsHistory.count - 1] = changes
+        case .afterTurn:
+            guard isSamosvalCrash else { return }
+            changesPointsHistory[changesPointsHistory.count - 1] -= 555
+        }
     }
     
-    func addChangesActionInHistory() {
-        actionsHistory.append(.init(
-            firstGameOpening: firstGameOpening,
-            overtaken: wasOvertaken,
-            boltsCrash: isBoltsCrash,
-            yamaStatus: turnsInYamaCounter > 1,
-            samosvalCrash: isSamosvalCrash)
-        )
+    func addChangesActionInHistory(forPoint: ActionsChangesInHistoryPoint) {
+        switch forPoint {
+        case .beforeTurn:
+            actionsHistory.append(.init())
+            actionsHistory[actionsHistory.count - 1].overtaken = wasOvertaken
+            actionsHistory[actionsHistory.count - 1].yamaStatus = isItInYama
+        case .afterRoll:
+            actionsHistory[actionsHistory.count - 1].boltsCrash = isBoltsCrash
+        case .afterTurn:
+            actionsHistory[actionsHistory.count - 1].firstGameOpening = firstGameOpening
+            actionsHistory[actionsHistory.count - 1].samosvalCrash = isSamosvalCrash
+        }
     }
     
     func resetStats() {
@@ -105,4 +121,16 @@ class Player: Object {
         isSamosvalCrash = false
         
     }
+}
+
+enum ChangesInHistoryPoint {
+    case overtake
+    case other
+}
+
+enum ActionsChangesInHistoryPoint {
+    case beforeTurn
+    case afterRoll
+    case afterTurn
+//    case overtake
 }
