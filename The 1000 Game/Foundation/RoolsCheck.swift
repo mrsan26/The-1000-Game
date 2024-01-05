@@ -23,24 +23,36 @@ struct RoolsCheck {
     func yamaCheckAfterTurn(player: Player) {
         let overalPoints = player.points + player.currentPoints
         switch overalPoints {
-        case 200...299, 600...699:
-            player.isItInYama = true
+        case 200...299:
+            player.isItInYama = .first
             player.turnsInYamaCounter += 1
+        case 600...699:
+            player.turnsInYamaCounter += 1
+// проверка необходима на случай если игрок из первой ямы сразу попадает во вторую (набрав много очков)
+            if player.isItInYama == .first {
+                player.turnsInYamaCounter = 0
+            }
+            player.isItInYama = .second
         default:
-            player.isItInYama = false
+            player.isItInYama = .none
             player.turnsInYamaCounter = 0
         }
     }
     
     func yamaCheckBeforeTurn(player: Player) {
         switch player.points {
-        case 200...299, 600...699:
-            player.isItInYama = true
+        case 200...299:
+            player.isItInYama = .first
+            if player.turnsInYamaCounter == 0 {
+                player.turnsInYamaCounter = 1
+            }
+        case 600...699:
+            player.isItInYama = .second
             if player.turnsInYamaCounter == 0 {
                 player.turnsInYamaCounter = 1
             }
         default:
-            player.isItInYama = false
+            player.isItInYama = .none
             player.turnsInYamaCounter = 0
         }
     }

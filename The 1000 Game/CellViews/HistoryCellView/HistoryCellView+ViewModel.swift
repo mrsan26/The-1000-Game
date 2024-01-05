@@ -17,14 +17,13 @@ extension HistoryCellView {
         let gameOpenedLabelVM = BasicLabel.ViewModel(textValue: .text("Игра открыта"), isHidden: true)
         let overtakenLabelVM = BasicLabel.ViewModel(textValue: .text("Вас обогнали"), isHidden: true)
         let boltsCrashLabelVM = BasicLabel.ViewModel(textValue: .text("Три болта"), isHidden: true)
-        let yamaStatusLabelVM = BasicLabel.ViewModel(textValue: .text("Яма"), isHidden: true)
+        let yamaStatusLabelVM = BasicLabel.ViewModel(isHidden: true)
         let samosvalCrashLabelVM = BasicLabel.ViewModel(textValue: .text("Самосвал!"), isHidden: true)
         
         init() {
         }
         
         func setupLabels(turnNumber: Int, points: Int, changesPoints: Int?, actions: ActionHistoryPoint?) {
-            
             turnNumberLabelVM.textValue = .text(turnNumber.toString())
             pointsNumberLabelVM.textValue = .text(points.toString())
             
@@ -38,8 +37,11 @@ extension HistoryCellView {
                 gameOpenedLabelVM.isHidden = !actions.firstGameOpening
                 overtakenLabelVM.isHidden = !actions.overtaken
                 boltsCrashLabelVM.isHidden = !actions.boltsCrash
-                yamaStatusLabelVM.isHidden = !actions.yamaStatus
+                yamaStatusLabelVM.isHidden = actions.yamaStatus == .none
                 samosvalCrashLabelVM.isHidden = !actions.samosvalCrash
+                
+                guard let yamaName = actions.yamaStatus.name else { return }
+                yamaStatusLabelVM.textValue = .text("\(yamaName) яма")
             }
         }
         
