@@ -11,7 +11,7 @@ struct Testing {
     
     // Настройка и применение
     func playersStats(players: [Player]) {
-        set(mode: .on,
+        set(mode: .off,
             players: players,
             gameOpen: .all,
             points: .firstAndSecond(200, 95),
@@ -72,7 +72,7 @@ struct Testing {
             case .fallInYama:
                 players[0].points = 305
                 players[1].points = 295
-                players[1].isItInYama = true
+                players[1].isItInYama = .first
                 players[1].turnsInYamaCounter = 2
             case .off:
                 players[0].points = 500
@@ -114,18 +114,3 @@ enum OvertakeYama {
     case fallInYama
     case off
 }
-
-//enum Yama {
-//    case beforeFirst
-//    case infirst
-//    case afterFirst
-//    case beforeSecond
-//    case inSecond
-//    case afterSecond
-//    case off
-//}
-//
-//enum Samosval {
-//    case beforeWithPointTo (Int)
-//    case afterWithPointsTo (Int)
-//}

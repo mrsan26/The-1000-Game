@@ -30,7 +30,7 @@ class Player: Object {
     
     var winStatus = false
     var turnIsFinish = false
-    var isItInYama = false
+    var isItInYama: Yama = .none
     var gameOpened = false
     var firstGameOpening = false
     var wasOvertaken = false
@@ -98,7 +98,7 @@ class Player: Object {
         turnsInYamaCounter = 0
         winStatus = false
         turnIsFinish = false
-        isItInYama = false
+        isItInYama = .none
         gameOpened = false
         firstGameOpening = false
         wasOvertaken = false
@@ -132,5 +132,4 @@ enum ActionsChangesInHistoryPoint {
     case beforeTurn
     case afterRoll
     case afterTurn
-//    case overtake
 }

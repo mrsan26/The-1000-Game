@@ -42,7 +42,10 @@ class BasicLabel: UILabel {
         cancellables.removeAll()
 
         vm.$textValue.sink { [weak self] value in
-            guard let value else { return }
+            guard let value else {
+                self?.text = nil
+                return
+            }
             
             switch value {
             case .text(let text):

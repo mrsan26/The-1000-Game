@@ -93,7 +93,6 @@ class BasicTextField: UIView {
         }
         .store(in: &cancellables)
         
-        
         vm.$placeholder.sink { [weak self] value in
             guard let value else { return }
             self?.textField.placeholder = value
@@ -108,6 +107,13 @@ class BasicTextField: UIView {
     }
     
     func checkInput(validationRule: ValidationRules) -> Bool {
+        if text?.last == " " {
+            repeat {
+                text?.removeLast()
+            } while text?.last == " "
+            textField.text = text
+        }
+        
         if textField.text?.validate(validationRule.pattern) ?? false {
             errorLabel.isHidden = true
             return true

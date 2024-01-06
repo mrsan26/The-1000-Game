@@ -32,7 +32,7 @@ class MainGameController: BasicViewController {
     private lazy var pointsLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 20)
     private lazy var pointsProgressView: UIProgressView = {
         let progressView = UIProgressView()
-        progressView.tintColor = .systemBlue
+        progressView.progressTintColor = .systemBlue
         progressView.layer.cornerRadius = 8
         progressView.clipsToBounds = true
         progressView.progressViewStyle = .bar
@@ -40,7 +40,7 @@ class MainGameController: BasicViewController {
     }()
     private lazy var maybePointsProgressView: UIProgressView = {
         let progressView = UIProgressView()
-        progressView.tintColor = .systemGreen
+        progressView.progressTintColor = .systemGreen
         progressView.layer.cornerRadius = 8
         progressView.clipsToBounds = true
         progressView.progressViewStyle = .bar
@@ -172,7 +172,6 @@ class MainGameController: BasicViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
     }
     
     init(viewModel: MainGameControllerModel) {
@@ -413,7 +412,7 @@ extension MainGameController {
         var diceColorWithPoints: DieColors = .withPointsStandart
         var diceColorWithoutPoints: DieColors = .withoutPointsStandart
         
-        if viewModel.currentPlayer.isItInYama {
+        if viewModel.currentPlayer.turnsInYamaCounter > 0 {
             diceColorWithPoints = .withPointsInYama
             diceColorWithoutPoints = .withoutPointsInYama
         }
