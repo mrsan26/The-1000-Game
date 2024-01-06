@@ -10,26 +10,10 @@ import UIKit
 import Combine
 import DGCharts
 
-class HistoryController: UIViewController {
+class HistoryController: BasicPresentController {
     
     var cancellables: Set<AnyCancellable> = []
     let viewModel: HistoryControllerModel
-    
-    private lazy var topCloseImageView: UIView = {
-        let view = UIView()
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeAction)))
-        return view
-    }()
-    private lazy var topCloseImage: BasicImgView = {
-        let view = BasicImgView(name: .named("top_close_img"), height: 10, width: 80)
-        return view
-    }()
-    
-    private lazy var mainView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10
-        return view
-    }()
     
     private lazy var nameLabel = BasicLabel(font: .RobotronDot, fontSize: 30)
     
@@ -67,14 +51,12 @@ class HistoryController: UIViewController {
         self.view.backgroundColor = .clear
         makeLayout()
         makeConstraints()
-        binding()
         setupChartView()
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupBackground()
+        lightBackgroundMode()
         historyTableView.setContentOffset(CGPoint(x: 0, y: CGFloat.greatestFiniteMagnitude), animated: false)
     }
     
@@ -82,36 +64,14 @@ class HistoryController: UIViewController {
         self.viewModel = viewModel
         self.player = player
         self.viewModel.nameLabelVM.textValue = .text(player.name)
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [
-            UIColor(red: 0.922, green: 0.294, blue: 0.384, alpha: 1).cgColor,
-            UIColor(red: 0.227, green: 0.51, blue: 0.969, alpha: 1).cgColor
-        ]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = mainView.bounds
-        gradientLayer.cornerRadius = mainView.layer.cornerRadius
-        mainView.layer.insertSublayer(gradientLayer, at: 0)
-        
-        let transparentLayer = CALayer()
-        transparentLayer.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
-        transparentLayer.frame = mainView.bounds
-        transparentLayer.cornerRadius = mainView.layer.cornerRadius
-        mainView.layer.insertSublayer(transparentLayer, at: 1)
-    }
-    
     private func makeLayout() {
-        view.addSubview(topCloseImageView)
-        topCloseImageView.addSubview(topCloseImage)
-        
-        view.addSubview(mainView)
         mainView.addSubview(nameLabel)
         mainView.addSubview(tableTitleView)
         
@@ -124,21 +84,6 @@ class HistoryController: UIViewController {
     }
     
     private func makeConstraints() {
-        topCloseImageView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-        }
-        
-        topCloseImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-16)
-        }
-        
-        mainView.snp.makeConstraints { make in
-            make.top.equalTo(topCloseImageView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-        
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.centerX.equalToSuperview()
@@ -181,17 +126,12 @@ class HistoryController: UIViewController {
     }
     
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
-    private func binding() {
+    override func binding() {
         self.nameLabel.setViewModel(viewModel.nameLabelVM)
         
         self.turnNumberLabel.setViewModel(viewModel.turnNumberLabelVM)
         self.pointsNumberLabel.setViewModel(viewModel.pointsNumberLabelVM)
         self.pointsChangesNumberLabel.setViewModel(viewModel.pointsChangesNumberLabelVM)
-    }
-    
-    @objc private func closeAction() {
-        dismiss(animated: true)
-        Vibration.viewTap.vibrate()
     }
     
     private func setupChartView() {

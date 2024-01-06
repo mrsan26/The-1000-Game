@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1914F4A42B4A172200815B7D /* BasicPresentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A32B4A172200815B7D /* BasicPresentController.swift */; };
 		19463A722AFB60C0003B1908 /* BasicSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A712AFB60C0003B1908 /* BasicSwitcher.swift */; };
 		19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */; };
 		19463A762AFB699B003B1908 /* BasicImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A752AFB699B003B1908 /* BasicImgView.swift */; };
@@ -90,6 +91,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1914F4A32B4A172200815B7D /* BasicPresentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicPresentController.swift; sourceTree = "<group>"; };
 		19463A712AFB60C0003B1908 /* BasicSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSwitcher.swift; sourceTree = "<group>"; };
 		19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicSwitcher+ViewModel.swift"; sourceTree = "<group>"; };
 		19463A752AFB699B003B1908 /* BasicImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicImgView.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				194D8D492AE95AB900A42DFC /* BasicViewController.swift */,
+				1914F4A32B4A172200815B7D /* BasicPresentController.swift */,
 				19CDC7652B113EC900A1B6D9 /* BasicCollectionCell.swift */,
 				19CDC73E2B0BF77900A1B6D9 /* BasicTableCell.swift */,
 				196E2E912B2CC1AE0076EA65 /* BasicCellView.swift */,
@@ -711,6 +714,7 @@
 				19CDC7432B0BFB4F00A1B6D9 /* PlayerCellView.swift in Sources */,
 				19CDC7502B0ECC7200A1B6D9 /* RenamePopupControllerModel.swift in Sources */,
 				19CDC74E2B0ECC3500A1B6D9 /* RenamePopupController.swift in Sources */,
+				1914F4A42B4A172200815B7D /* BasicPresentController.swift in Sources */,
 				194D8D572AE9747800A42DFC /* BasicRools.swift in Sources */,
 				194D8D352AE9506B00A42DFC /* SceneDelegate.swift in Sources */,
 				19CDC75B2B0FA12F00A1B6D9 /* DiceSkins.swift in Sources */,
