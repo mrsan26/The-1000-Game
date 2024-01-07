@@ -14,9 +14,7 @@ class HistoryController: BasicPresentController {
     
     var cancellables: Set<AnyCancellable> = []
     let viewModel: HistoryControllerModel
-    
-    private lazy var nameLabel = BasicLabel(font: .RobotronDot, fontSize: 30)
-    
+        
     private lazy var tableTitleView = UIView()
     private lazy var turnNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
     private lazy var pointsNumberLabel = BasicLabel(font: .InterMedium, fontSize: 16)
@@ -63,8 +61,8 @@ class HistoryController: BasicPresentController {
     init(viewModel: HistoryControllerModel, player: Player) {
         self.viewModel = viewModel
         self.player = player
-        self.viewModel.nameLabelVM.textValue = .text(player.name)
         super.init()
+        self.makeTitle(text: player.name)
     }
     
     required init?(coder: NSCoder) {
@@ -72,7 +70,6 @@ class HistoryController: BasicPresentController {
     }
     
     private func makeLayout() {
-        mainView.addSubview(nameLabel)
         mainView.addSubview(tableTitleView)
         
         tableTitleView.addSubview(turnNumberLabel)
@@ -84,14 +81,8 @@ class HistoryController: BasicPresentController {
     }
     
     private func makeConstraints() {
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(tableTitleView.snp.top).offset(-8)
-        }
-        
         tableTitleView.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.bottom.equalTo(historyTableView.snp.top).offset(-8)
@@ -127,11 +118,66 @@ class HistoryController: BasicPresentController {
     
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
-        self.nameLabel.setViewModel(viewModel.nameLabelVM)
-        
         self.turnNumberLabel.setViewModel(viewModel.turnNumberLabelVM)
         self.pointsNumberLabel.setViewModel(viewModel.pointsNumberLabelVM)
         self.pointsChangesNumberLabel.setViewModel(viewModel.pointsChangesNumberLabelVM)
+    }
+    
+    private func setupChartViewAllPlayersTEST(players: [Player]) {
+        let colors: [NSUIColor] = [.blue, .brown, .cyan, .green]
+        
+        var lineChartEntries: [[ChartDataEntry]] = []
+        
+        for (number, player) in players.enumerated() {
+            lineChartEntries.append([])
+            for (index, point) in player.pointsHistory.enumerated() {
+                lineChartEntries[number].append(ChartDataEntry(x: index.toDouble(), y: point.toDouble()))
+            }
+        }
+        
+        var dataSets: [LineChartDataSet] = []
+        for (index, entry) in lineChartEntries.enumerated() {
+            dataSets.append(LineChartDataSet(entries: entry, label: players[index].name))
+            
+            dataSets[index].setColor(colors[index])
+            dataSets[index].lineWidth = 3
+            dataSets[index].mode = .horizontalBezier // сглаживание
+            dataSets[index].drawValuesEnabled = false // убираем значения на графике
+            dataSets[index].drawCirclesEnabled = false // убираем точки на графике
+            dataSets[index].drawFilledEnabled = true // нужно для градиента
+            
+            // линия при тапе
+            dataSets[index].drawHorizontalHighlightIndicatorEnabled = false // оставляем только вертикальную линию
+            dataSets[index].highlightLineWidth = 3 // толщина вертикальной линии
+            dataSets[index].highlightColor = colors[index] // цвет вертикальной линии
+        }
+        
+        let data = LineChartData(dataSets: dataSets)
+        
+        data.setValueTextColor(.white)
+        data.setValueFont(.systemFont(ofSize: 9))
+        
+        lineChartView.data = data
+        // отключаем координатную сетку
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.leftAxis.drawGridLinesEnabled = false
+        lineChartView.rightAxis.drawGridLinesEnabled = false
+        lineChartView.drawGridBackgroundEnabled = false
+        // отключаем подписи к осям
+        lineChartView.xAxis.drawLabelsEnabled = false
+        lineChartView.leftAxis.drawLabelsEnabled = false
+        lineChartView.rightAxis.drawLabelsEnabled = false
+        // отключаем легенду
+        lineChartView.legend.enabled = false
+        // отключаем зум
+        lineChartView.pinchZoomEnabled = false
+        lineChartView.doubleTapToZoomEnabled = false
+        // убираем артефакты вокруг области графика
+        lineChartView.xAxis.enabled = false
+        lineChartView.leftAxis.enabled = false
+        lineChartView.rightAxis.enabled = false
+        lineChartView.drawBordersEnabled = false
+        lineChartView.minOffset = 0
     }
     
     private func setupChartView() {

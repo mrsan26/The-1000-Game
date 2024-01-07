@@ -21,14 +21,23 @@ class BasicPresentController: UIViewController {
         return view
     }()
     
-    lazy var mainView: UIView = {
+    private lazy var backView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
         return view
     }()
     
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var mainView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .clear
         makeLayout()
         makeConstraints()
         binding()
@@ -54,23 +63,31 @@ class BasicPresentController: UIViewController {
           UIColor(red: 0.227, green: 0.51, blue: 0.969, alpha: 1).cgColor
         ]
         gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = mainView.bounds
-        gradientLayer.cornerRadius = mainView.layer.cornerRadius
-        mainView.layer.insertSublayer(gradientLayer, at: 0)
+        gradientLayer.frame = backView.bounds
+        gradientLayer.cornerRadius = backView.layer.cornerRadius
+        backView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     func lightBackgroundMode() {
         let transparentLayer = CALayer()
         transparentLayer.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
-        transparentLayer.frame = mainView.bounds
-        transparentLayer.cornerRadius = mainView.layer.cornerRadius
-        mainView.layer.insertSublayer(transparentLayer, at: 1)
+        transparentLayer.frame = backView.bounds
+        transparentLayer.cornerRadius = backView.layer.cornerRadius
+        backView.layer.insertSublayer(transparentLayer, at: 1)
+    }
+    
+    func makeTitle(text: String, fontSize: CGFloat = 30, textColor: UIColor = .white) {
+        titleLabel.text = text
+        titleLabel.font = UIFont(name: "robotrondotmatrix", size: fontSize)
+        titleLabel.textColor = textColor
     }
     
     private func makeLayout() {
         view.addSubview(topCloseImageView)
         topCloseImageView.addSubview(topCloseImage)
-        view.addSubview(mainView)
+        view.addSubview(backView)
+        backView.addSubview(titleLabel)
+        backView.addSubview(mainView)
     }
     
     private func makeConstraints() {
@@ -84,8 +101,18 @@ class BasicPresentController: UIViewController {
             make.bottom.equalToSuperview().offset(-16)
         }
         
+        backView.snp.makeConstraints { make in
+            make.top.equalTo(topCloseImageView.snp.bottom).offset(4)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(12)
+            make.centerX.equalToSuperview()
+        }
+        
         mainView.snp.makeConstraints { make in
-            make.top.equalTo(topCloseImageView.snp.bottom)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }

@@ -64,6 +64,11 @@ class WinController: BasicViewController {
     }()
     
     private lazy var resetButtonView = UIView()
+    private lazy var statisticButton: BasicButton = {
+        let button = BasicButton(style: .yellow, titleFontSize: 16)
+        button.cornerRadius = 16
+        return button
+    }()
     private lazy var resetButton = BasicButton(style: .red, titleFontSize: 18)
     
     private var resetGameClosure: VoidBlock?
@@ -80,6 +85,7 @@ class WinController: BasicViewController {
     
     init(viewModel: WinControllerModel, winnerPlayer: Player, allPlayers: [Player], resetGameClosure: VoidBlock?) {
         self.viewModel = viewModel
+        self.viewModel.allPlayers = allPlayers
         self.viewModel.playersWithoutWinner = allPlayers.filter( { !$0.winStatus } )
         self.viewModel.winnerPlayer = winnerPlayer
         self.resetGameClosure = resetGameClosure
@@ -122,6 +128,7 @@ class WinController: BasicViewController {
         playersInfoLabelsView.addSubview(pointsLabel)
         winnerContentStack.addArrangedSubview(playersInfoLabelsView)
         mainContentStack.addArrangedSubview(playersCollection)
+        resetButtonView.addSubview(statisticButton)
         resetButtonView.addSubview(resetButton)
         mainContentStack.addArrangedSubview(resetButtonView)
     }
@@ -156,8 +163,17 @@ class WinController: BasicViewController {
             make.height.equalTo(154)
         }
         
+        statisticButton.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalTo(resetButton.snp.top).offset(-10)
+            
+            make.centerX.equalToSuperview()
+            make.height.equalTo(50)
+            make.width.equalTo(160)
+        }
+        
         resetButton.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+            make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
         }
     }
@@ -169,9 +185,12 @@ class WinController: BasicViewController {
         self.nameLabel.setViewModel(viewModel.nameLabelVM)
         self.pointsLabel.setViewModel(viewModel.pointsLabelVM)
         self.resetButton.setViewModel(viewModel.resetButtonVM)
+        self.statisticButton.setViewModel(viewModel.statisticButtonVM)
         self.viewModel.resetButtonVM.action = { [weak self] in
-            self?.resetGameClosure?()
-            self?.navigationController?.popViewController(animated: true)
+            ConfirmPopupController.show(titleText: "Начать игру заново?", position: .center) { [weak self] in
+                self?.resetGameClosure?()
+                self?.navigationController?.popViewController(animated: true)
+            }
         }
     }
     

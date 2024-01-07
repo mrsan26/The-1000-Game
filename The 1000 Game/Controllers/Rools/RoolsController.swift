@@ -13,9 +13,7 @@ class RoolsController: BasicPresentController {
     
     var cancellables: Set<AnyCancellable> = []
     let viewModel: RoolsControllerModel
-    
-    private lazy var titleLabel = BasicLabel(font: .RobotronDot, fontSize: 30)
-    
+        
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.backgroundColor = .clear
@@ -31,9 +29,9 @@ class RoolsController: BasicPresentController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .clear
         makeLayout()
         makeConstraints()
+        makeTitle(text: "Правила")
     }
     
     init(viewModel: RoolsControllerModel) {
@@ -46,20 +44,13 @@ class RoolsController: BasicPresentController {
     }
     
     private func makeLayout() {
-        mainView.addSubview(titleLabel)
         mainView.addSubview(scrollView)
         scrollView.addSubview(roolsImageView)
     }
     
     private func makeConstraints() {
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(scrollView.snp.top).offset(-8)
-        }
-        
         scrollView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         roolsImageView.snp.makeConstraints { make in
@@ -70,7 +61,5 @@ class RoolsController: BasicPresentController {
         }
     }
     
-    override func binding() {
-        self.titleLabel.setViewModel(viewModel.titleLabelVM)
-    }
+    override func binding() {}
 }

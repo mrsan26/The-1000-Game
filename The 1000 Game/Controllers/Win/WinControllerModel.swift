@@ -14,7 +14,9 @@ final class WinControllerModel: Combinable {
     let nameLabelVM = BasicLabel.ViewModel()
     let pointsLabelVM = BasicLabel.ViewModel()
     let resetButtonVM = BasicButton.ViewModel(title: "Начать заново")
+    let statisticButtonVM = BasicButton.ViewModel(title: "Статистика")
     
+    var allPlayers: [Player] = []
     var playersWithoutWinner: [Player] = []
     var winnerPlayer: Player?
     

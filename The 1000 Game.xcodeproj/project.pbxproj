@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1914F4A42B4A172200815B7D /* BasicPresentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A32B4A172200815B7D /* BasicPresentController.swift */; };
+		1914F4A72B4B4C4900815B7D /* StatisticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A62B4B4C4900815B7D /* StatisticController.swift */; };
+		1914F4A92B4B4C4E00815B7D /* StatisticControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A82B4B4C4E00815B7D /* StatisticControllerModel.swift */; };
 		19463A722AFB60C0003B1908 /* BasicSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A712AFB60C0003B1908 /* BasicSwitcher.swift */; };
 		19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */; };
 		19463A762AFB699B003B1908 /* BasicImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A752AFB699B003B1908 /* BasicImgView.swift */; };
@@ -92,6 +94,8 @@
 
 /* Begin PBXFileReference section */
 		1914F4A32B4A172200815B7D /* BasicPresentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicPresentController.swift; sourceTree = "<group>"; };
+		1914F4A62B4B4C4900815B7D /* StatisticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticController.swift; sourceTree = "<group>"; };
+		1914F4A82B4B4C4E00815B7D /* StatisticControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticControllerModel.swift; sourceTree = "<group>"; };
 		19463A712AFB60C0003B1908 /* BasicSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSwitcher.swift; sourceTree = "<group>"; };
 		19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicSwitcher+ViewModel.swift"; sourceTree = "<group>"; };
 		19463A752AFB699B003B1908 /* BasicImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicImgView.swift; sourceTree = "<group>"; };
@@ -190,6 +194,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1914F4A52B4B4C1B00815B7D /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				1914F4A62B4B4C4900815B7D /* StatisticController.swift */,
+				1914F4A82B4B4C4E00815B7D /* StatisticControllerModel.swift */,
+			);
+			path = Statistic;
+			sourceTree = "<group>";
+		};
 		19463A702AFB6098003B1908 /* BasicToogle */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +256,7 @@
 		194D8D462AE95A5600A42DFC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1914F4A52B4B4C1B00815B7D /* Statistic */,
 				194D8D6A2AEA758D00A42DFC /* MainMenu */,
 				194D8D7C2AEC092F00A42DFC /* PlayersAmount */,
 				19578E7B2B0BC67C00566B08 /* PlayerNames */,
@@ -673,6 +687,7 @@
 				19D7050C2B3DB65F0068A51C /* Testing.swift in Sources */,
 				194D8D512AE95E3600A42DFC /* MainGameController.swift in Sources */,
 				194D8D5D2AEA628E00A42DFC /* BasicButton.swift in Sources */,
+				1914F4A92B4B4C4E00815B7D /* StatisticControllerModel.swift in Sources */,
 				19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */,
 				19F720DB2B2E3CDA00CCFE7F /* PressableButton.swift in Sources */,
 				19CDC7522B0EE80C00A1B6D9 /* ValidationRules.swift in Sources */,
@@ -706,6 +721,7 @@
 				194D8D672AEA6CA500A42DFC /* BasicLabel.swift in Sources */,
 				19CDC7472B0BFCE700A1B6D9 /* PlayerCellView+ViewModel.swift in Sources */,
 				19743FC82B3F8A3C00EF6B95 /* Methods.swift in Sources */,
+				1914F4A72B4B4C4900815B7D /* StatisticController.swift in Sources */,
 				196E2E922B2CC1AE0076EA65 /* BasicCellView.swift in Sources */,
 				19E64B042B1516790037E441 /* ActionHistoryPointModel.swift in Sources */,
 				194D8D792AEC088F00A42DFC /* WinController.swift in Sources */,
