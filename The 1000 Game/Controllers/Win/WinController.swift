@@ -185,12 +185,17 @@ class WinController: BasicViewController {
         self.nameLabel.setViewModel(viewModel.nameLabelVM)
         self.pointsLabel.setViewModel(viewModel.pointsLabelVM)
         self.resetButton.setViewModel(viewModel.resetButtonVM)
-        self.statisticButton.setViewModel(viewModel.statisticButtonVM)
         self.viewModel.resetButtonVM.action = { [weak self] in
             ConfirmPopupController.show(titleText: "Начать игру заново?", position: .center) { [weak self] in
                 self?.resetGameClosure?()
                 self?.navigationController?.popViewController(animated: true)
             }
+        }
+        self.statisticButton.setViewModel(viewModel.statisticButtonVM)
+        self.viewModel.statisticButtonVM.action = { [weak self] in
+            guard let self else { return }
+            let statisticVC = StatisticController(viewModel: .init(), players: self.viewModel.allPlayers)
+            present(statisticVC, animated: true)
         }
     }
     
