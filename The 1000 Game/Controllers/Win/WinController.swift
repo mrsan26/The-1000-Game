@@ -65,7 +65,7 @@ class WinController: BasicViewController {
     
     private lazy var resetButtonView = UIView()
     private lazy var statisticButton: BasicButton = {
-        let button = BasicButton(style: .yellow, titleFontSize: 16)
+        let button = BasicButton(style: .blue, titleFontSize: 16)
         button.cornerRadius = 16
         return button
     }()

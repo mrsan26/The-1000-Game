@@ -14,7 +14,7 @@ struct Testing {
         set(mode: .off,
             players: players,
             gameOpen: .all,
-            points: .firstAndSecond(800, 900),
+            points: .firstAndSecond(950, 990),
             readyToOvertake: .off)
     }
     

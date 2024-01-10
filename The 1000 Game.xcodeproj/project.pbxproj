@@ -10,6 +10,7 @@
 		1914F4A42B4A172200815B7D /* BasicPresentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A32B4A172200815B7D /* BasicPresentController.swift */; };
 		1914F4A72B4B4C4900815B7D /* StatisticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A62B4B4C4900815B7D /* StatisticController.swift */; };
 		1914F4A92B4B4C4E00815B7D /* StatisticControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A82B4B4C4E00815B7D /* StatisticControllerModel.swift */; };
+		1914F4AB2B4E160800815B7D /* TableTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4AA2B4E160800815B7D /* TableTitleView.swift */; };
 		19463A722AFB60C0003B1908 /* BasicSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A712AFB60C0003B1908 /* BasicSwitcher.swift */; };
 		19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */; };
 		19463A762AFB699B003B1908 /* BasicImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A752AFB699B003B1908 /* BasicImgView.swift */; };
@@ -96,6 +97,7 @@
 		1914F4A32B4A172200815B7D /* BasicPresentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicPresentController.swift; sourceTree = "<group>"; };
 		1914F4A62B4B4C4900815B7D /* StatisticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticController.swift; sourceTree = "<group>"; };
 		1914F4A82B4B4C4E00815B7D /* StatisticControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticControllerModel.swift; sourceTree = "<group>"; };
+		1914F4AA2B4E160800815B7D /* TableTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTitleView.swift; sourceTree = "<group>"; };
 		19463A712AFB60C0003B1908 /* BasicSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSwitcher.swift; sourceTree = "<group>"; };
 		19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicSwitcher+ViewModel.swift"; sourceTree = "<group>"; };
 		19463A752AFB699B003B1908 /* BasicImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicImgView.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				194D8D5B2AEA615F00A42DFC /* BasicLabel */,
 				194D8D5A2AEA614E00A42DFC /* BasicButton */,
 				19F720DA2B2E3CDA00CCFE7F /* PressableButton.swift */,
+				1914F4AA2B4E160800815B7D /* TableTitleView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				19E64B072B1526810037E441 /* HistoryController.swift in Sources */,
 				19463A762AFB699B003B1908 /* BasicImgView.swift in Sources */,
 				194D8D612AEA630900A42DFC /* Typealias.swift in Sources */,
+				1914F4AB2B4E160800815B7D /* TableTitleView.swift in Sources */,
 				19CDC7572B0FA01300A1B6D9 /* DiceController.swift in Sources */,
 				194D8D4F2AE95D7700A42DFC /* CombinableModel.swift in Sources */,
 				19D7050C2B3DB65F0068A51C /* Testing.swift in Sources */,

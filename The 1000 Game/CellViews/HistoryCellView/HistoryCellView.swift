@@ -17,6 +17,8 @@ class HistoryCellView: BasicCellView {
         return stack
     }()
     
+    private lazy var playerNameLabel = BasicLabel(aligment: .center, font: .RobotronDot, fontSize: 18)
+    
     private lazy var labelsView = UIView()
     private lazy var turnNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
     private lazy var pointsNumberLabel = BasicLabel(font: .InterMedium, fontSize: 16)
@@ -42,6 +44,8 @@ class HistoryCellView: BasicCellView {
     
     override func makeLayout() {
         self.addSubview(mainContentStack)
+        
+        mainContentStack.addArrangedSubview(playerNameLabel)
         
         labelsView.addSubview(turnNumberLabel)
         labelsView.addSubview(pointsNumberLabel)
@@ -82,8 +86,8 @@ class HistoryCellView: BasicCellView {
         self.backgroundColor = .clear
     }
     
-    func setInfo(turnNumber: Int, points: Int, changesPoints: Int?, actions: ActionHistoryPoint?) {
-        viewModel.setupLabels(turnNumber: turnNumber, points: points, changesPoints: changesPoints, actions: actions)
+    func setInfo(turnNumber: Int, points: Int, changesPoints: Int?, actions: ActionHistoryPoint?, playerName: String? = nil) {
+        viewModel.setupLabels(turnNumber: turnNumber, points: points, changesPoints: changesPoints, actions: actions, playerName: playerName)
     }
     
     func chooseStatus(_ value: Bool) {
@@ -91,6 +95,8 @@ class HistoryCellView: BasicCellView {
     }
     
     func setViewModel(_ viewModel: ViewModel) {
+        self.playerNameLabel.setViewModel(viewModel.playerNameLabelVM)
+        
         self.turnNumberLabel.setViewModel(viewModel.turnNumberLabelVM)
         self.pointsNumberLabel.setViewModel(viewModel.pointsNumberLabelVM)
         self.pointsChangesNumberLabel.setViewModel(viewModel.pointsChangesNumberLabelVM)

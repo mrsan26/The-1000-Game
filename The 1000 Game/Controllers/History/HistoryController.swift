@@ -15,10 +15,7 @@ class HistoryController: BasicPresentController {
     var cancellables: Set<AnyCancellable> = []
     let viewModel: HistoryControllerModel
         
-    private lazy var tableTitleView = UIView()
-    private lazy var turnNumberLabel = BasicLabel(font: .InterBlack, fontSize: 16)
-    private lazy var pointsNumberLabel = BasicLabel(font: .InterMedium, fontSize: 16)
-    private lazy var pointsChangesNumberLabel = BasicLabel(font: .InterMedium, fontSize: 16)
+    private lazy var tableTitleView = TableTitleView()
     
     private lazy var historyTableView: UITableView = {
         let table = UITableView()
@@ -72,10 +69,6 @@ class HistoryController: BasicPresentController {
     private func makeLayout() {
         mainView.addSubview(tableTitleView)
         
-        tableTitleView.addSubview(turnNumberLabel)
-        tableTitleView.addSubview(pointsNumberLabel)
-        tableTitleView.addSubview(pointsChangesNumberLabel)
-        
         mainView.addSubview(historyTableView)
         mainView.addSubview(lineChartView)
     }
@@ -86,18 +79,6 @@ class HistoryController: BasicPresentController {
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
             make.bottom.equalTo(historyTableView.snp.top).offset(-8)
-        }
-        turnNumberLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(10)
-        }
-        pointsNumberLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-        }
-        pointsChangesNumberLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-10)
         }
         
         historyTableView.snp.makeConstraints { make in
@@ -118,9 +99,9 @@ class HistoryController: BasicPresentController {
     
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
-        self.turnNumberLabel.setViewModel(viewModel.turnNumberLabelVM)
-        self.pointsNumberLabel.setViewModel(viewModel.pointsNumberLabelVM)
-        self.pointsChangesNumberLabel.setViewModel(viewModel.pointsChangesNumberLabelVM)
+        self.tableTitleView.turnNumberLabel.setViewModel(viewModel.turnNumberLabelVM)
+        self.tableTitleView.pointsNumberLabel.setViewModel(viewModel.pointsNumberLabelVM)
+        self.tableTitleView.pointsChangesNumberLabel.setViewModel(viewModel.pointsChangesNumberLabelVM)
     }
     
     private func setupChartView() {

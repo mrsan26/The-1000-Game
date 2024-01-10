@@ -9,6 +9,9 @@ import Foundation
 
 final class StatisticControllerModel: Combinable {
     
+    let turnNumberLabelVM = BasicLabel.ViewModel(textValue: .text("Ход"))
+    let pointsNumberLabelVM = BasicLabel.ViewModel(textValue: .text("Очки"))
+    let pointsChangesNumberLabelVM = BasicLabel.ViewModel(textValue: .text("Изменения"))
     
     override init() {
         super.init()

@@ -14,6 +14,23 @@ class StatisticController: BasicPresentController {
     var cancellables: Set<AnyCancellable> = []
     let viewModel: StatisticControllerModel
     
+    private lazy var tableTitleView = TableTitleView()
+    
+    private lazy var historyTableView: UITableView = {
+        let table = UITableView()
+        table.dataSource = self
+        table.register(
+            BasicTableCell<HistoryCellView>.self,
+            forCellReuseIdentifier: String(describing: BasicTableCell<HistoryCellView>.self)
+        )
+        table.allowsSelection = false
+        table.backgroundColor = .clear
+        table.separatorColor = .white
+        table.separatorStyle = .singleLine
+        table.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return table
+    }()
+    
     private lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
         chartView.delegate = self
@@ -21,6 +38,7 @@ class StatisticController: BasicPresentController {
     }()
     
     var players: [Player]
+    var xEntry: Int = 0
             
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +46,11 @@ class StatisticController: BasicPresentController {
         makeConstraints()
         makeTitle(text: "Статистика игры")
         setupChartView(players: players)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        lightBackgroundMode()
     }
     
     init(viewModel: StatisticControllerModel, players: [Player]) {
@@ -41,12 +64,27 @@ class StatisticController: BasicPresentController {
     }
     
     private func makeLayout() {
+        mainView.addSubview(tableTitleView)
         mainView.addSubview(lineChartView)
+        mainView.addSubview(historyTableView)
     }
     
     private func makeConstraints() {
+        tableTitleView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.leading.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-12)
+            make.bottom.equalTo(historyTableView.snp.top).offset(-8)
+        }
+        
+        historyTableView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(lineChartView.snp.top).offset(-8)
+        }
+        
         lineChartView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
+            make.leading.equalToSuperview() //.offset(10)
             make.trailing.equalToSuperview() //.offset(-12)
 //            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalToSuperview().offset(-20)
@@ -55,6 +93,9 @@ class StatisticController: BasicPresentController {
     }
     
     override func binding() {
+        self.tableTitleView.turnNumberLabel.setViewModel(viewModel.turnNumberLabelVM)
+        self.tableTitleView.pointsNumberLabel.setViewModel(viewModel.pointsNumberLabelVM)
+        self.tableTitleView.pointsChangesNumberLabel.setViewModel(viewModel.pointsChangesNumberLabelVM)
     }
     
     private func chooseColor(playerIndex: Int) -> NSUIColor {
@@ -86,10 +127,9 @@ class StatisticController: BasicPresentController {
             dataSets[index].drawCirclesEnabled = false // убираем точки на графике
             dataSets[index].drawFilledEnabled = false // нужно для градиента
             
-            // линия при тапе
             dataSets[index].drawHorizontalHighlightIndicatorEnabled = false // оставляем только вертикальную линию
             dataSets[index].highlightLineWidth = 3 // толщина вертикальной линии
-            dataSets[index].highlightColor = chooseColor(playerIndex: index) // цвет вертикальной линии
+            dataSets[index].highlightColor = .white // цвет вертикальной линии
         }
         
         let data = LineChartData(dataSets: dataSets)
@@ -109,15 +149,16 @@ class StatisticController: BasicPresentController {
         lineChartView.rightAxis.drawLabelsEnabled = false
         // отключаем легенду
         lineChartView.legend.enabled = true
-        lineChartView.legend.orientation = .vertical
-        lineChartView.legend.horizontalAlignment = .left
-        lineChartView.legend.verticalAlignment = .center
-        lineChartView.legend.yEntrySpace = 10
+        lineChartView.legend.orientation = .horizontal
+        lineChartView.legend.horizontalAlignment = .center
+        lineChartView.legend.verticalAlignment = .bottom
+        lineChartView.legend.yEntrySpace = 6
+        lineChartView.legend.xEntrySpace = 12
         lineChartView.legend.formToTextSpace = 6
         lineChartView.legend.form = .circle
         lineChartView.legend.formSize = 16
         lineChartView.legend.textColor = .white
-        lineChartView.legend.font = NSUIFont(name: "inter-medium", size: 16)!
+        lineChartView.legend.font = NSUIFont(name: "robotrondotmatrix", size: 16)!
         // отключаем зум
         lineChartView.pinchZoomEnabled = false
         lineChartView.doubleTapToZoomEnabled = false
@@ -133,11 +174,42 @@ class StatisticController: BasicPresentController {
 extension StatisticController: ChartViewDelegate {
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        
+        xEntry = entry.x.toInt()
+        historyTableView.reloadData()
         Vibration.selection.vibrate()
     }
     
     func chartValueNothingSelected(_ chartView: ChartViewBase) {
         Vibration.selection.vibrate()
+    }
+}
+
+extension StatisticController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return players.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BasicTableCell<HistoryCellView>.self), for: indexPath)
+        guard let historyCell = cell as? BasicTableCell<HistoryCellView> else { return UITableViewCell() }
+        
+        historyCell.mainView.setInfo(
+            turnNumber: xEntry + 1,
+            points: 
+                doesObjectExist(index: xEntry, in: players[indexPath.row].pointsHistory) ?
+                players[indexPath.row].pointsHistory[xEntry] :
+                players[indexPath.row].pointsHistory.last!,
+            changesPoints:
+                doesObjectExist(index: xEntry, in: players[indexPath.row].changesPointsHistory) ?
+                players[indexPath.row].changesPointsHistory[xEntry] :
+                nil,
+            actions: 
+                doesObjectExist(index: xEntry, in: players[indexPath.row].actionsHistory) ?
+                players[indexPath.row].actionsHistory[xEntry] :
+                nil,
+            playerName: players[indexPath.row].name
+        )
+        
+        return historyCell
     }
 }
