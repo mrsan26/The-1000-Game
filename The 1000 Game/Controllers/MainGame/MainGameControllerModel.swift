@@ -122,7 +122,7 @@ final class MainGameControllerModel: Combinable {
         currentPlayer.updateStatsAfterTurn()
         
         // проверка на победителя
-        RoolsCheck().winCheck(player: currentPlayer)
+        RoolsCheck().winCheck(player: currentPlayer, playersArray: players)
     }
     
     

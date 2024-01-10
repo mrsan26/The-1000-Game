@@ -79,9 +79,15 @@ struct RoolsCheck {
         player.points -= 50
     }
     
-    func winCheck(player: Player) {
+    func winCheck(player: Player, playersArray: [Player]) {
         guard player.points >= 1000 else { return }
         player.winStatus = true
+        if player.winGames + 1 > 9 {
+            playersArray.forEach { player in
+                player.winGames = 0
+            }
+        }
+        player.winGames += 1
     }
     
     func checkOvertake(currentPlayer: Player, playersArray: [Player]) {

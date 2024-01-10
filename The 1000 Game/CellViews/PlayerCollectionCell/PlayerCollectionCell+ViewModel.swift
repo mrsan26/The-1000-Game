@@ -13,26 +13,22 @@ extension PlayerCollectionCell {
         
         var cancellables: Set<AnyCancellable> = []
         
+        let winGamesLabelVM = BasicLabel.ViewModel(isHidden: true)
         let emojiLabelVM = BasicLabel.ViewModel()
         let nameLabelVM = BasicLabel.ViewModel()
         let pointsLabelVM = BasicLabel.ViewModel()
         
-        @Published var player: Player?
-        
-        init() {
-            binding()
-        }
-        
-        private func binding() {
-            self.$player.sink { [weak self] player in
-                guard let player,
-                      let self
-                else { return }
+        var player: Player? {
+            didSet {
+                guard let player else { return }
                 self.emojiLabelVM.textValue = .text(player.emoji)
                 self.nameLabelVM.textValue = .text(player.name)
                 self.pointsLabelVM.textValue = .text(player.points.toString())
+                
+                self.winGamesLabelVM.textValue = .text(player.winGames.toString())
             }
-            .store(in: &cancellables)
         }
+        
+        init() {}
     }
 }

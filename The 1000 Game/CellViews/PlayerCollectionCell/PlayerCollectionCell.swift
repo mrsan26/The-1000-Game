@@ -33,6 +33,7 @@ class PlayerCollectionCell: UIView {
         view.layer.shadowRadius = 4
         return view
     }()
+    private lazy var winGamesLabel = BasicLabel(color: .white.withAlphaComponent(0.8), aligment: .center, font: .InterBlack, fontSize: 190)
     private lazy var emojiLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 40)
     
     private lazy var nameLabelView = UIView()
@@ -60,6 +61,7 @@ class PlayerCollectionCell: UIView {
         self.addSubview(contentStack)
         
         mainCircleView.addSubview(circleView)
+        circleView.addSubview(winGamesLabel)
         circleView.addSubview(emojiLabel)
         contentStack.addArrangedSubview(mainCircleView)
         
@@ -74,7 +76,7 @@ class PlayerCollectionCell: UIView {
             make.top.trailing.leading.equalToSuperview()
         }
         
-        let labels = [nameLabel, pointsLabel, emojiLabel]
+        let labels = [nameLabel, pointsLabel, emojiLabel, winGamesLabel]
         labels.forEach { label in
             label.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
@@ -82,8 +84,12 @@ class PlayerCollectionCell: UIView {
         }
     }
     
-    func setPlayer(player: Player) {
+    func setPlayer(player: Player, winsCounter: Bool = false) {
         self.viewModel.player = player
+        self.viewModel.winGamesLabelVM.isHidden = !winsCounter
+        if winsCounter {
+            emojiLabel.alpha = 0.8
+        }
     }
     
     func isActive(_ active: Bool) {
@@ -107,6 +113,7 @@ class PlayerCollectionCell: UIView {
     }
     
     func setViewModel(_ viewModel: ViewModel) {
+        self.winGamesLabel.setViewModel(viewModel.winGamesLabelVM)
         self.emojiLabel.setViewModel(viewModel.emojiLabelVM)
         self.nameLabel.setViewModel(viewModel.nameLabelVM)
         self.pointsLabel.setViewModel(viewModel.pointsLabelVM)
