@@ -122,6 +122,9 @@ class MainMenuController: BasicViewController {
     }
     
     @objc private func langAction() {
+        let langVC = LangController(viewModel: .init())
+        self.navigationController?.pushViewController(langVC, animated: true)
+        Vibration.viewTap.vibrate()
     }
     
     @objc private func playersGestureAction() {

@@ -11,6 +11,11 @@
 		1914F4A72B4B4C4900815B7D /* StatisticController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A62B4B4C4900815B7D /* StatisticController.swift */; };
 		1914F4A92B4B4C4E00815B7D /* StatisticControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4A82B4B4C4E00815B7D /* StatisticControllerModel.swift */; };
 		1914F4AB2B4E160800815B7D /* TableTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4AA2B4E160800815B7D /* TableTitleView.swift */; };
+		1914F4AE2B54700200815B7D /* LangCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4AD2B54700200815B7D /* LangCellView.swift */; };
+		1914F4B02B54701700815B7D /* LangCellView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4AF2B54701700815B7D /* LangCellView+ViewModel.swift */; };
+		1914F4B32B54853600815B7D /* LangController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4B22B54853600815B7D /* LangController.swift */; };
+		1914F4B52B5485BD00815B7D /* LangControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4B42B5485BD00815B7D /* LangControllerModel.swift */; };
+		1914F4B72B54867000815B7D /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1914F4B62B54867000815B7D /* Languages.swift */; };
 		19463A722AFB60C0003B1908 /* BasicSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A712AFB60C0003B1908 /* BasicSwitcher.swift */; };
 		19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */; };
 		19463A762AFB699B003B1908 /* BasicImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19463A752AFB699B003B1908 /* BasicImgView.swift */; };
@@ -98,6 +103,11 @@
 		1914F4A62B4B4C4900815B7D /* StatisticController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticController.swift; sourceTree = "<group>"; };
 		1914F4A82B4B4C4E00815B7D /* StatisticControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticControllerModel.swift; sourceTree = "<group>"; };
 		1914F4AA2B4E160800815B7D /* TableTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTitleView.swift; sourceTree = "<group>"; };
+		1914F4AD2B54700200815B7D /* LangCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangCellView.swift; sourceTree = "<group>"; };
+		1914F4AF2B54701700815B7D /* LangCellView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LangCellView+ViewModel.swift"; sourceTree = "<group>"; };
+		1914F4B22B54853600815B7D /* LangController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangController.swift; sourceTree = "<group>"; };
+		1914F4B42B5485BD00815B7D /* LangControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangControllerModel.swift; sourceTree = "<group>"; };
+		1914F4B62B54867000815B7D /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		19463A712AFB60C0003B1908 /* BasicSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSwitcher.swift; sourceTree = "<group>"; };
 		19463A732AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicSwitcher+ViewModel.swift"; sourceTree = "<group>"; };
 		19463A752AFB699B003B1908 /* BasicImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicImgView.swift; sourceTree = "<group>"; };
@@ -205,6 +215,24 @@
 			path = Statistic;
 			sourceTree = "<group>";
 		};
+		1914F4AC2B546FDB00815B7D /* LangCell */ = {
+			isa = PBXGroup;
+			children = (
+				1914F4AD2B54700200815B7D /* LangCellView.swift */,
+				1914F4AF2B54701700815B7D /* LangCellView+ViewModel.swift */,
+			);
+			path = LangCell;
+			sourceTree = "<group>";
+		};
+		1914F4B12B5484F900815B7D /* LangController */ = {
+			isa = PBXGroup;
+			children = (
+				1914F4B22B54853600815B7D /* LangController.swift */,
+				1914F4B42B5485BD00815B7D /* LangControllerModel.swift */,
+			);
+			path = LangController;
+			sourceTree = "<group>";
+		};
 		19463A702AFB6098003B1908 /* BasicToogle */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +290,7 @@
 				194D8D6A2AEA758D00A42DFC /* MainMenu */,
 				194D8D7C2AEC092F00A42DFC /* PlayersAmount */,
 				19578E7B2B0BC67C00566B08 /* PlayerNames */,
+				1914F4B12B5484F900815B7D /* LangController */,
 				19CDC7552B0F9FE000A1B6D9 /* DiceController */,
 				194D8D652AEA6C7D00A42DFC /* MainGame */,
 				19E64B052B15265B0037E441 /* History */,
@@ -301,6 +330,7 @@
 				194D8D892AF123A800A42DFC /* RoolsCheck.swift */,
 				19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */,
 				19CDC75A2B0FA12F00A1B6D9 /* DiceSkins.swift */,
+				1914F4B62B54867000815B7D /* Languages.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -449,6 +479,7 @@
 		19CDC7442B0BFC5E00A1B6D9 /* CellViews */ = {
 			isa = PBXGroup;
 			children = (
+				1914F4AC2B546FDB00815B7D /* LangCell */,
 				19CDC7672B11406800A1B6D9 /* PlayerCollectionCell */,
 				19E64B0A2B15274B0037E441 /* HistoryCellView */,
 				19CDC75C2B0FA49A00A1B6D9 /* DieCell */,
@@ -671,6 +702,7 @@
 				19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */,
 				19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */,
 				19CDC7662B113EC900A1B6D9 /* BasicCollectionCell.swift in Sources */,
+				1914F4B32B54853600815B7D /* LangController.swift in Sources */,
 				19CDC7602B0FA52800A1B6D9 /* DieCellView+ViewModel.swift in Sources */,
 				19CDC73F2B0BF77900A1B6D9 /* BasicTableCell.swift in Sources */,
 				194D8D752AEC065500A42DFC /* RoolsControllerModel.swift in Sources */,
@@ -707,6 +739,7 @@
 				19CDC76B2B11413F00A1B6D9 /* PlayerCollectionCell+ViewModel.swift in Sources */,
 				194D8D862AEC173500A42DFC /* BasicTextField.swift in Sources */,
 				19CDC73B2B0BD03400A1B6D9 /* UserManager.swift in Sources */,
+				1914F4B52B5485BD00815B7D /* LangControllerModel.swift in Sources */,
 				19D3FC372B1BAD0C008F26F8 /* Ext UIViewController.swift in Sources */,
 				194D8D8C2AF3A20000A42DFC /* BasicView.swift in Sources */,
 				194D8D4A2AE95AB900A42DFC /* BasicViewController.swift in Sources */,
@@ -731,6 +764,7 @@
 				194D8D792AEC088F00A42DFC /* WinController.swift in Sources */,
 				19578E7D2B0BC6B100566B08 /* PlayerNamesController.swift in Sources */,
 				194D8D8A2AF123A800A42DFC /* RoolsCheck.swift in Sources */,
+				1914F4AE2B54700200815B7D /* LangCellView.swift in Sources */,
 				19CDC7432B0BFB4F00A1B6D9 /* PlayerCellView.swift in Sources */,
 				19CDC7502B0ECC7200A1B6D9 /* RenamePopupControllerModel.swift in Sources */,
 				19CDC74E2B0ECC3500A1B6D9 /* RenamePopupController.swift in Sources */,
@@ -741,6 +775,8 @@
 				19CDC7642B0FC6E700A1B6D9 /* Ext UIView.swift in Sources */,
 				19CDC75E2B0FA50300A1B6D9 /* DieCellView.swift in Sources */,
 				194D8D6C2AEA75B600A42DFC /* MainMenuController.swift in Sources */,
+				1914F4B02B54701700815B7D /* LangCellView+ViewModel.swift in Sources */,
+				1914F4B72B54867000815B7D /* Languages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
