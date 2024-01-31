@@ -8,9 +8,7 @@
 import Foundation
 
 final class RoolsControllerModel: Combinable {
-    
-    let titleLabelVM = BasicLabel.ViewModel(textValue: .text("Правила"))
-    
+        
     override init() {
         super.init()
     }

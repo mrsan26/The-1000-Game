@@ -28,6 +28,8 @@ class Player: Object {
     var changesPointsHistory: [Int] = []
     var actionsHistory: [ActionHistoryPoint] = []
     
+    var winGames: Int = 0
+    
     var winStatus = false
     var turnIsFinish = false
     var isItInYama: Yama = .none
@@ -59,9 +61,9 @@ class Player: Object {
         switch forPoint {
         case .beforeTurn:
             changesPointsHistory.append(0)
-            guard wasOvertaken else { return }
-            print(changesPointsHistory.last!)
-            changesPointsHistory[changesPointsHistory.count - 2] -= 50
+            if wasOvertaken {
+                changesPointsHistory[changesPointsHistory.count - 2] -= 50
+            }
         case .afterRoll:
             var changes = currentPoints
             if isBoltsCrash {
@@ -69,8 +71,10 @@ class Player: Object {
             }
             changesPointsHistory[changesPointsHistory.count - 1] = changes
         case .afterTurn:
-            guard isSamosvalCrash else { return }
-            changesPointsHistory[changesPointsHistory.count - 1] -= 555
+            if isSamosvalCrash {
+//                для уведомления о самосвале достаточно истории экшнов, если менять очки это визуально путает
+//                changesPointsHistory[changesPointsHistory.count - 1] -= 555
+            }
         }
     }
     
@@ -78,13 +82,14 @@ class Player: Object {
         switch forPoint {
         case .beforeTurn:
             actionsHistory.append(.init())
-            actionsHistory[actionsHistory.count - 1].overtaken = wasOvertaken
-            actionsHistory[actionsHistory.count - 1].yamaStatus = isItInYama
+            actionsHistory.last?.overtaken = wasOvertaken
+            actionsHistory.last?.yamaStatus = isItInYama
+            actionsHistory.last?.samosvalCrash = isSamosvalCrash
         case .afterRoll:
-            actionsHistory[actionsHistory.count - 1].boltsCrash = isBoltsCrash
+            actionsHistory.last?.boltsCrash = isBoltsCrash
         case .afterTurn:
-            actionsHistory[actionsHistory.count - 1].firstGameOpening = firstGameOpening
-            actionsHistory[actionsHistory.count - 1].samosvalCrash = isSamosvalCrash
+            actionsHistory.last?.firstGameOpening = firstGameOpening
+            actionsHistory.last?.samosvalCrash = isSamosvalCrash
         }
     }
     
@@ -105,8 +110,8 @@ class Player: Object {
         isBoltsCrash = false
         isSamosvalCrash = false
         pointsHistory = [0]
-        changesPointsHistory = [0]
-        actionsHistory = [.init()]
+        changesPointsHistory.removeAll()
+        actionsHistory.removeAll()
     }
     
     func updateStatsAfterTurn() {

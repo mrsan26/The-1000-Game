@@ -28,15 +28,6 @@ enum DiceSkins {
     }
 }
 
-//enum DieNumber: Int {
-//    case one = 1
-//    case two
-//    case three
-//    case four
-//    case five
-//    case six
-//}
-
 enum DieColors: String {
     case unactive = "unactive"
     case withoutPointsStandart = "withoutPointsStandart"
@@ -45,4 +36,4 @@ enum DieColors: String {
     case withPointsInYama = "withPointsInYama"
 }
 
-var diceSkins: [DiceSkins] = [.standart, .transparent, .numbers, .anime]
+let diceSkins: [DiceSkins] = [.standart, .transparent, .numbers, .anime]

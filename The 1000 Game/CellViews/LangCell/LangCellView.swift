@@ -1,15 +1,15 @@
 //
-//  DieCellView.swift
+//  LangCellView.swift
 //  The 1000 Game
 //
-//  Created by Sanchez on 23.11.2023.
+//  Created by Sanchez on 14.01.2024.
 //
 
 import UIKit
 import SnapKit
 import Combine
 
-class DieCellView: BasicCellView {
+class LangCellView: BasicCellView {
     
     var cancellables: Set<AnyCancellable> = []
     
@@ -17,34 +17,18 @@ class DieCellView: BasicCellView {
         let view = BasicView()
         view.snp.removeConstraints()
         view.backgroundColor = .white.withAlphaComponent(0.5)
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = UIScreen.main.bounds.size.height / 11 / 3
         return view
     }()
     
-    private lazy var contentStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 25
-        stack.distribution = .fill
-        return stack
-    }()
-    
-    private lazy var firstDie: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    private lazy var secondDie: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    private lazy var labelView = UIView()
+    private lazy var langLabel = BasicLabel(font: .RobotronDot, fontSize: 30)
+    private lazy var emojiLabel = BasicLabel(font: .RobotronDot, fontSize: 45)
     
     private lazy var chooseIndicatorView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 20
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseDie)))
+        view.layer.cornerRadius = UIScreen.main.bounds.size.height / 11 / 3
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseLang)))
         return view
     }()
 
@@ -67,28 +51,31 @@ class DieCellView: BasicCellView {
     
     override func makeLayout() {
         self.addSubview(mainView)
-        mainView.addSubview(contentStack)
-        contentStack.addArrangedSubview(firstDie)
-        contentStack.addArrangedSubview(secondDie)
+        labelView.addSubview(langLabel)
+        labelView.addSubview(emojiLabel)
+        mainView.addSubview(labelView)
+        
         mainView.addSubview(chooseIndicatorView)
     }
     
     override func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalTo(UIEdgeInsets(top: 0, left: 12, bottom: 12, right: 12))
+            make.height.equalTo((Int(UIScreen.main.bounds.size.height / 11)))
         }
         
-        contentStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(30)
-            make.bottom.equalToSuperview().offset(-30)
+        labelView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(UIScreen.main.bounds.width / 5)
+            make.trailing.equalToSuperview().offset(-UIScreen.main.bounds.width / 5)
         }
-        
-        let dice = [firstDie, secondDie]
-        dice.forEach { die in
-            die.snp.makeConstraints { make in
-                make.height.width.equalTo(120)
-            }
+        langLabel.snp.makeConstraints { make in
+            make.leading.top.bottom.equalToSuperview()
+            make.trailing.equalTo(emojiLabel).offset(-30)
+        }
+        emojiLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.centerY.equalTo(langLabel)
         }
         
         chooseIndicatorView.snp.makeConstraints { make in
@@ -96,7 +83,7 @@ class DieCellView: BasicCellView {
         }
     }
     
-    @objc private func chooseDie() {
+    @objc private func chooseLang() {
         guard !choosen, let chooseIndex else { return }
         choosen.toggle()
         chooseClosure?(chooseIndex)
@@ -116,9 +103,8 @@ class DieCellView: BasicCellView {
         .store(in: &cancellables)
     }
     
-    func setImages(firstDieImg: UIImage, secondDieImg: UIImage) {
-        self.firstDie.image = firstDieImg
-        self.secondDie.image = secondDieImg
+    func setInfo(langName: String, langEmoji: String) {
+        self.viewModel.setInfo(langName: langName, langEmoji: langEmoji)
     }
     
     func setItemIndex(index: Int) {
@@ -126,6 +112,8 @@ class DieCellView: BasicCellView {
     }
     
     func setViewModel(_ viewModel: ViewModel) {
+        langLabel.setViewModel(viewModel.langLabelVM)
+        emojiLabel.setViewModel(viewModel.emojiLabellVM)
     }
     
 }

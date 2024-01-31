@@ -44,7 +44,13 @@ class WinController: BasicViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOnWinnerView)))
         return view
     }()
-    private lazy var winerEmojiLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 100)
+    private lazy var winGamesLabel = BasicLabel(color: .white.withAlphaComponent(0.8), aligment: .center, font: .InterBlack, fontSize: 190)
+    private lazy var winerEmojiLabel: BasicLabel = {
+        let label = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 100)
+        label.alpha = 0.8
+        return label
+    }()
+//    private lazy var winerEmojiLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 100)
     private lazy var playersInfoLabelsView = UIView()
     private lazy var nameLabel = BasicLabel(aligment: .center, font: .RobotronDot, fontSize: 30)
     private lazy var pointsLabel = BasicLabel(aligment: .center, font: .AlfaSlabOne, fontSize: 30)
@@ -64,6 +70,11 @@ class WinController: BasicViewController {
     }()
     
     private lazy var resetButtonView = UIView()
+    private lazy var statisticButton: BasicButton = {
+        let button = BasicButton(style: .blue, titleFontSize: 16)
+        button.cornerRadius = 16
+        return button
+    }()
     private lazy var resetButton = BasicButton(style: .red, titleFontSize: 18)
     
     private var resetGameClosure: VoidBlock?
@@ -80,6 +91,7 @@ class WinController: BasicViewController {
     
     init(viewModel: WinControllerModel, winnerPlayer: Player, allPlayers: [Player], resetGameClosure: VoidBlock?) {
         self.viewModel = viewModel
+        self.viewModel.allPlayers = allPlayers
         self.viewModel.playersWithoutWinner = allPlayers.filter( { !$0.winStatus } )
         self.viewModel.winnerPlayer = winnerPlayer
         self.resetGameClosure = resetGameClosure
@@ -116,12 +128,14 @@ class WinController: BasicViewController {
         mainContentStack.addArrangedSubview(winnerContentStack)
         winnerContentStack.addArrangedSubview(winWordLabel)
         mainCircleView.addSubview(circleView)
+        circleView.addSubview(winGamesLabel)
         circleView.addSubview(winerEmojiLabel)
         winnerContentStack.addArrangedSubview(mainCircleView)
         playersInfoLabelsView.addSubview(nameLabel)
         playersInfoLabelsView.addSubview(pointsLabel)
         winnerContentStack.addArrangedSubview(playersInfoLabelsView)
         mainContentStack.addArrangedSubview(playersCollection)
+        resetButtonView.addSubview(statisticButton)
         resetButtonView.addSubview(resetButton)
         mainContentStack.addArrangedSubview(resetButtonView)
     }
@@ -140,6 +154,9 @@ class WinController: BasicViewController {
             make.top.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
         }
+        winGamesLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
         winerEmojiLabel.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
@@ -156,8 +173,17 @@ class WinController: BasicViewController {
             make.height.equalTo(154)
         }
         
+        statisticButton.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalTo(resetButton.snp.top).offset(-10)
+            
+            make.centerX.equalToSuperview()
+            make.height.equalTo(50)
+            make.width.equalTo(160)
+        }
+        
         resetButton.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+            make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
         }
     }
@@ -165,13 +191,22 @@ class WinController: BasicViewController {
     //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         self.winWordLabel.setViewModel(viewModel.winWordLabelVM)
+        self.winGamesLabel.setViewModel(viewModel.winGamesLabelVM)
         self.winerEmojiLabel.setViewModel(viewModel.winerEmojiLabelVM)
         self.nameLabel.setViewModel(viewModel.nameLabelVM)
         self.pointsLabel.setViewModel(viewModel.pointsLabelVM)
         self.resetButton.setViewModel(viewModel.resetButtonVM)
         self.viewModel.resetButtonVM.action = { [weak self] in
-            self?.resetGameClosure?()
-            self?.navigationController?.popViewController(animated: true)
+            ConfirmPopupController.show(titleText: "Начать новую партию?", position: .center) { [weak self] in
+                self?.resetGameClosure?()
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+        self.statisticButton.setViewModel(viewModel.statisticButtonVM)
+        self.viewModel.statisticButtonVM.action = { [weak self] in
+            guard let self else { return }
+            let statisticVC = StatisticController(viewModel: .init(), players: self.viewModel.allPlayers)
+            present(statisticVC, animated: true)
         }
     }
     
@@ -207,7 +242,7 @@ extension WinController: UICollectionViewDataSource {
         ) as? BasicCollectionViewCell<PlayerCollectionCell> else { return .init() }
         
         playerCell.mainView.isActive(true)
-        playerCell.mainView.setPlayer(player: viewModel.playersWithoutWinner[indexPath.row])
+        playerCell.mainView.setPlayer(player: viewModel.playersWithoutWinner[indexPath.row], winsCounter: true)
         
         return playerCell
     }

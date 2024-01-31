@@ -27,7 +27,7 @@ class BasicTextField: UIView {
         textField.rightView = UIView(frame: .init(x: self.frame.size.width - 10, y: 0, width: 10, height: 0))
         
         textField.layer.borderWidth = 0
-        textField.layer.cornerRadius = 20
+        textField.layer.cornerRadius = UIScreen.main.bounds.size.height / 11 / 3
         
         textField.backgroundColor = .white.withAlphaComponent(0.3)
         
@@ -41,7 +41,7 @@ class BasicTextField: UIView {
         )
                 
         textField.snp.makeConstraints { make in
-            make.height.equalTo(70)
+            make.height.equalTo((Int(UIScreen.main.bounds.size.height / 11)))
         }
         return textField
     }()

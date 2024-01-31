@@ -22,7 +22,7 @@ class BasicView: UIView {
     
     private func commonInit() {
         self.backgroundColor = .white.withAlphaComponent(0.4)
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = UIScreen.main.bounds.size.height / 11 / 3
         self.clipsToBounds = true
 
         // Применение тени
@@ -34,7 +34,7 @@ class BasicView: UIView {
         self.layer.shadowRadius = 4
         
         self.snp.makeConstraints { make in
-            make.height.equalTo(70)
+            make.height.equalTo((Int(UIScreen.main.bounds.size.height / 11)))
         }
         
         // Настройка тени, чтобы она не отображалась из-за прозрачности самого представления

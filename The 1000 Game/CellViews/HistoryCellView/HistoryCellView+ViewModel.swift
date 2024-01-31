@@ -9,6 +9,7 @@ import Foundation
 
 extension HistoryCellView {
     final class ViewModel {
+        let playerNameLabelVM = BasicLabel.ViewModel(isHidden: true)
         
         let turnNumberLabelVM = BasicLabel.ViewModel()
         let pointsNumberLabelVM = BasicLabel.ViewModel()
@@ -23,7 +24,7 @@ extension HistoryCellView {
         init() {
         }
         
-        func setupLabels(turnNumber: Int, points: Int, changesPoints: Int?, actions: ActionHistoryPoint?) {
+        func setupLabels(turnNumber: Int, points: Int, changesPoints: Int?, actions: ActionHistoryPoint?, playerName: String? = nil) {
             turnNumberLabelVM.textValue = .text(turnNumber.toString())
             pointsNumberLabelVM.textValue = .text(points.toString())
             
@@ -40,8 +41,14 @@ extension HistoryCellView {
                 yamaStatusLabelVM.isHidden = actions.yamaStatus == .none
                 samosvalCrashLabelVM.isHidden = !actions.samosvalCrash
                 
-                guard let yamaName = actions.yamaStatus.name else { return }
-                yamaStatusLabelVM.textValue = .text("\(yamaName) яма")
+                if let yamaName = actions.yamaStatus.name {
+                    yamaStatusLabelVM.textValue = .text("\(yamaName) яма")
+                }
+            }
+            
+            if let playerName {
+                playerNameLabelVM.textValue = .text(playerName)
+                playerNameLabelVM.isHidden = false
             }
         }
         

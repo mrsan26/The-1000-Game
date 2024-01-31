@@ -65,14 +65,16 @@ class BasicButton: PressableButton {
             self.colors = .init(button: UIColor(red: 0.922, green: 0.294, blue: 0.384, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
         case .blue:
             self.colors = .init(button: UIColor(red: 0.227, green: 0.51, blue: 0.969, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
+        case .yellow:
+            self.colors = .init(button: UIColor(red: 0.817, green: 0.801, blue: 0.555, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
         }
         self.setTitleColor(.white, for: .normal)
         
-        self.cornerRadius = 20
+        self.cornerRadius = UIScreen.main.bounds.size.height / 11 / 3
         self.shadowHeight = 4
         
         self.snp.makeConstraints { make in
-            make.height.equalTo(70)
+            make.height.equalTo(Int(UIScreen.main.bounds.size.height / 11))
             make.width.equalTo(200)
         }
     }
@@ -82,6 +84,7 @@ extension BasicButton {
     enum Style {
         case red
         case blue
+        case yellow
     }
 }
 
