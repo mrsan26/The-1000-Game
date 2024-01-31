@@ -86,41 +86,11 @@ class MainGameController: BasicViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fullTurn)))
         return view
     }()
-    private lazy var firstDie = BasicImgView(
-        name: nil,
-        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 1, withColor: .withPointsStandart),
-        height: 70,
-        width: 70,
-        withShadow: true
-    )
-    private lazy var secondDie = BasicImgView(
-        name: nil,
-        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 2, withColor: .withPointsStandart),
-        height: 70,
-        width: 70,
-        withShadow: true
-    )
-    private lazy var thirdDie = BasicImgView(
-        name: nil,
-        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 3, withColor: .withPointsStandart),
-        height: 70,
-        width: 70,
-        withShadow: true
-    )
-    private lazy var fourthDie = BasicImgView(
-        name: nil,
-        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 4, withColor: .withPointsStandart),
-        height: 70,
-        width: 70,
-        withShadow: true
-    )
-    private lazy var fifthDie = BasicImgView(
-        name: nil,
-        image: diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: 5, withColor: .withPointsStandart),
-        height: 70,
-        width: 70,
-        withShadow: true
-    )
+    private lazy var firstDie = BasicImgView()
+    private lazy var secondDie = BasicImgView()
+    private lazy var thirdDie = BasicImgView()
+    private lazy var fourthDie = BasicImgView()
+    private lazy var fifthDie = BasicImgView()
     
     private lazy var commonActionLabelsView = UIView()
     private lazy var centerActionLabelsView = UIView()
@@ -217,11 +187,13 @@ class MainGameController: BasicViewController {
         topView.addSubview(pointsProgressView)
         
         mainContentStack.addArrangedSubview(diceMainView)
-        diceMainView.addSubview(firstDie)
-        diceMainView.addSubview(secondDie)
-        diceMainView.addSubview(thirdDie)
-        diceMainView.addSubview(fourthDie)
-        diceMainView.addSubview(fifthDie)
+        let dice = [firstDie, secondDie, thirdDie, fourthDie, fifthDie]
+        for (index, die) in dice.enumerated() {
+            diceMainView.addSubview(die)
+            die.image = diceSkins[UserManager.read(key: .dieSkinIndex) ?? 0].getDie(number: index + 1, withColor: .withPointsStandart)
+            die.makeConstraints(height: Int(self.view.frame.size.width / 5.2), width: Int(self.view.frame.size.width / 5.2))
+            die.makeShadow(true)
+        }
         
         mainContentStack.addArrangedSubview(commonActionLabelsView)
         commonActionLabelsView.addSubview(centerActionLabelsView)
@@ -240,7 +212,6 @@ class MainGameController: BasicViewController {
             make.leading.equalTo(self.view.safeAreaLayoutGuide).offset(6)
             make.bottom.trailing.equalTo(self.view.safeAreaLayoutGuide).offset(-6)
         }
-        print(self.view.frame.size.height)
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
             make.top.equalToSuperview().offset(6)
@@ -278,7 +249,7 @@ class MainGameController: BasicViewController {
         }
         
         diceMainView.snp.makeConstraints { make in
-            make.height.equalTo(self.view.frame.size.height / 3.2)
+            make.height.equalTo(self.view.frame.size.height / 3)
         }
         firstDie.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -320,7 +291,7 @@ class MainGameController: BasicViewController {
         }
         
         playersCollection.snp.makeConstraints { make in
-            make.height.equalTo(154)
+            make.height.equalTo(Int(UIScreen.main.bounds.size.height / 8) + 54)
         }
     }
     

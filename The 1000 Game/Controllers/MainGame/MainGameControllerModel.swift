@@ -83,7 +83,7 @@ final class MainGameControllerModel: Combinable {
     
     func actionsAfterRoll() {
         if currentPlayer.currentPoints == 0 {
-            currentActionInfoLabelVM.textValue = .text("Не повезло :(")
+            currentActionInfoLabelVM.textValue = .text(BasicMechanics().getRandomFailFrase())
             currentPointsLabelVM.textValue = .text("")
         } else {
             currentActionInfoLabelVM.textValue = .text("Очки за ход:")

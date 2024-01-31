@@ -17,6 +17,7 @@ class DieCellView: BasicCellView {
         let view = BasicView()
         view.snp.removeConstraints()
         view.backgroundColor = .white.withAlphaComponent(0.5)
+        view.layer.cornerRadius = 20
         return view
     }()
     

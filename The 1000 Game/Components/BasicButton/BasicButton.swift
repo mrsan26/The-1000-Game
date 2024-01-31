@@ -70,11 +70,11 @@ class BasicButton: PressableButton {
         }
         self.setTitleColor(.white, for: .normal)
         
-        self.cornerRadius = 20
+        self.cornerRadius = UIScreen.main.bounds.size.height / 11 / 3
         self.shadowHeight = 4
         
         self.snp.makeConstraints { make in
-            make.height.equalTo(70)
+            make.height.equalTo(Int(UIScreen.main.bounds.size.height / 11))
             make.width.equalTo(200)
         }
     }

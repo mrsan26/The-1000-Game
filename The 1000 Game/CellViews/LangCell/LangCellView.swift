@@ -17,6 +17,7 @@ class LangCellView: BasicCellView {
         let view = BasicView()
         view.snp.removeConstraints()
         view.backgroundColor = .white.withAlphaComponent(0.5)
+        view.layer.cornerRadius = UIScreen.main.bounds.size.height / 11 / 3
         return view
     }()
     
@@ -26,7 +27,7 @@ class LangCellView: BasicCellView {
     
     private lazy var chooseIndicatorView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = UIScreen.main.bounds.size.height / 11 / 3
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(chooseLang)))
         return view
     }()
@@ -60,7 +61,7 @@ class LangCellView: BasicCellView {
     override func makeConstraints() {
         mainView.snp.makeConstraints { make in
             make.edges.equalTo(UIEdgeInsets(top: 0, left: 12, bottom: 12, right: 12))
-            make.height.equalTo(70)
+            make.height.equalTo((Int(UIScreen.main.bounds.size.height / 11)))
         }
         
         labelView.snp.makeConstraints { make in

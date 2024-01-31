@@ -92,7 +92,7 @@
 		19E64B142B16254A0037E441 /* inter-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 19E64B132B16254A0037E441 /* inter-medium.otf */; };
 		19E64B172B165EA10037E441 /* ConfirmPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B162B165EA00037E441 /* ConfirmPopupController.swift */; };
 		19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */; };
-		19E7628F2B47807E00E2E9BD /* Yama.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E7628E2B47807E00E2E9BD /* Yama.swift */; };
+		19E7628F2B47807E00E2E9BD /* YamaEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E7628E2B47807E00E2E9BD /* YamaEnum.swift */; };
 		19F628092B28CF650003F85C /* Ext ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F628082B28CF650003F85C /* Ext ProgressView.swift */; };
 		19F720DB2B2E3CDA00CCFE7F /* PressableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F720DA2B2E3CDA00CCFE7F /* PressableButton.swift */; };
 		D6408BB60E8899C145D6716D /* Pods_The_1000_Game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */; };
@@ -186,7 +186,7 @@
 		19E64B132B16254A0037E441 /* inter-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "inter-medium.otf"; sourceTree = "<group>"; };
 		19E64B162B165EA00037E441 /* ConfirmPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupController.swift; sourceTree = "<group>"; };
 		19E64B182B165EB50037E441 /* ConfirmPopupControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupControllerModel.swift; sourceTree = "<group>"; };
-		19E7628E2B47807E00E2E9BD /* Yama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yama.swift; sourceTree = "<group>"; };
+		19E7628E2B47807E00E2E9BD /* YamaEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamaEnum.swift; sourceTree = "<group>"; };
 		19F628082B28CF650003F85C /* Ext ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext ProgressView.swift"; sourceTree = "<group>"; };
 		19F720DA2B2E3CDA00CCFE7F /* PressableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableButton.swift; sourceTree = "<group>"; };
 		82675C1BB04D991236B1CA07 /* Pods_The_1000_Game.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_1000_Game.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,11 +359,11 @@
 				194D8D4E2AE95D7700A42DFC /* CombinableModel.swift */,
 				194D8D942AF462D800A42DFC /* FontValue.swift */,
 				194D8D632AEA635D00A42DFC /* TextValue.swift */,
+				19E7628E2B47807E00E2E9BD /* YamaEnum.swift */,
 				194D8D602AEA630900A42DFC /* Typealias.swift */,
 				19CDC7512B0EE80C00A1B6D9 /* ValidationRules.swift */,
 				19E64B0F2B155DD80037E441 /* Vibration.swift */,
 				19743FC72B3F8A3C00EF6B95 /* Methods.swift */,
-				19E7628E2B47807E00E2E9BD /* Yama.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -728,7 +728,7 @@
 				19F720DB2B2E3CDA00CCFE7F /* PressableButton.swift in Sources */,
 				19CDC7522B0EE80C00A1B6D9 /* ValidationRules.swift in Sources */,
 				19CDC7592B0FA02A00A1B6D9 /* DiceControllerModel.swift in Sources */,
-				19E7628F2B47807E00E2E9BD /* Yama.swift in Sources */,
+				19E7628F2B47807E00E2E9BD /* YamaEnum.swift in Sources */,
 				19E64B102B155DD80037E441 /* Vibration.swift in Sources */,
 				194D8D952AF462D800A42DFC /* FontValue.swift in Sources */,
 				19463A742AFB60D7003B1908 /* BasicSwitcher+ViewModel.swift in Sources */,
@@ -932,6 +932,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -941,9 +942,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "sanchez.The-1000-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -963,6 +966,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -972,9 +976,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "sanchez.The-1000-Game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -117,4 +117,8 @@ struct BasicMechanics {
         }
         return emojies.randomElement() ?? emojiArray.randomElement()!
     }
+    
+    func getRandomFailFrase() -> String {
+        return ["Не повезло :(", "Ну, бывает...", "И такое случается :|", "Главное не сдаваться!", "Еще повезет!", "Всякое может быть...", "Пу-пу-пууу..."].randomElement()!
+    }
 }
