@@ -10,8 +10,8 @@ import Foundation
 final class ConfirmPopupControllerModel: Combinable {
     
     let titleLabelVM = BasicLabel.ViewModel()
-    let confirmButtonVM = BasicButton.ViewModel(title: "Да")
-    let cancelButtonVM = BasicButton.ViewModel(title: "Отмена")
+    let confirmButtonVM = BasicButton.ViewModel(title: AppLanguage.vcPopupConfirm.localized)
+    let cancelButtonVM = BasicButton.ViewModel(title: AppLanguage.vcPopupCancel.localized)
         
     override init() {
         super.init()

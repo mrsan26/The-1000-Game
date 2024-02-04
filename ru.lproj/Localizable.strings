@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  The 1000 Game
+
+  Created by Sanchez on 01.02.2024.
+  
+*/
+
+"vc.mainMenu.langButton" = "Ru";
+"vc.mainMenu.playersView" = "Игроки";
+"vc.mainMenu.diceView" = "Кубики";
+"vc.mainMenu.bochkiView" = "Бочки";
+"vc.mainMenu.startButton" = "Начать";
+
+"vc.lang.title" = "Языки";
+
+"vc.rools.title" = "Правила";
+
+"vc.playersAmount.title" = "Игроки";
+"vc.playersAmount.namesButton" = "Имена";
+
+"vc.playerNames.title" = "Имена";
+"vc.playerNames.clearButton" = "Очистить";
+"vc.playerNames.randomOrderLabel" = "Случайный порядок игроков";
+"vc.playerNames.confirmPopup.title" = "Удалить всех игроков?";
+
+"player.defaultName" = "Игрок %@";
+
+"vc.dice.title" = "Кубики";
+
+"vc.mainGame.endOfTurnButton" = "Конец хода";
+"vc.mainGame.currentActionInfoLabel.dice" = "Бросайте кубики";
+"vc.mainGame.currentActionInfoLabel.points" = "Очки за ход:";
+"vc.mainGame.confirmPopup.title" = "Выйти из игры?";
+
+"vc.history.turnNumberLabel" = "Ход";
+"vc.history.pointsNumberLabel" = "Очки";
+"vc.history.pointsChangesNumber" = "Изменения";
+
+"vc.win.winWordLabel" = "Победа";
+"vc.win.resetButton" = "Новая партия";
+"vc.win.statisticButton" = "Статистика";
+"vc.win.newGamePopup" = "Начать новую партию?";
+
+"vc.statistic.title" = "Общая статистика";
+
+"vc.popup.confirm" = "Ок";
+"vc.popup.cancel" = "Отмена";
+
+"vc.renamePopup.placeholder" = "Введите имя";
+"vc.renamePopup.errorText" = "Введите имя от 2 до 10 символов";
+"vc.renamePopup.titleLabel" = "Переименование Игрока";
+"vc.renamePopup.titleLabelCustomPlayer" = "Переименование %@";

@@ -16,5 +16,7 @@ extension BasicLabel {
             self.textValue = textValue
             self.isHidden = isHidden
         }
+        
+        
     }
 }

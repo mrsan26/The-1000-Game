@@ -9,13 +9,13 @@ import Foundation
 
 final class WinControllerModel: Combinable {
     
-    let winWordLabelVM = BasicLabel.ViewModel(textValue: .text("Победа"))
+    let winWordLabelVM = BasicLabel.ViewModel(textValue: .text(AppLanguage.vcWinWinWordLabel.localized))
     let winGamesLabelVM = BasicLabel.ViewModel()
     let winerEmojiLabelVM = BasicLabel.ViewModel()
     let nameLabelVM = BasicLabel.ViewModel()
     let pointsLabelVM = BasicLabel.ViewModel()
-    let resetButtonVM = BasicButton.ViewModel(title: "Новая партия")
-    let statisticButtonVM = BasicButton.ViewModel(title: "Статистика")
+    let resetButtonVM = BasicButton.ViewModel(title: AppLanguage.vcWinResetButton.localized)
+    let statisticButtonVM = BasicButton.ViewModel(title: AppLanguage.vcWinStatisticButton.localized)
     
     var allPlayers: [Player] = []
     var playersWithoutWinner: [Player] = []

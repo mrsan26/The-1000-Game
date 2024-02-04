@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  The 1000 Game
+
+  Created by Sanchez on 01.02.2024.
+  
+*/
+
+"vc.mainMenu.langButton" = "En";
+"vc.mainMenu.playersView" = "Players";
+"vc.mainMenu.diceView" = "Dice";
+"vc.mainMenu.bochkiView" = "Barrels";
+"vc.mainMenu.startButton" = "Start";
+
+"vc.lang.title" = "Languages";
+
+"vc.rools.title" = "Rools";
+
+"vc.playersAmount.title" = "Players";
+"vc.playersAmount.namesButton" = "Names";

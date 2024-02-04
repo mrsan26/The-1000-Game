@@ -28,7 +28,7 @@ class LangController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Языки"
+        title = AppLanguage.vcLangTitle.localized
     }
     
     init(viewModel: LangControllerModel) {
@@ -50,8 +50,12 @@ class LangController: BasicViewController {
         }
     }
     
-    //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
+    }
+    
+    private func changeLanguage() {
+        NotificationCenter.default.post(name: Notification.Name("languageChanged"), object: nil)
+        title = AppLanguage.vcLangTitle.localized
     }
 }
 
@@ -64,7 +68,7 @@ extension LangController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BasicTableCell<LangCellView>.self), for: indexPath)
         guard let langCell = cell as? BasicTableCell<LangCellView> else { return UITableViewCell() }
         
-        if UserManager.read(key: .languages) ?? 0 == indexPath.row {
+        if UserManager.read(key: .language) ?? 0 == indexPath.row {
             langCell.mainView.choosen.toggle()
         }
         
@@ -75,13 +79,14 @@ extension LangController: UITableViewDataSource {
             langEmoji: languages[indexPath.row].emoji
         )
         
-        langCell.mainView.chooseClosure = { choosenIndex in
-            UserManager.write(value: choosenIndex, for: .languages)
+        langCell.mainView.chooseClosure = { [weak self] choosenIndex in
+            UserManager.write(value: choosenIndex, for: .language)
             for (index, _) in languages.enumerated() where index != choosenIndex {
                 let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
                 guard let notChoosenCell = cell as? BasicTableCell<LangCellView> else { return }
                 notChoosenCell.mainView.choosen = false
             }
+            self?.changeLanguage()
         }
         
         return langCell

@@ -103,7 +103,7 @@ class MainMenuController: BasicViewController {
         let langLabel: UILabel = {
             let label = UILabel()
             label.textColor = .white
-            label.text = "Ru"
+            label.text = AppLanguage.vcMainMenuLangButton.localized
             label.font = UIFont(name: "inter-black", size: 26)
             return label
         }()
@@ -228,7 +228,6 @@ class MainMenuController: BasicViewController {
         }
     }
     
-    //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         self.startGameButton.setViewModel(viewModel.startGameButton)
         self.viewModel.startGameButton.action = { [weak self] in
@@ -242,6 +241,10 @@ class MainMenuController: BasicViewController {
         self.dicesChoiseLabel.setViewModel(viewModel.dicesChoiseLabelVM)
         self.bochkiLabel.setViewModel(viewModel.bochkiLabelVM)
         self.botsLabel.setViewModel(viewModel.botsLabelVM)
+    }
+    
+    override func setStrings() {
+        viewModel.updateLabels()
     }
 
 }

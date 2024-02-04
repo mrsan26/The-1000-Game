@@ -75,7 +75,7 @@ class PlayerNamesController: BasicViewController {
         let plusButton = UIBarButtonItem(customView: mainView)
         navigationItem.rightBarButtonItem = plusButton
         
-        title = "Имена"
+        title = AppLanguage.vcPlayerNamesTitle.localized
     }
     
     @objc private func plusPlayerAction() {
@@ -136,7 +136,7 @@ class PlayerNamesController: BasicViewController {
         
         self.deleteAllButton.setViewModel(viewModel.deleteAllButtonVM)
         self.viewModel.deleteAllButtonVM.action = { [weak self] in
-            ConfirmPopupController.show(titleText: "Удалить всех игроков?", position: .center) { [weak self] in
+            ConfirmPopupController.show(titleText: AppLanguage.vcPlayerNamesConfirmPopupTitle.localized, position: .center) { [weak self] in
                 self?.viewModel.deleteAllPlayers()
                 self?.playersTableView.reloadDataWithAnimation()
             }

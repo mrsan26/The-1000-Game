@@ -337,7 +337,7 @@ class MainGameController: BasicViewController {
     }
 
     @objc private func backAction() {
-        ConfirmPopupController.show(titleText: "Выйти из игры?", position: .center) { [weak self] in
+        ConfirmPopupController.show(titleText: AppLanguage.vcMainGameConfirmPopupTitle.localized, position: .center) { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
         Vibration.viewTap.vibrate()

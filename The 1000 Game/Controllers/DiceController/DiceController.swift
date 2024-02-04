@@ -28,7 +28,7 @@ class DiceController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Кубики"
+        title = AppLanguage.vcDiceTitle.localized
     }
     
     init(viewModel: DiceControllerModel) {
@@ -50,7 +50,6 @@ class DiceController: BasicViewController {
         }
     }
     
-    //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         
     }

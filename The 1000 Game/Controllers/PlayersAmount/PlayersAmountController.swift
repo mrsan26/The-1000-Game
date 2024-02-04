@@ -28,7 +28,7 @@ class PlayersAmountController: BasicViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Игроки"
+        title = AppLanguage.vcPlayersAmountTitle.localized
         
         playersAmountPicker.dataSource = self
         playersAmountPicker.delegate = self
@@ -87,7 +87,6 @@ class PlayersAmountController: BasicViewController {
         }
     }
     
-    //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         self.playerNamesButton.setViewModel(viewModel.playerNamesButtonVM)
         self.viewModel.playerNamesButtonVM.action = { [weak self] in
