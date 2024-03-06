@@ -31,7 +31,7 @@ class RoolsController: BasicPresentController {
         super.viewDidLoad()
         makeLayout()
         makeConstraints()
-        makeTitle(text: "Правила")
+        makeTitle(text: AppLanguage.vcRoolsTitle.localized)
     }
     
     init(viewModel: RoolsControllerModel) {

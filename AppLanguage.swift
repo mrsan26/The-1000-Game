@@ -49,7 +49,7 @@ struct AppLanguage {
     static let vcPopupConfirm = "vc.popup.confirm"
     static let vcPopupCancel = "vc.popup.cancel"
     
-    static let vcRenamePopupPlaceholder = "vcRenamePopupPlaceholder"
+    static let vcRenamePopupPlaceholder = "vc.renamePopup.placeholder"
     static let vcRenamePopupErrorText = "vc.renamePopup.errorText"
     static let vcRenamePopupTitleLabel = "vc.renamePopup.titleLabel"
     static let vcRenamePopupTitleLabelCustomPlayer = "vc.renamePopup.titleLabelCustomPlayer"

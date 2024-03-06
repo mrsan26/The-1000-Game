@@ -14,7 +14,40 @@
 
 "vc.lang.title" = "Languages";
 
-"vc.rools.title" = "Rools";
+"vc.rools.title" = "Rules";
 
 "vc.playersAmount.title" = "Players";
 "vc.playersAmount.namesButton" = "Names";
+
+"vc.playerNames.title" = "Names";
+"vc.playerNames.clearButton" = "Clear";
+"vc.playerNames.randomOrderLabel" = "Randomize players order";
+"vc.playerNames.confirmPopup.title" = "Delete all players?";
+
+"player.defaultName" = "Player %@";
+
+"vc.dice.title" = "Dice";
+
+"vc.mainGame.endOfTurnButton" = "End Turn";
+"vc.mainGame.currentActionInfoLabel.dice" = "Roll the dice";
+"vc.mainGame.currentActionInfoLabel.points" = "Points for turn:";
+"vc.mainGame.confirmPopup.title" = "Exit the game?";
+
+"vc.history.turnNumberLabel" = "Turn";
+"vc.history.pointsNumberLabel" = "Points";
+"vc.history.pointsChangesNumber" = "Changes";
+
+"vc.win.winWordLabel" = "Win";
+"vc.win.resetButton" = "New Game";
+"vc.win.statisticButton" = "Statistics";
+"vc.win.newGamePopup" = "Start a new game?";
+
+"vc.statistic.title" = "General Statistics";
+
+"vc.popup.confirm" = "OK";
+"vc.popup.cancel" = "Cancel";
+
+"vc.renamePopup.placeholder" = "Enter name";
+"vc.renamePopup.errorText" = "Enter a name from 2 to 10 characters";
+"vc.renamePopup.titleLabel" = "Rename Player";
+"vc.renamePopup.titleLabelCustomPlayer" = "Rename %@";
