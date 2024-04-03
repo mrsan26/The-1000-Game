@@ -14,9 +14,8 @@ final class MainGameControllerModel: Combinable {
     let pointsLabelVM = BasicLabel.ViewModel()
     
     let currentActionInfoLabelVM = BasicLabel.ViewModel()
-    let currentPointsLabelVM = BasicLabel.ViewModel()
     
-    let endOfTurnButtonVM = BasicButton.ViewModel(title: "Конец хода")
+    let endOfTurnButtonVM = BasicButton.ViewModel(title: AppLanguage.vcMainGameEndOfTurnButton.localized)
     
     var players: [Player] = []
     var currentPlayer: Player {
@@ -36,7 +35,7 @@ final class MainGameControllerModel: Combinable {
             for _ in 1...amountOfPlayers - players.count {
                 let uniqID = BasicMechanics().getUniqPlayerID(players: players)
                 let player: Player = .init(
-                    name: "Игрок \(uniqID)",
+                    name: AppLanguage.playerDefaultName.localized(uniqID.toString()),
                     numberID: uniqID,
                     positionNumber: players.count,
                     emoji: BasicMechanics().getUniqEmoji(players: players)
@@ -70,8 +69,7 @@ final class MainGameControllerModel: Combinable {
         nameLabelVM.textValue = .text("\(currentPlayer.name)")
         pointsLabelVM.textValue = .text(currentPlayer.points.toString())
         
-        currentActionInfoLabelVM.textValue = .text("Бросайте кубики")
-        currentPointsLabelVM.textValue = .text("")
+        currentActionInfoLabelVM.textValue = .text(AppLanguage.vcMainGameCurrentActionInfoLabelDice.localized)
         
         // инициализация позиции и обновление обгона
         currentPlayer.addChangesPointInHistory(forPoint: .beforeTurn)
@@ -82,12 +80,24 @@ final class MainGameControllerModel: Combinable {
     }
     
     func actionsAfterRoll() {
+        var commonText = ""
         if currentPlayer.currentPoints == 0 {
-            currentActionInfoLabelVM.textValue = .text(BasicMechanics().getRandomFailFrase())
-            currentPointsLabelVM.textValue = .text("")
+            commonText = BasicMechanics().getRandomFailFrase()
+            currentActionInfoLabelVM.textValue = .text(commonText)
         } else {
-            currentActionInfoLabelVM.textValue = .text("Очки за ход:")
-            currentPointsLabelVM.textValue = .text(currentPlayer.currentPoints.toString())
+            commonText = AppLanguage.vcMainGameCurrentActionInfoLabelPoints.localized + "   " + currentPlayer.currentPoints.toString()
+            
+            let attributedString = NSMutableAttributedString(string: commonText)
+            if let range = commonText.range(of: ":") {
+                // Применяем разные стили к разным частям текста
+                attributedString.addAttribute(.font,
+                                              value: UIFont(name: "robotrondotmatrix", size: 20)!,
+                                              range: NSRange(location: 0, length: range.lowerBound.utf16Offset(in: commonText)))
+                attributedString.addAttribute(.font,
+                                              value: UIFont(name: "AlfaSlabOne-Regular", size: 20)!,
+                                              range: NSRange(location: range.lowerBound.utf16Offset(in: commonText) + 1, length: commonText.count - range.lowerBound.utf16Offset(in: commonText) - 1))
+            }
+            currentActionInfoLabelVM.textValue = .attributed(attributedString)
         }
         
         if currentPlayer.isBoltsCrash {

@@ -188,7 +188,6 @@ class WinController: BasicViewController {
         }
     }
     
-    //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     override func binding() {
         self.winWordLabel.setViewModel(viewModel.winWordLabelVM)
         self.winGamesLabel.setViewModel(viewModel.winGamesLabelVM)
@@ -197,7 +196,7 @@ class WinController: BasicViewController {
         self.pointsLabel.setViewModel(viewModel.pointsLabelVM)
         self.resetButton.setViewModel(viewModel.resetButtonVM)
         self.viewModel.resetButtonVM.action = { [weak self] in
-            ConfirmPopupController.show(titleText: "Начать новую партию?", position: .center) { [weak self] in
+            ConfirmPopupController.show(titleText: AppLanguage.vcWinNewGamePopup.localized, position: .center) { [weak self] in
                 self?.resetGameClosure?()
                 self?.navigationController?.popViewController(animated: true)
             }
@@ -222,7 +221,7 @@ class WinController: BasicViewController {
     }
     
     @objc private func backAction() {
-        ConfirmPopupController.show(titleText: "Выйти из игры?", position: .center) { [weak self] in
+        ConfirmPopupController.show(titleText: AppLanguage.vcMainGameConfirmPopupTitle.localized, position: .center) { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
         Vibration.viewTap.vibrate()

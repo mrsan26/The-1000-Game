@@ -9,8 +9,8 @@ import Foundation
 
 final class PlayerNamesControllerModel: Combinable {
     
-    let randomOrderLabelVM = BasicLabel.ViewModel(textValue: .text("Случайный порядок игроков"))
-    let deleteAllButtonVM = BasicButton.ViewModel(title: "Очистить")
+    let randomOrderLabelVM = BasicLabel.ViewModel(textValue: .text(AppLanguage.vcPlayerNamesRandomOrderLabel.localized))
+    let deleteAllButtonVM = BasicButton.ViewModel(title: AppLanguage.vcPlayerNamesClearButton.localized)
     let randomOrderSwitcherVM = BasicSwitcher.ViewModel(state: UserManager.read(key: .randomOrderPlayers))
     
     var players: [Player] = []
@@ -55,7 +55,7 @@ final class PlayerNamesControllerModel: Combinable {
             for _ in 1...amountOfPlayers - players.count {
                 let uniqID = BasicMechanics().getUniqPlayerID(players: players)
                 let player: Player = .init(
-                    name: "Игрок \(uniqID)",
+                    name: AppLanguage.playerDefaultName.localized(uniqID.toString()),
                     numberID: uniqID,
                     positionNumber: players.count,
                     emoji: BasicMechanics().getUniqEmoji(players: players)
@@ -77,7 +77,7 @@ final class PlayerNamesControllerModel: Combinable {
     func addPlayer() {
         let uniqID = BasicMechanics().getUniqPlayerID(players: players)
         let player: Player = .init(
-            name: "Игрок \(uniqID)",
+            name: AppLanguage.playerDefaultName.localized(uniqID.toString()),
             numberID: uniqID,
             positionNumber: players.count - 1,
             emoji: BasicMechanics().getUniqEmoji(players: players)
@@ -85,13 +85,6 @@ final class PlayerNamesControllerModel: Combinable {
         RealmManager().write(player)
         updatePlayersArray()
     }
-    
-//    func renamePlayer(player: Player, endRenamingClosure: VoidBlock?) {
-//        RenamePopupController.show(playerForEditing: player) {
-//            self.updatePlayersArray()
-//            endRenamingClosure?()
-//        }
-//    }
     
     func deletePlayer(player: Player) {
         RealmManager<Player>().delete(object: player)

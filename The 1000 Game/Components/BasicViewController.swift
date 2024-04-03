@@ -18,6 +18,8 @@ class BasicViewController: UIViewController {
         makeLayout()
         makeConstraints()
         binding()
+        setLanguageObserver()
+        setStrings()
     }
 
     init() {
@@ -55,6 +57,16 @@ class BasicViewController: UIViewController {
         gradientLayer.frame = view.bounds
         self.view.layer.addSublayer(gradientLayer)
     }
+    
+    private func setLanguageObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setStrings),
+            name: Notification.Name("languageChanged"),
+            object: nil)
+    }
+    
+    @objc func setStrings() {}
     
     @objc private func roolsAction() {
         let roolsVC = RoolsController(viewModel: .init())

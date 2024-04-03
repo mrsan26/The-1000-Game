@@ -9,7 +9,7 @@ import Foundation
 
 final class PlayersAmountControllerModel: Combinable {
     
-    let playerNamesButtonVM = BasicButton.ViewModel(title: "Имена")
+    let playerNamesButtonVM = BasicButton.ViewModel(title: AppLanguage.vcPlayersAmountNamesButton.localized)
     
     var players: [Player] = []
     
@@ -34,7 +34,7 @@ final class PlayersAmountControllerModel: Combinable {
             for _ in 1...amountOfPlayers - players.count {
                 let uniqID = BasicMechanics().getUniqPlayerID(players: players)
                 let player: Player = .init(
-                    name: "Игрок \(uniqID)",
+                    name: AppLanguage.playerDefaultName.localized(uniqID.toString()),
                     numberID: uniqID,
                     positionNumber: players.count,
                     emoji: BasicMechanics().getUniqEmoji(players: players)

@@ -44,7 +44,7 @@ class StatisticController: BasicPresentController {
         super.viewDidLoad()
         makeLayout()
         makeConstraints()
-        makeTitle(text: "Общая статистика")
+        makeTitle(text: AppLanguage.vcStatisticTitle.localized)
         setupChartView(players: players)
     }
     

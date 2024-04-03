@@ -10,8 +10,11 @@ import UIKit
 
 class BasicView: UIView {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    var standartSize = true
+    
+    init(standartSize: Bool = true) {
+        super.init(frame: .zero)
+        self.standartSize = standartSize
         commonInit()
     }
     
@@ -33,8 +36,10 @@ class BasicView: UIView {
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
         self.layer.shadowRadius = 4
         
-        self.snp.makeConstraints { make in
-            make.height.equalTo((Int(UIScreen.main.bounds.size.height / 11)))
+        if standartSize {
+            self.snp.makeConstraints { make in
+                make.height.equalTo((Int(UIScreen.main.bounds.size.height / 11)))
+            }
         }
         
         // Настройка тени, чтобы она не отображалась из-за прозрачности самого представления

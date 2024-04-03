@@ -119,6 +119,24 @@ struct BasicMechanics {
     }
     
     func getRandomFailFrase() -> String {
-        return ["Не повезло :(", "Ну, бывает...", "И такое случается :|", "Главное не сдаваться!", "Еще повезет!", "Всякое может быть...", "Пу-пу-пууу..."].randomElement()!
+        let selectedLanguage = Languages(rawValue: UserManager.read(key: .language) ?? 0)
+        switch selectedLanguage {
+        case .rus, nil:
+            return ["Не повезло :(", 
+                    "Ну, бывает...",
+                    "И такое случается :|",
+                    "Главное не сдаваться!",
+                    "Еще повезет!",
+                    "Всякое может быть...",
+                    "Пу-пу-пууу..."].randomElement()!
+        case .eng:
+            return ["Unlucky :(", 
+                    "Well, it happens...",
+                    "And such things happens :|",
+                    "The main thing is not to give up!",
+                    "Better luck next time!",
+                    "Shit happens...",
+                    "Wooow..."].randomElement()!
+        }
     }
 }

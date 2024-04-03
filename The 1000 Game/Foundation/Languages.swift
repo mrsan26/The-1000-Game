@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum Languages {
-    case rus
-    case eng
+enum Languages: Int {
+    case rus = 0
+    case eng = 1
     
     var name: String {
         switch self {
@@ -26,6 +26,15 @@ enum Languages {
             return "🇷🇺"
         case .eng:
             return "🇬🇧"
+        }
+    }
+    
+    var langSystemName: String {
+        switch self {
+        case .rus:
+            return "ru"
+        case .eng:
+            return "en"
         }
     }
 }

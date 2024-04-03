@@ -93,9 +93,7 @@ class MainGameController: BasicViewController {
     private lazy var fifthDie = BasicImgView()
     
     private lazy var commonActionLabelsView = UIView()
-    private lazy var centerActionLabelsView = UIView()
-    private lazy var currentActionInfoLabel = BasicLabel(font: .RobotronDot, fontSize: 20)
-    private lazy var currentPointsLabel = BasicLabel(font: .AlfaSlabOne, fontSize: 20)
+    private lazy var currentActionInfoLabel = BasicLabel(aligment: .center, font: .RobotronDot, fontSize: 20)
     
     private lazy var playersCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -196,9 +194,7 @@ class MainGameController: BasicViewController {
         }
         
         mainContentStack.addArrangedSubview(commonActionLabelsView)
-        commonActionLabelsView.addSubview(centerActionLabelsView)
-        centerActionLabelsView.addSubview(currentActionInfoLabel)
-        centerActionLabelsView.addSubview(currentPointsLabel)
+        commonActionLabelsView.addSubview(currentActionInfoLabel)
         
         mainContentStack.addArrangedSubview(playersCollection)
         
@@ -271,18 +267,9 @@ class MainGameController: BasicViewController {
             make.trailing.equalToSuperview().offset(-30)
         }
         
-        centerActionLabelsView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.top.bottom.equalToSuperview()
-        }
         currentActionInfoLabel.snp.makeConstraints { make in
-            make.leading.top.bottom.equalToSuperview()
-            make.trailing.equalTo(currentPointsLabel.snp.leading).offset(-10)
-        }
-        currentPointsLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(currentActionInfoLabel)
-            make.trailing.equalToSuperview()
-            make.leading.equalTo(currentActionInfoLabel.snp.trailing).offset(10)
+            make.edges.equalTo(UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
+            make.height.equalTo(28)
         }
         
         endOfTurnButton.snp.makeConstraints { make in
@@ -301,7 +288,7 @@ class MainGameController: BasicViewController {
         self.pointsLabel.setViewModel(viewModel.pointsLabelVM)
         
         self.currentActionInfoLabel.setViewModel(viewModel.currentActionInfoLabelVM)
-        self.currentPointsLabel.setViewModel(viewModel.currentPointsLabelVM)
+//        self.currentPointsLabel.setViewModel(viewModel.currentPointsLabelVM)
         
         self.endOfTurnButton.setViewModel(viewModel.endOfTurnButtonVM)
         self.viewModel.endOfTurnButtonVM.action = { [weak self] in
@@ -337,7 +324,7 @@ class MainGameController: BasicViewController {
     }
 
     @objc private func backAction() {
-        ConfirmPopupController.show(titleText: "Выйти из игры?", position: .center) { [weak self] in
+        ConfirmPopupController.show(titleText: AppLanguage.vcMainGameConfirmPopupTitle.localized, position: .center) { [weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }
         Vibration.viewTap.vibrate()

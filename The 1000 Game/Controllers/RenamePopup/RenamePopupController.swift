@@ -87,10 +87,12 @@ class RenamePopupController: UIViewController {
         }
     }
 
-    //  Функция биндинг отвечает за связывание компонентов со вьюМоделью
     private func binding() {
         self.titleLabel.setViewModel(viewModel.titleLabelVM)
-        self.viewModel.titleLabelVM.textValue = .text("Переименование \(playerForEditing?.name ?? "Игрока")")
+        if let name = playerForEditing?.name {
+            self.viewModel.titleLabelVM.textValue = .text(AppLanguage.vcRenamePopupTitleLabelCustomPlayer.localized(name))
+        }
+//        self.viewModel.titleLabelVM.textValue = .text("Переименование \(playerForEditing?.name ?? "Игрока")")
         
         self.textField.setViewModel(viewModel.textFieldVM)
         

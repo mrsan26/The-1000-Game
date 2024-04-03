@@ -9,10 +9,10 @@ import Foundation
 
 final class RenamePopupControllerModel: Combinable {
     
-    let titleLabelVM = BasicLabel.ViewModel(textValue: .text("Переименование Игрока"))
-    let textFieldVM = BasicTextField.ViewModel(errorText: "Введите имя от 2 до 10 символов", placeholder: "Введите имя")
-    let confirmButtonVM = BasicButton.ViewModel(title: "Ок")
-    let cancelButtonVM = BasicButton.ViewModel(title: "Отмена")
+    let titleLabelVM = BasicLabel.ViewModel(textValue: .text(AppLanguage.vcRenamePopupTitleLabel.localized))
+    let textFieldVM = BasicTextField.ViewModel(errorText: AppLanguage.vcRenamePopupErrorText.localized, placeholder: AppLanguage.vcRenamePopupPlaceholder.localized)
+    let confirmButtonVM = BasicButton.ViewModel(title: AppLanguage.vcPopupConfirm.localized)
+    let cancelButtonVM = BasicButton.ViewModel(title: AppLanguage.vcPopupCancel.localized)
         
     override init() {
         super.init()

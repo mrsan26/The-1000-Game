@@ -14,7 +14,7 @@ final class UserManager {
         case amountOfPlayers
         case randomOrderPlayers
         case dieSkinIndex
-        case languages
+        case language
     }
     
     static func read(key: Keys) -> Bool {
