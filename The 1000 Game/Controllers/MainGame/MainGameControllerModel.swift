@@ -70,7 +70,6 @@ final class MainGameControllerModel: Combinable {
         pointsLabelVM.textValue = .text(currentPlayer.points.toString())
         
         currentActionInfoLabelVM.textValue = .text(AppLanguage.vcMainGameCurrentActionInfoLabelDice.localized)
-        currentPointsLabelVM.textValue = .text("")
         
         // инициализация позиции и обновление обгона
         currentPlayer.addChangesPointInHistory(forPoint: .beforeTurn)
