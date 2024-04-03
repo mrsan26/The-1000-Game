@@ -60,6 +60,12 @@
 		196E2E902B2CB4D30076EA65 /* Ext Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E2E8F2B2CB4D30076EA65 /* Ext Double.swift */; };
 		196E2E922B2CC1AE0076EA65 /* BasicCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E2E912B2CC1AE0076EA65 /* BasicCellView.swift */; };
 		19743FC82B3F8A3C00EF6B95 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19743FC72B3F8A3C00EF6B95 /* Methods.swift */; };
+		19929B542BBD9D8F00F5CF50 /* AboutGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B532BBD9D8F00F5CF50 /* AboutGameController.swift */; };
+		19929B562BBD9DE900F5CF50 /* AboutGameControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B552BBD9DE900F5CF50 /* AboutGameControllerModel.swift */; };
+		19929B592BBDCA4B00F5CF50 /* InfoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B582BBDCA4B00F5CF50 /* InfoCellView.swift */; };
+		19929B5B2BBDCA7700F5CF50 /* InfoCellView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B5A2BBDCA7700F5CF50 /* InfoCellView+ViewModel.swift */; };
+		19929B5D2BBDE9AE00F5CF50 /* SettableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B5C2BBDE9AD00F5CF50 /* SettableProtocol.swift */; };
+		19929B5F2BBDE9E400F5CF50 /* MenuEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B5E2BBDE9E400F5CF50 /* MenuEnum.swift */; };
 		19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7382B0BCED900A1B6D9 /* RealmManager.swift */; };
 		19CDC73B2B0BD03400A1B6D9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73A2B0BD03400A1B6D9 /* UserManager.swift */; };
 		19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */; };
@@ -157,6 +163,12 @@
 		196E2E8F2B2CB4D30076EA65 /* Ext Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext Double.swift"; sourceTree = "<group>"; };
 		196E2E912B2CC1AE0076EA65 /* BasicCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCellView.swift; sourceTree = "<group>"; };
 		19743FC72B3F8A3C00EF6B95 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
+		19929B532BBD9D8F00F5CF50 /* AboutGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutGameController.swift; sourceTree = "<group>"; };
+		19929B552BBD9DE900F5CF50 /* AboutGameControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutGameControllerModel.swift; sourceTree = "<group>"; };
+		19929B582BBDCA4B00F5CF50 /* InfoCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCellView.swift; sourceTree = "<group>"; };
+		19929B5A2BBDCA7700F5CF50 /* InfoCellView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfoCellView+ViewModel.swift"; sourceTree = "<group>"; };
+		19929B5C2BBDE9AD00F5CF50 /* SettableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettableProtocol.swift; sourceTree = "<group>"; };
+		19929B5E2BBDE9E400F5CF50 /* MenuEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEnum.swift; sourceTree = "<group>"; };
 		19CDC7382B0BCED900A1B6D9 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		19CDC73A2B0BD03400A1B6D9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojies.swift; sourceTree = "<group>"; };
@@ -312,6 +324,7 @@
 				194D8D6F2AEC03F500A42DFC /* Rools */,
 				194D8D762AEC080F00A42DFC /* Win */,
 				1914F4A52B4B4C1B00815B7D /* Statistic */,
+				19929B522BBD9D0500F5CF50 /* AboutGame */,
 				19E64B152B165E1A0037E441 /* ConfirmPopup */,
 				19CDC74C2B0ECBFE00A1B6D9 /* RenamePopup */,
 			);
@@ -483,6 +496,26 @@
 			path = PlayerNames;
 			sourceTree = "<group>";
 		};
+		19929B522BBD9D0500F5CF50 /* AboutGame */ = {
+			isa = PBXGroup;
+			children = (
+				19929B532BBD9D8F00F5CF50 /* AboutGameController.swift */,
+				19929B552BBD9DE900F5CF50 /* AboutGameControllerModel.swift */,
+				19929B5E2BBDE9E400F5CF50 /* MenuEnum.swift */,
+			);
+			path = AboutGame;
+			sourceTree = "<group>";
+		};
+		19929B572BBDC8CD00F5CF50 /* InfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				19929B582BBDCA4B00F5CF50 /* InfoCellView.swift */,
+				19929B5A2BBDCA7700F5CF50 /* InfoCellView+ViewModel.swift */,
+				19929B5C2BBDE9AD00F5CF50 /* SettableProtocol.swift */,
+			);
+			path = InfoCell;
+			sourceTree = "<group>";
+		};
 		19CDC7372B0BCECD00A1B6D9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +528,7 @@
 		19CDC7442B0BFC5E00A1B6D9 /* CellViews */ = {
 			isa = PBXGroup;
 			children = (
+				19929B572BBDC8CD00F5CF50 /* InfoCell */,
 				1914F4AC2B546FDB00815B7D /* LangCell */,
 				19CDC7672B11406800A1B6D9 /* PlayerCollectionCell */,
 				19E64B0A2B15274B0037E441 /* HistoryCellView */,
@@ -717,8 +751,10 @@
 				19F628092B28CF650003F85C /* Ext ProgressView.swift in Sources */,
 				194D8D732AEC064200A42DFC /* RoolsController.swift in Sources */,
 				19CDC7692B11410400A1B6D9 /* PlayerCollectionCell.swift in Sources */,
+				19929B5F2BBDE9E400F5CF50 /* MenuEnum.swift in Sources */,
 				19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */,
 				19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */,
+				19929B5D2BBDE9AE00F5CF50 /* SettableProtocol.swift in Sources */,
 				19CDC7662B113EC900A1B6D9 /* BasicCollectionCell.swift in Sources */,
 				1914F4B32B54853600815B7D /* LangController.swift in Sources */,
 				19CDC7602B0FA52800A1B6D9 /* DieCellView+ViewModel.swift in Sources */,
@@ -730,8 +766,10 @@
 				194D8D642AEA635D00A42DFC /* TextValue.swift in Sources */,
 				19E64B092B15268B0037E441 /* HistoryControllerModel.swift in Sources */,
 				19578E7A2B0BA6AD00566B08 /* Ext Int.swift in Sources */,
+				19929B5B2BBDCA7700F5CF50 /* InfoCellView+ViewModel.swift in Sources */,
 				194D8D802AEC0B4800A42DFC /* PlayersAmountControllerModel.swift in Sources */,
 				194D8D332AE9506B00A42DFC /* AppDelegate.swift in Sources */,
+				19929B542BBD9D8F00F5CF50 /* AboutGameController.swift in Sources */,
 				19E64B072B1526810037E441 /* HistoryController.swift in Sources */,
 				19463A762AFB699B003B1908 /* BasicImgView.swift in Sources */,
 				194D8D612AEA630900A42DFC /* Typealias.swift in Sources */,
@@ -764,6 +802,7 @@
 				19E64B0C2B1527A40037E441 /* HistoryCellView.swift in Sources */,
 				194D8D832AEC150800A42DFC /* PlayerModel.swift in Sources */,
 				194D8D6E2AEA75CA00A42DFC /* MainMenuControllerModel.swift in Sources */,
+				19929B562BBD9DE900F5CF50 /* AboutGameControllerModel.swift in Sources */,
 				194D8D592AE9823200A42DFC /* BasicMechanics.swift in Sources */,
 				194D8D542AE95E9800A42DFC /* MainGameControllerModel.swift in Sources */,
 				194D8D7E2AEC0B1E00A42DFC /* PlayersAmountController.swift in Sources */,
@@ -783,6 +822,7 @@
 				194D8D792AEC088F00A42DFC /* WinController.swift in Sources */,
 				19578E7D2B0BC6B100566B08 /* PlayerNamesController.swift in Sources */,
 				194D8D8A2AF123A800A42DFC /* RoolsCheck.swift in Sources */,
+				19929B592BBDCA4B00F5CF50 /* InfoCellView.swift in Sources */,
 				1914F4AE2B54700200815B7D /* LangCellView.swift in Sources */,
 				19CDC7432B0BFB4F00A1B6D9 /* PlayerCellView.swift in Sources */,
 				19CDC7502B0ECC7200A1B6D9 /* RenamePopupControllerModel.swift in Sources */,

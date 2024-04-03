@@ -50,8 +50,7 @@ class LangController: BasicViewController {
         }
     }
     
-    override func binding() {
-    }
+    override func binding() {}
     
     private func changeLanguage() {
         NotificationCenter.default.post(name: Notification.Name("languageChanged"), object: nil)

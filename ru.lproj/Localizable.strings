@@ -9,7 +9,7 @@
 "vc.mainMenu.langButton" = "Ru";
 "vc.mainMenu.playersView" = "Игроки";
 "vc.mainMenu.diceView" = "Кубики";
-"vc.mainMenu.bochkiView" = "Бочки";
+"vc.mainMenu.aboutGameView" = "Об игре";
 "vc.mainMenu.startButton" = "Начать";
 
 "vc.lang.title" = "Языки";
@@ -51,3 +51,9 @@
 "vc.renamePopup.errorText" = "Введите имя от 2 до 10 символов";
 "vc.renamePopup.titleLabel" = "Переименование Игрока";
 "vc.renamePopup.titleLabelCustomPlayer" = "Переименование %@";
+
+"vc.aboutGame.title" = "Об игре";
+"vc.aboutGame.termsOfUseLabel" = "Условия использования";
+"vc.aboutGame.privacyLabel" = "Приватность";
+"vc.aboutGame.contactsLabel" = "Контакты";
+"vc.aboutGame.versionLabel" = "Версия";

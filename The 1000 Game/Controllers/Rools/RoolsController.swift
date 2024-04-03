@@ -22,9 +22,6 @@ class RoolsController: BasicPresentController {
     
     private lazy var roolsImageView: UIImageView = {
         let imageView = UIImageView()
-        
-        
-        
         imageView.image = UIImage(
             named: "all_rools_\(Languages(rawValue: UserManager.read(key: .language) ?? 0)!.langSystemName)_img"
         )

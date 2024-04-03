@@ -9,7 +9,7 @@
 "vc.mainMenu.langButton" = "En";
 "vc.mainMenu.playersView" = "Players";
 "vc.mainMenu.diceView" = "Dice";
-"vc.mainMenu.bochkiView" = "Barrels";
+"vc.mainMenu.aboutGameView" = "About";
 "vc.mainMenu.startButton" = "Start";
 
 "vc.lang.title" = "Languages";
@@ -51,3 +51,9 @@
 "vc.renamePopup.errorText" = "Enter a name from 2 to 10 characters";
 "vc.renamePopup.titleLabel" = "Rename Player";
 "vc.renamePopup.titleLabelCustomPlayer" = "Rename %@";
+
+"vc.aboutGame.title" = "About";
+"vc.aboutGame.termsOfUseLabel" = "Terms of use";
+"vc.aboutGame.privacyLabel" = "Privacy";
+"vc.aboutGame.contactsLabel" = "Contacts";
+"vc.aboutGame.versionLabel" = "Version";

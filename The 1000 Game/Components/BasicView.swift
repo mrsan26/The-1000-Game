@@ -11,10 +11,14 @@ import UIKit
 class BasicView: UIView {
     
     var standartSize = true
+    var userInteractive = false
     
-    init(standartSize: Bool = true) {
+    var touchClosure: (() -> Void)?
+    
+    init(standartSize: Bool = true, userInteractive: Bool = false) {
         super.init(frame: .zero)
         self.standartSize = standartSize
+        self.userInteractive = userInteractive
         commonInit()
     }
     
@@ -29,7 +33,6 @@ class BasicView: UIView {
         self.clipsToBounds = true
 
         // Применение тени
-        
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
         self.layer.shadowOpacity = 0.8
@@ -42,25 +45,14 @@ class BasicView: UIView {
             }
         }
         
-        // Настройка тени, чтобы она не отображалась из-за прозрачности самого представления
-//        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-//        self.layer.shouldRasterize = true
-//        self.layer.rasterizationScale = UIScreen.main.scale
-
-        // Прозрачность самого представления
-//        self.alpha = 0.8 // Например, установка прозрачности в 80%
-
-        
-        
-//        self.layer.shadowColor = UIColor.black.cgColor
-//        self.layer.shadowOpacity = 0.8
-//        self.layer.shadowRadius = 4
-//        self.layer.shadowOffset = CGSize(width: 0, height: 4)
-//        self.layer.shadowPath = UIBezierPath(rect: CGRect(x: 0,
-//                                                         y: bounds.maxY - layer.shadowRadius,
-//                                                         width: bounds.width,
-//                                                         height: layer.shadowRadius)).cgPath
-//        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        if userInteractive {
+            self.userInteractive = true
+            self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touch)))
+        }
+    }
+    
+    @objc private func touch() {
+        touchClosure?()
     }
     
     

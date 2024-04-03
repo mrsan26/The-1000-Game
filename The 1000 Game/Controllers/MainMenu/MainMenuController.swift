@@ -57,13 +57,13 @@ class MainMenuController: BasicViewController {
     )
     private lazy var dicesChoiseChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     
-    private lazy var bochkiToogleView = BasicView()
-    private lazy var bochkiLabel = BasicLabel(font: .RobotronDot, fontSize: 18)
-    private lazy var bochkiSwitcher = BasicSwitcher()
-    
-    private lazy var botsToogleView = BasicView()
-    private lazy var botsLabel = BasicLabel(font: .RobotronDot, fontSize: 18)
-    private lazy var botsSwitcher = BasicSwitcher()
+    private lazy var aboutGameGestureView: BasicView = {
+        let view = BasicView()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(aboutGameGestureAction)))
+        return view
+    }()
+    private lazy var aboutGameLabel = BasicLabel(font: .RobotronDot, fontSize: 18)
+    private lazy var aboutGameChevronImg = BasicImgView(name: .named("right_schevron"), height: 17, width: 17)
     
     private lazy var startGameButtonView = UIView()
     private lazy var startGameButton = BasicButton(style: .red)
@@ -139,6 +139,12 @@ class MainMenuController: BasicViewController {
         Vibration.viewTap.vibrate()
     }
     
+    @objc private func aboutGameGestureAction() {
+        let aboutGameVC = AboutGameController(viewModel: .init())
+        self.navigationController?.pushViewController(aboutGameVC, animated: true)
+        Vibration.viewTap.vibrate()
+    }
+    
     override func makeLayout() {
         self.view.addSubview(buttonsStackView)
         self.view.addSubview(mainNameLabelView)
@@ -154,13 +160,9 @@ class MainMenuController: BasicViewController {
         dicesChoiseGestureView.addSubview(diceChoosenImg)
         dicesChoiseGestureView.addSubview(dicesChoiseChevronImg)
         
-        buttonsStackView.addArrangedSubview(bochkiToogleView)
-        bochkiToogleView.addSubview(bochkiLabel)
-        bochkiToogleView.addSubview(bochkiSwitcher)
-        
-        buttonsStackView.addArrangedSubview(botsToogleView)
-        botsToogleView.addSubview(botsLabel)
-        botsToogleView.addSubview(botsSwitcher)
+        buttonsStackView.addArrangedSubview(aboutGameGestureView)
+        aboutGameGestureView.addSubview(aboutGameLabel)
+        aboutGameGestureView.addSubview(aboutGameChevronImg)
         
         self.view.addSubview(startGameButtonView)
         startGameButtonView.addSubview(startGameButton)
@@ -193,7 +195,7 @@ class MainMenuController: BasicViewController {
             make.trailing.equalTo(dicesChoiseChevronImg.snp.leading).offset(-4)
         }
         
-        let namelabels = [playersLabel, dicesChoiseLabel, bochkiLabel, botsLabel]
+        let namelabels = [playersLabel, dicesChoiseLabel, aboutGameLabel]
         for label in namelabels {
             label.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(26)
@@ -201,15 +203,7 @@ class MainMenuController: BasicViewController {
             }
         }
         
-        let switchers = [bochkiSwitcher, botsSwitcher]
-        for switcher in switchers {
-            switcher.snp.makeConstraints { make in
-                make.trailing.equalToSuperview().offset(-26)
-                make.centerY.equalToSuperview()
-            }
-        }
-        
-        let chevrons = [playersChevronImg, dicesChoiseChevronImg]
+        let chevrons = [playersChevronImg, dicesChoiseChevronImg, aboutGameChevronImg]
         for chevron in chevrons {
             chevron.snp.makeConstraints { make in
                 make.centerY.equalToSuperview()
@@ -239,8 +233,7 @@ class MainMenuController: BasicViewController {
         self.playersLabel.setViewModel(viewModel.playersLabelVM)
         self.playersCountLabel.setViewModel(viewModel.playersCountLabelVM)
         self.dicesChoiseLabel.setViewModel(viewModel.dicesChoiseLabelVM)
-        self.bochkiLabel.setViewModel(viewModel.bochkiLabelVM)
-        self.botsLabel.setViewModel(viewModel.botsLabelVM)
+        self.aboutGameLabel.setViewModel(viewModel.aboutGameLabelVM)
     }
     
     override func setStrings() {

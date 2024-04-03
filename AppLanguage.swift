@@ -11,7 +11,7 @@ struct AppLanguage {
     static let vcMainMenuLangButton = "vc.mainMenu.langButton"
     static let vcMainMenuPlayersView = "vc.mainMenu.playersView"
     static let vcMainMenuDiceView = "vc.mainMenu.diceView"
-    static let vcMainMenuBochkiView = "vc.mainMenu.bochkiView"
+    static let vcMainMenuaboutGameView = "vc.mainMenu.aboutGameView"
     static let vcMainMenuStartButton = "vc.mainMenu.startButton"
     
     static let vcLangTitle = "vc.lang.title"
@@ -53,5 +53,11 @@ struct AppLanguage {
     static let vcRenamePopupErrorText = "vc.renamePopup.errorText"
     static let vcRenamePopupTitleLabel = "vc.renamePopup.titleLabel"
     static let vcRenamePopupTitleLabelCustomPlayer = "vc.renamePopup.titleLabelCustomPlayer"
+    
+    static let vcAboutGameTitle = "vc.aboutGame.title"
+    static let vcAboutGameTermsOfUseLabel = "vc.aboutGame.termsOfUseLabel"
+    static let vcAboutGameContactsLabel = "vc.aboutGame.contactsLabel"
+    static let vcAboutGameVersionLabel = "vc.aboutGame.versionLabel"
+    static let vcAboutGamePrivacyLabel = "vc.aboutGame.privacyLabel"
     
 }

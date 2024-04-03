@@ -17,8 +17,7 @@ final class MainMenuControllerModel: Combinable {
                 .text((UserManager.read(key: .amountOfPlayers) ?? BasicRools.Constants.playersAmountDefault).toString())
     )
     let dicesChoiseLabelVM = BasicLabel.ViewModel(textValue: .text(AppLanguage.vcMainMenuDiceView.localized))
-    let bochkiLabelVM = BasicLabel.ViewModel(textValue: .text(AppLanguage.vcMainMenuBochkiView.localized))
-    let botsLabelVM = BasicLabel.ViewModel(textValue: .text("С ботами"))
+    let aboutGameLabelVM = BasicLabel.ViewModel(textValue: .text(AppLanguage.vcMainMenuaboutGameView.localized))
     
     let startGameButton = BasicButton.ViewModel(title: AppLanguage.vcMainMenuStartButton.localized)
     
@@ -29,7 +28,7 @@ final class MainMenuControllerModel: Combinable {
     func updateLabels() {
         playersLabelVM.textValue = .text(AppLanguage.vcMainMenuPlayersView.localized)
         dicesChoiseLabelVM.textValue = .text(AppLanguage.vcMainMenuDiceView.localized)
-        bochkiLabelVM.textValue = .text(AppLanguage.vcMainMenuBochkiView.localized)
+        aboutGameLabelVM.textValue = .text(AppLanguage.vcMainMenuaboutGameView.localized)
         startGameButton.title = AppLanguage.vcMainMenuStartButton.localized
     }
 }
