@@ -412,27 +412,34 @@ extension MainGameController {
         maybePointsProgressView.fillingAnimation(progressValue: maybePoints, duration: 0.5)
     }
     
+    private func newGame(resetWinGamePoints: Bool) {
+        self.viewModel.players.forEach { player in
+            player.resetStats()
+            if resetWinGamePoints {
+                player.winGames = 0
+            }
+        }
+        
+        UserManager.read(key: .randomOrderPlayers) ?
+        self.viewModel.players.shuffle() :
+        self.viewModel.players.sort(by: {$0.positionNumber < $1.positionNumber})
+        guard let lastPlayer = self.viewModel.players.last else { return }
+        self.viewModel.players.removeLast()
+        self.viewModel.players.insert(lastPlayer, at: 0)
+        
+        self.viewModel.actionsBeforeTurn()
+        self.playersCollection.reloadData()
+        self.updateUIBeforeTurn()
+    }
+    
     private func winnerAction() {
         let winVC = WinController(
             viewModel: .init(),
             winnerPlayer: viewModel.currentPlayer,
             allPlayers: viewModel.players) { [weak self] in
-                guard let self else { return }
-                
-                self.viewModel.players.forEach { player in
-                    player.resetStats()
-                }
-                
-                UserManager.read(key: .randomOrderPlayers) ?
-                self.viewModel.players.shuffle() :
-                self.viewModel.players.sort(by: {$0.positionNumber < $1.positionNumber})
-                guard let lastPlayer = self.viewModel.players.last else { return }
-                self.viewModel.players.removeLast()
-                self.viewModel.players.insert(lastPlayer, at: 0)
-                
-                self.viewModel.actionsBeforeTurn()
-                self.playersCollection.reloadData()
-                self.updateUIBeforeTurn()
+                self?.newGame(resetWinGamePoints: true)
+            } continueGameClosure: { [weak self] in
+                self?.newGame(resetWinGamePoints: false)
             }
         
         self.navigationController?.pushViewController(winVC, animated: false)

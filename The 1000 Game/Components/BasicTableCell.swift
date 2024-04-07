@@ -23,7 +23,7 @@ class BasicTableCell<T: BasicCellView>: UITableViewCell {
         makeConstraints()
         self.backgroundColor = .clear
     }
-    
+        
     override func prepareForReuse() {
         super.prepareForReuse()
         mainView.prepareForReuse()

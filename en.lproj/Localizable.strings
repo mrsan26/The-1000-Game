@@ -38,9 +38,9 @@
 "vc.history.pointsChangesNumber" = "Changes";
 
 "vc.win.winWordLabel" = "Win";
-"vc.win.resetButton" = "New Game";
+"vc.win.nextButton" = "Next";
 "vc.win.statisticButton" = "Statistics";
-"vc.win.newGamePopup" = "Start a new game?";
+"vc.win.newGamePopup" = "Reset win counter?";
 
 "vc.statistic.title" = "General Statistics";
 
@@ -57,3 +57,7 @@
 "vc.aboutGame.privacyLabel" = "Privacy";
 "vc.aboutGame.contactsLabel" = "Contacts";
 "vc.aboutGame.versionLabel" = "Version";
+
+"vc.win.points.title.label" = "Score";
+"vc.win.points.continue.button" = "New game";
+"vc.win.points.reset.button" = "Reset game";

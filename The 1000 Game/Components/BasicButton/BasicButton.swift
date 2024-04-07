@@ -62,11 +62,11 @@ class BasicButton: PressableButton {
     private func setStyle(_ style: Style) {
         switch style {
         case .red:
-            self.colors = .init(button: UIColor(red: 0.922, green: 0.294, blue: 0.384, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
+            self.colors = .init(button: AppColors.red.getColor, shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
         case .blue:
-            self.colors = .init(button: UIColor(red: 0.227, green: 0.51, blue: 0.969, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
+            self.colors = .init(button: AppColors.blue.getColor, shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
         case .yellow:
-            self.colors = .init(button: UIColor(red: 0.817, green: 0.801, blue: 0.555, alpha: 1), shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
+            self.colors = .init(button: AppColors.yellow.getColor, shadow: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25))
         }
         self.setTitleColor(.white, for: .normal)
         

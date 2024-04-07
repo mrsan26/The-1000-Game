@@ -14,7 +14,7 @@ final class WinControllerModel: Combinable {
     let winerEmojiLabelVM = BasicLabel.ViewModel()
     let nameLabelVM = BasicLabel.ViewModel()
     let pointsLabelVM = BasicLabel.ViewModel()
-    let resetButtonVM = BasicButton.ViewModel(title: AppLanguage.vcWinResetButton.localized)
+    let nextButtonVM = BasicButton.ViewModel(title: AppLanguage.vcWinNextButton.localized)
     let statisticButtonVM = BasicButton.ViewModel(title: AppLanguage.vcWinStatisticButton.localized)
     
     var allPlayers: [Player] = []

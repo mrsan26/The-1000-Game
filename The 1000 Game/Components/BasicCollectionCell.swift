@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class BasicCollectionViewCell<T: UIView>: UICollectionViewCell {
+class BasicCollectionViewCell<T: BasicCellView>: UICollectionViewCell {
     let mainView = T()
     
     override init(frame: CGRect) {
@@ -19,6 +19,11 @@ class BasicCollectionViewCell<T: UIView>: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        mainView.prepareForReuse()
     }
     
     private func makeLayout() {

@@ -66,6 +66,11 @@
 		19929B5B2BBDCA7700F5CF50 /* InfoCellView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B5A2BBDCA7700F5CF50 /* InfoCellView+ViewModel.swift */; };
 		19929B5D2BBDE9AE00F5CF50 /* SettableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B5C2BBDE9AD00F5CF50 /* SettableProtocol.swift */; };
 		19929B5F2BBDE9E400F5CF50 /* MenuEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B5E2BBDE9E400F5CF50 /* MenuEnum.swift */; };
+		19929B622BBEE96A00F5CF50 /* WinPointsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B612BBEE96A00F5CF50 /* WinPointsController.swift */; };
+		19929B642BBEE97600F5CF50 /* WinPointsControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B632BBEE97600F5CF50 /* WinPointsControllerModel.swift */; };
+		19929B672BBF133D00F5CF50 /* PlayerPointsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B662BBF133D00F5CF50 /* PlayerPointsCollectionCell.swift */; };
+		19929B692BBF134B00F5CF50 /* PlayerPointsCollectionCell+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B682BBF134B00F5CF50 /* PlayerPointsCollectionCell+ViewModel.swift */; };
+		19929B6B2BC2C98F00F5CF50 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19929B6A2BC2C98F00F5CF50 /* AppColors.swift */; };
 		19CDC7392B0BCED900A1B6D9 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC7382B0BCED900A1B6D9 /* RealmManager.swift */; };
 		19CDC73B2B0BD03400A1B6D9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73A2B0BD03400A1B6D9 /* UserManager.swift */; };
 		19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */; };
@@ -169,6 +174,11 @@
 		19929B5A2BBDCA7700F5CF50 /* InfoCellView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfoCellView+ViewModel.swift"; sourceTree = "<group>"; };
 		19929B5C2BBDE9AD00F5CF50 /* SettableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettableProtocol.swift; sourceTree = "<group>"; };
 		19929B5E2BBDE9E400F5CF50 /* MenuEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEnum.swift; sourceTree = "<group>"; };
+		19929B612BBEE96A00F5CF50 /* WinPointsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinPointsController.swift; sourceTree = "<group>"; };
+		19929B632BBEE97600F5CF50 /* WinPointsControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinPointsControllerModel.swift; sourceTree = "<group>"; };
+		19929B662BBF133D00F5CF50 /* PlayerPointsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPointsCollectionCell.swift; sourceTree = "<group>"; };
+		19929B682BBF134B00F5CF50 /* PlayerPointsCollectionCell+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerPointsCollectionCell+ViewModel.swift"; sourceTree = "<group>"; };
+		19929B6A2BC2C98F00F5CF50 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		19CDC7382B0BCED900A1B6D9 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		19CDC73A2B0BD03400A1B6D9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojies.swift; sourceTree = "<group>"; };
@@ -323,6 +333,7 @@
 				19E64B052B15265B0037E441 /* History */,
 				194D8D6F2AEC03F500A42DFC /* Rools */,
 				194D8D762AEC080F00A42DFC /* Win */,
+				19929B602BBEE94600F5CF50 /* WinPoints */,
 				1914F4A52B4B4C1B00815B7D /* Statistic */,
 				19929B522BBD9D0500F5CF50 /* AboutGame */,
 				19E64B152B165E1A0037E441 /* ConfirmPopup */,
@@ -360,6 +371,7 @@
 				19CDC73C2B0BF3BA00A1B6D9 /* Emojies.swift */,
 				19CDC75A2B0FA12F00A1B6D9 /* DiceSkins.swift */,
 				1914F4B62B54867000815B7D /* Languages.swift */,
+				19929B6A2BC2C98F00F5CF50 /* AppColors.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -516,6 +528,24 @@
 			path = InfoCell;
 			sourceTree = "<group>";
 		};
+		19929B602BBEE94600F5CF50 /* WinPoints */ = {
+			isa = PBXGroup;
+			children = (
+				19929B612BBEE96A00F5CF50 /* WinPointsController.swift */,
+				19929B632BBEE97600F5CF50 /* WinPointsControllerModel.swift */,
+			);
+			path = WinPoints;
+			sourceTree = "<group>";
+		};
+		19929B652BBF132600F5CF50 /* PlayerPointsCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				19929B662BBF133D00F5CF50 /* PlayerPointsCollectionCell.swift */,
+				19929B682BBF134B00F5CF50 /* PlayerPointsCollectionCell+ViewModel.swift */,
+			);
+			path = PlayerPointsCollectionCell;
+			sourceTree = "<group>";
+		};
 		19CDC7372B0BCECD00A1B6D9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +560,7 @@
 			children = (
 				19929B572BBDC8CD00F5CF50 /* InfoCell */,
 				1914F4AC2B546FDB00815B7D /* LangCell */,
+				19929B652BBF132600F5CF50 /* PlayerPointsCollectionCell */,
 				19CDC7672B11406800A1B6D9 /* PlayerCollectionCell */,
 				19E64B0A2B15274B0037E441 /* HistoryCellView */,
 				19CDC75C2B0FA49A00A1B6D9 /* DieCell */,
@@ -751,17 +782,21 @@
 				19F628092B28CF650003F85C /* Ext ProgressView.swift in Sources */,
 				194D8D732AEC064200A42DFC /* RoolsController.swift in Sources */,
 				19CDC7692B11410400A1B6D9 /* PlayerCollectionCell.swift in Sources */,
+				19929B6B2BC2C98F00F5CF50 /* AppColors.swift in Sources */,
 				19929B5F2BBDE9E400F5CF50 /* MenuEnum.swift in Sources */,
 				19E64B192B165EB50037E441 /* ConfirmPopupControllerModel.swift in Sources */,
 				19CDC73D2B0BF3BA00A1B6D9 /* Emojies.swift in Sources */,
 				19929B5D2BBDE9AE00F5CF50 /* SettableProtocol.swift in Sources */,
 				19CDC7662B113EC900A1B6D9 /* BasicCollectionCell.swift in Sources */,
+				19929B622BBEE96A00F5CF50 /* WinPointsController.swift in Sources */,
 				1914F4B32B54853600815B7D /* LangController.swift in Sources */,
 				19CDC7602B0FA52800A1B6D9 /* DieCellView+ViewModel.swift in Sources */,
 				19CDC73F2B0BF77900A1B6D9 /* BasicTableCell.swift in Sources */,
 				194D8D752AEC065500A42DFC /* RoolsControllerModel.swift in Sources */,
 				194D8D7B2AEC08CE00A42DFC /* WinControllerModel.swift in Sources */,
+				19929B692BBF134B00F5CF50 /* PlayerPointsCollectionCell+ViewModel.swift in Sources */,
 				19CDC7492B0D11C700A1B6D9 /* Ext Table.swift in Sources */,
+				19929B642BBEE97600F5CF50 /* WinPointsControllerModel.swift in Sources */,
 				196E2E902B2CB4D30076EA65 /* Ext Double.swift in Sources */,
 				194D8D642AEA635D00A42DFC /* TextValue.swift in Sources */,
 				19E64B092B15268B0037E441 /* HistoryControllerModel.swift in Sources */,
@@ -772,6 +807,7 @@
 				19929B542BBD9D8F00F5CF50 /* AboutGameController.swift in Sources */,
 				19E64B072B1526810037E441 /* HistoryController.swift in Sources */,
 				19463A762AFB699B003B1908 /* BasicImgView.swift in Sources */,
+				19929B672BBF133D00F5CF50 /* PlayerPointsCollectionCell.swift in Sources */,
 				194D8D612AEA630900A42DFC /* Typealias.swift in Sources */,
 				1914F4AB2B4E160800815B7D /* TableTitleView.swift in Sources */,
 				19CDC7572B0FA01300A1B6D9 /* DiceController.swift in Sources */,

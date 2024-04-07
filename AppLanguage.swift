@@ -40,7 +40,7 @@ struct AppLanguage {
     static let vcHistoryPointsChangesNumberLabel = "vc.history.pointsChangesNumber"
     
     static let vcWinWinWordLabel = "vc.win.winWordLabel"
-    static let vcWinResetButton = "vc.win.resetButton"
+    static let vcWinNextButton = "vc.win.nextButton"
     static let vcWinStatisticButton = "vc.win.statisticButton"
     static let vcWinNewGamePopup = "vc.win.newGamePopup"
     
@@ -60,4 +60,7 @@ struct AppLanguage {
     static let vcAboutGameVersionLabel = "vc.aboutGame.versionLabel"
     static let vcAboutGamePrivacyLabel = "vc.aboutGame.privacyLabel"
     
+    static let vcWinPointsTitleLabel = "vc.win.points.title.label"
+    static let vcWinPointsContinueButton = "vc.win.points.continue.button"
+    static let vcWinPointsResetButton = "vc.win.points.reset.button"
 }

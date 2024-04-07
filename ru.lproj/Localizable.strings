@@ -38,9 +38,9 @@
 "vc.history.pointsChangesNumber" = "Изменения";
 
 "vc.win.winWordLabel" = "Победа";
-"vc.win.resetButton" = "Новая партия";
+"vc.win.nextButton" = "Далее";
 "vc.win.statisticButton" = "Статистика";
-"vc.win.newGamePopup" = "Начать новую партию?";
+"vc.win.newGamePopup" = "Сбросить счетчик побед?";
 
 "vc.statistic.title" = "Общая статистика";
 
@@ -57,3 +57,7 @@
 "vc.aboutGame.privacyLabel" = "Приватность";
 "vc.aboutGame.contactsLabel" = "Контакты";
 "vc.aboutGame.versionLabel" = "Версия";
+
+"vc.win.points.title.label" = "Счет";
+"vc.win.points.continue.button" = "Новая партия";
+"vc.win.points.reset.button" = "Начать заново";

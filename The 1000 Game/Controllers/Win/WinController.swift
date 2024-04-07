@@ -44,13 +44,7 @@ class WinController: BasicViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOnWinnerView)))
         return view
     }()
-    private lazy var winGamesLabel = BasicLabel(color: .white.withAlphaComponent(0.8), aligment: .center, font: .InterBlack, fontSize: 190)
-    private lazy var winerEmojiLabel: BasicLabel = {
-        let label = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 100)
-        label.alpha = 0.8
-        return label
-    }()
-//    private lazy var winerEmojiLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 100)
+    private lazy var winerEmojiLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 100)
     private lazy var playersInfoLabelsView = UIView()
     private lazy var nameLabel = BasicLabel(aligment: .center, font: .RobotronDot, fontSize: 30)
     private lazy var pointsLabel = BasicLabel(aligment: .center, font: .AlfaSlabOne, fontSize: 30)
@@ -69,15 +63,18 @@ class WinController: BasicViewController {
         return collection
     }()
     
-    private lazy var resetButtonView = UIView()
-    private lazy var statisticButton: BasicButton = {
-        let button = BasicButton(style: .blue, titleFontSize: 16)
-        button.cornerRadius = 16
-        return button
+    private lazy var buttonsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        stack.spacing = 12
+        return stack
     }()
-    private lazy var resetButton = BasicButton(style: .red, titleFontSize: 18)
+    private lazy var statisticButton = BasicButton(style: .blue, titleFontSize: 18)
+    private lazy var nextButton = BasicButton(style: .red, titleFontSize: 18)
     
     private var resetGameClosure: VoidBlock?
+    private var continueGameClosure: VoidBlock?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,12 +86,17 @@ class WinController: BasicViewController {
         }
     }
     
-    init(viewModel: WinControllerModel, winnerPlayer: Player, allPlayers: [Player], resetGameClosure: VoidBlock?) {
+    init(viewModel: WinControllerModel,
+         winnerPlayer: Player,
+         allPlayers: [Player],
+         resetGameClosure: VoidBlock?,
+         continueGameClosure: VoidBlock?) {
         self.viewModel = viewModel
         self.viewModel.allPlayers = allPlayers
         self.viewModel.playersWithoutWinner = allPlayers.filter( { !$0.winStatus } )
         self.viewModel.winnerPlayer = winnerPlayer
         self.resetGameClosure = resetGameClosure
+        self.continueGameClosure = continueGameClosure
         self.viewModel.updateComponents()
         super.init()
     }
@@ -125,24 +127,23 @@ class WinController: BasicViewController {
     
     override func makeLayout() {
         view.addSubview(mainContentStack)
+        mainContentStack.addArrangedSubview(winWordLabel)
         mainContentStack.addArrangedSubview(winnerContentStack)
-        winnerContentStack.addArrangedSubview(winWordLabel)
         mainCircleView.addSubview(circleView)
-        circleView.addSubview(winGamesLabel)
         circleView.addSubview(winerEmojiLabel)
         winnerContentStack.addArrangedSubview(mainCircleView)
         playersInfoLabelsView.addSubview(nameLabel)
         playersInfoLabelsView.addSubview(pointsLabel)
         winnerContentStack.addArrangedSubview(playersInfoLabelsView)
         mainContentStack.addArrangedSubview(playersCollection)
-        resetButtonView.addSubview(statisticButton)
-        resetButtonView.addSubview(resetButton)
-        mainContentStack.addArrangedSubview(resetButtonView)
+        buttonsStack.addArrangedSubview(statisticButton)
+        buttonsStack.addArrangedSubview(nextButton)
+        mainContentStack.addArrangedSubview(buttonsStack)
     }
     
     override func makeConstraints() {
         mainContentStack.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(6)
             make.leading.equalTo(self.view.safeAreaLayoutGuide).offset(12)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide).offset(-12)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-6)
@@ -153,9 +154,6 @@ class WinController: BasicViewController {
             circleView.layer.cornerRadius = self.view.frame.size.width / 4
             make.top.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
-        }
-        winGamesLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
         }
         winerEmojiLabel.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
@@ -172,34 +170,25 @@ class WinController: BasicViewController {
         playersCollection.snp.makeConstraints { make in
             make.height.equalTo(154)
         }
-        
-        statisticButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalTo(resetButton.snp.top).offset(-10)
-            
-            make.centerX.equalToSuperview()
-            make.height.equalTo(50)
-            make.width.equalTo(160)
-        }
-        
-        resetButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-        }
     }
     
     override func binding() {
         self.winWordLabel.setViewModel(viewModel.winWordLabelVM)
-        self.winGamesLabel.setViewModel(viewModel.winGamesLabelVM)
         self.winerEmojiLabel.setViewModel(viewModel.winerEmojiLabelVM)
         self.nameLabel.setViewModel(viewModel.nameLabelVM)
         self.pointsLabel.setViewModel(viewModel.pointsLabelVM)
-        self.resetButton.setViewModel(viewModel.resetButtonVM)
-        self.viewModel.resetButtonVM.action = { [weak self] in
-            ConfirmPopupController.show(titleText: AppLanguage.vcWinNewGamePopup.localized, position: .center) { [weak self] in
-                self?.resetGameClosure?()
-                self?.navigationController?.popViewController(animated: true)
+        self.nextButton.setViewModel(viewModel.nextButtonVM)
+        self.viewModel.nextButtonVM.action = { [weak self] in
+            guard let self else { return }
+            let pointsVC = WinPointsController(viewModel: .init(), allPlayers: self.viewModel.allPlayers) {
+                self.resetGameClosure?()
+                self.navigationController?.popViewController(animated: true)
+            } continueGameClosure: {
+                self.continueGameClosure?()
+                self.navigationController?.popViewController(animated: true)
             }
+
+            self.navigationController?.pushViewController(pointsVC, animated: true)
         }
         self.statisticButton.setViewModel(viewModel.statisticButtonVM)
         self.viewModel.statisticButtonVM.action = { [weak self] in
@@ -241,7 +230,7 @@ extension WinController: UICollectionViewDataSource {
         ) as? BasicCollectionViewCell<PlayerCollectionCell> else { return .init() }
         
         playerCell.mainView.isActive(true)
-        playerCell.mainView.setPlayer(player: viewModel.playersWithoutWinner[indexPath.row], winsCounter: true)
+        playerCell.mainView.setPlayer(player: viewModel.playersWithoutWinner[indexPath.row])
         
         return playerCell
     }
@@ -249,7 +238,7 @@ extension WinController: UICollectionViewDataSource {
 
 extension WinController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: 100, height: playersCollection.frame.size.height)
+        return .init(width: CGFloat(Int(UIScreen.main.bounds.size.height / 8)), height: playersCollection.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -259,7 +248,7 @@ extension WinController: UICollectionViewDelegateFlowLayout {
         case 2:
             return 30
         default:
-            return (mainContentStack.frame.size.width - 100 * 3) / 2
+            return (mainContentStack.frame.size.width - CGFloat(Int(UIScreen.main.bounds.size.height / 8) * 3)) / 2
         }
     }
     
@@ -269,7 +258,7 @@ extension WinController: UICollectionViewDelegateFlowLayout {
         viewModel.playersWithoutWinner.count == 2 ? (spacing = 30) : (spacing = 0)
         
         let cellsNumber = collectionView.numberOfItems(inSection: section)
-        let totalCellWidth = 100 * CGFloat(cellsNumber) + CGFloat(spacing)
+        let totalCellWidth = CGFloat(Int(UIScreen.main.bounds.size.height / 8)) * CGFloat(cellsNumber) + CGFloat(spacing)
         let leftInset = ((collectionView.frame.width - CGFloat(totalCellWidth)) / 2)
         
         return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: 0)

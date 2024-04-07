@@ -1,15 +1,17 @@
 //
-//  PlayerCollectionCell.swift
+//  PlayerPointsCollectionCell.swift
 //  The 1000 Game
 //
-//  Created by Sanchez on 25.11.2023.
+//  Created by Sanchez on 04.04.2024.
 //
+
+import Foundation
 
 import UIKit
 import SnapKit
 import Combine
 
-class PlayerCollectionCell: BasicCellView {
+class PlayerPointsCollectionCell: BasicCellView {
     
     var cancellables: Set<AnyCancellable> = []
     
@@ -31,16 +33,16 @@ class PlayerCollectionCell: BasicCellView {
         view.layer.shadowOpacity = 0.8
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
         view.layer.shadowRadius = 4
+        
+        view.layer.cornerRadius = CGFloat(Int(UIScreen.main.bounds.size.height / 7) / 2)
         return view
     }()
-    private lazy var emojiLabel = BasicLabel(aligment: .center, font: .InterBlack, fontSize: 40)
+    
+    private lazy var pointsLabel = BasicLabel(aligment: .center, font: .AlfaSlabOne, fontSize: 36)
     
     private lazy var nameLabelView = UIView()
-    private lazy var nameLabel = BasicLabel(aligment: .center, font: .RobotronDot, fontSize: 16)
+    private lazy var nameLabel = BasicLabel(aligment: .center, font: .RobotronDot, fontSize: 18)
     
-    private lazy var pointsLabelView = UIView()
-    private lazy var pointsLabel = BasicLabel(aligment: .center, font: .AlfaSlabOne, fontSize: 16)
-
     let viewModel = ViewModel()
     
     init() {
@@ -60,54 +62,39 @@ class PlayerCollectionCell: BasicCellView {
         self.addSubview(contentStack)
         
         mainCircleView.addSubview(circleView)
-        circleView.addSubview(emojiLabel)
+        circleView.addSubview(pointsLabel)
         contentStack.addArrangedSubview(mainCircleView)
         
         contentStack.addArrangedSubview(nameLabelView)
         nameLabelView.addSubview(nameLabel)
-        contentStack.addArrangedSubview(pointsLabelView)
-        pointsLabelView.addSubview(pointsLabel)
     }
     
     override func makeConstraints() {
         contentStack.snp.makeConstraints { make in
-            make.top.trailing.leading.equalToSuperview()
+            make.top.trailing.leading.bottom.equalToSuperview()
         }
         
-        let labels = [nameLabel, pointsLabel, emojiLabel]
-        labels.forEach { label in
-            label.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-        }
-    }
-    
-    func setPlayer(player: Player) {
-        self.viewModel.player = player
-    }
-    
-    func isActive(_ active: Bool) {
-        if active {
-            circleView.snp.updateConstraints { make in
-                make.height.width.equalTo(Int(UIScreen.main.bounds.size.height / 8))
-            }
-            circleView.layer.cornerRadius = CGFloat(Int(UIScreen.main.bounds.size.height / 8) / 2)
-            emojiLabel.font = UIFont(name: "inter-black", size: 55)
-        } else {
-            circleView.snp.updateConstraints { make in
-                make.height.width.equalTo(Int(UIScreen.main.bounds.size.height / 10))
-            }
-            circleView.layer.cornerRadius = CGFloat(Int(UIScreen.main.bounds.size.height / 10) / 2)
-            emojiLabel.font = UIFont(name: "inter-black", size: 40)
-        }
-        circleView.snp.makeConstraints { make in
+        circleView.snp.updateConstraints { make in
+            make.height.width.equalTo(Int(UIScreen.main.bounds.size.height / 7))
             make.centerX.equalToSuperview()
-            make.top.bottom.equalToSuperview()
         }
+        
+        pointsLabel.snp.makeConstraints { make in
+            make.trailing.leading.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func setPlayer(player: Player, labelColor: UIColor) {
+        self.viewModel.player = player
+        self.pointsLabel.textColor = labelColor
     }
     
     func setViewModel(_ viewModel: ViewModel) {
-        self.emojiLabel.setViewModel(viewModel.emojiLabelVM)
         self.nameLabel.setViewModel(viewModel.nameLabelVM)
         self.pointsLabel.setViewModel(viewModel.pointsLabelVM)
     }
